@@ -1,10 +1,11 @@
 /* --- Definisi Variabel Warna & Font --- */
 :root {
     --white: #FFFFFF;
-    --light-blue: #E0F7FA; /* Biru langit sangat muda */
-    --accent-gold: #D4AF37; /* Emas yang elegan */
-    --dark-text: #333333; /* Teks gelap agar mudah dibaca */
-    --light-text: #666666; /* Teks abu-abu untuk deskripsi */
+    --light-blue: #58b4ff;
+    --accent-gold: #D4AF37;
+    --dark-text: #333333;
+    --light-text: #666666;
+    --light-gray-bg: #f8f9fa;
     --font-family: 'Poppins', sans-serif;
 }
 
@@ -24,6 +25,7 @@ body {
     background-color: var(--white);
     color: var(--dark-text);
     line-height: 1.6;
+    position: relative;
 }
 
 .container {
@@ -42,6 +44,12 @@ body {
     top: 0;
     z-index: 100;
     border-bottom: 1px solid #eee;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.navbar.scrolled {
+    background-color: var(--white);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .navbar .container {
@@ -50,11 +58,26 @@ body {
     align-items: center;
 }
 
+.logo-container {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.header-logo {
+    height: 70px;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--accent-gold);
-    text-decoration: none;
+    background-color: var(--white);
+    padding: 5px 12px;
+    border-radius: 8px;
+    display: inline-block;
 }
 
 .navbar nav ul {
@@ -84,21 +107,25 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: linear-gradient(to right, #F8FBFF, #E0F7FA);
-    padding-top: 60px; /* Offset for fixed navbar */
+    padding-top: 60px;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('header-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: #FFFFFF;
+}
+
+.hero .subtitle {
+    color: #eeeeee;
+    margin-bottom: 2rem;
 }
 
 .hero h1 {
     font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 0.5rem;
-}
-
-.hero .subtitle {
-    font-size: 1.2rem;
-    font-weight: 300;
-    color: var(--light-text);
-    margin-bottom: 2rem;
 }
 
 .cta-button {
@@ -119,6 +146,8 @@ body {
 
 /* --- Gaya Section Umum --- */
 section {
+    position: relative;
+    overflow: hidden;
     padding: 80px 0;
 }
 
@@ -128,11 +157,54 @@ section {
     color: var(--accent-gold);
     margin-bottom: 50px;
     font-weight: 600;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
 }
 
-/* --- Tentang Saya --- */
+.subsection-title {
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--dark-text);
+    margin-top: 60px;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+/* --- Wavy Divider --- */
+.wave-container {
+    position: relative;
+    background: transparent;
+    margin-top: -1px;
+    line-height: 0;
+}
+
+.wave-container svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.wave-container svg path {
+    animation: wave-move 15s ease-in-out infinite alternate;
+}
+
+@keyframes wave-move {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-30px);
+    }
+}
+
+.wave-flipped {
+    transform: scaleY(-1);
+}
+
+/* --- Tentang Saya Section --- */
 .about-section {
     background-color: var(--white);
+    position: relative;
+    padding-top: 150px !important;
 }
 
 .about-content {
@@ -165,29 +237,56 @@ section {
     margin-bottom: 1rem;
 }
 
-/* --- Keahlian --- */
+.animated-icon.scales-icon {
+    font-size: 2rem;
+    color: var(--light-blue);
+    margin-top: 20px;
+    display: inline-block;
+    animation: rocking 3s ease-in-out infinite;
+}
+
+@keyframes rocking {
+    0%, 100% { transform: rotate(5deg); }
+    50% { transform: rotate(-5deg); }
+}
+
+/* --- Keahlian Section --- */
 .skills-section {
     background-color: var(--light-blue);
+    padding-top: 150px !important;
+    margin-top: -1px;
 }
 
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* ▼▼▼ PERUBAHAN DI SINI: Membuat grid 2x2 di layar besar ▼▼▼ */
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 800px; /* Batasi lebar maksimum agar tidak terlalu lebar */
+    margin: 0 auto;  /* Pusatkan grid */
     gap: 30px;
 }
 
 .skill-card {
     background: var(--white);
-    padding: 30px;
     text-align: center;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(17, 28, 58, 0.07);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 30px;
+    overflow: hidden;
 }
 
 .skill-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.skill-card a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .skill-card i {
@@ -204,11 +303,193 @@ section {
 .skill-card p {
     color: var(--light-text);
     font-size: 0.9rem;
+    margin-top: auto;
 }
 
-/* --- Kontak & Social Links --- */
+/* --- Projects, Articles, Clients Preview Sections --- */
+.projects-section {
+    background-color: var(--white);
+    padding-top: 150px !important;
+    margin-top: -1px;
+}
+
+.articles-section {
+    background-color: var(--light-gray-bg);
+    padding-top: 150px !important;
+    margin-top: -1px;
+}
+
+.clients-section {
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
+        url('clients-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding-top: 150px !important;
+    margin-top: -1px;
+}
+
+.view-more-container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.view-more-btn {
+    display: inline-block;
+    border: 2px solid var(--accent-gold);
+    color: var(--accent-gold);
+    padding: 10px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.view-more-btn:hover {
+    background-color: var(--accent-gold);
+    color: var(--white);
+}
+
+/* --- Video Player (di dalam seksi Project) --- */
+.video-player-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(17, 28, 58, 0.07);
+    margin: 0 auto 50px auto;
+    max-width: 900px;
+    background-color: #000;
+}
+
+.video-player-container::before {
+    content: '';
+    display: block;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+}
+
+.video-cover,
+.video-element,
+.play-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.video-cover {
+    object-fit: cover;
+    z-index: 2;
+    cursor: pointer;
+}
+
+.play-button {
+    background-color: rgba(212, 175, 55, 0.8);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    cursor: pointer;
+    z-index: 3;
+    transition: background-color 0.3s ease;
+    width: 80px;
+    height: 80px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: none;
+}
+
+.play-button:hover {
+    background-color: var(--accent-gold);
+}
+
+.video-player-container.playing .video-cover,
+.video-player-container.playing .play-button {
+    display: none;
+}
+
+.video-element {
+    z-index: 1;
+    cursor: pointer;
+}
+
+.video-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    padding-top: 5px;
+}
+
+.video-player-container:hover .video-controls,
+.video-player-container.paused .video-controls {
+    opacity: 1;
+}
+
+.controls-main {
+    display: flex;
+    align-items: center;
+    padding: 5px 10px;
+}
+
+.control-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+.control-btn:hover {
+    color: var(--accent-gold);
+}
+
+.control-btn i {
+    pointer-events: none;
+}
+
+.time-display {
+    color: white;
+    font-size: 0.9rem;
+    margin-left: auto;
+    margin-right: 10px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background-color: rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: height 0.2s ease;
+}
+
+.video-controls:hover .progress-bar {
+    height: 12px;
+}
+
+.progress-filled {
+    height: 100%;
+    background-color: var(--accent-gold);
+    width: 0%;
+    transition: width 0.1s linear;
+}
+
+/* --- Kontak & Social Links Section --- */
 .contact-section {
     text-align: center;
+    padding-top: 150px !important;
+    background-color: var(--white);
+    margin-top: -1px;
 }
 
 .contact-section p {
@@ -238,38 +519,422 @@ footer {
     border-top: 1px solid #eee;
 }
 
-/* --- Media Queries untuk Responsif (Mobile) --- */
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-    .about-content {
-        flex-direction: column;
-        text-align: center;
-    }
-    .navbar .container {
-        flex-direction: column;
-    }
-    .navbar nav ul {
-        margin-top: 1rem;
-    }
-}
-/* --- Tambahan untuk Efek JavaScript --- */
-
-/* Style untuk navbar saat di-scroll */
-.navbar.scrolled {
-    background-color: var(--white);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.footer-logo {
+    height: 30px;
+    vertical-align: middle;
+    margin: 0 5px;
 }
 
-/* Style untuk elemen yang akan dianimasikan */
+/* --- Animasi Scroll --- */
 .hidden {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(50px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
 .show {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* --- Halaman Detail (keahlian1.html, projects.html, dll) --- */
+.detail-hero {
+    background-color: var(--light-blue);
+    padding: 120px 0 60px 0;
+    text-align: center;
+    color: var(--white);
+}
+
+.detail-hero-subtitle {
+    font-weight: 300;
+    font-size: 1.2rem;
+}
+
+.detail-hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--white);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.page-content {
+    padding: 60px 0 80px 0;
+}
+
+.detail-main-content {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.detail-image-column {
+    flex: 1;
+}
+
+.detail-text-column {
+    flex: 1;
+}
+
+.detail-text-column h2 {
+    font-size: 2rem;
+    color: var(--accent-gold);
+    margin-bottom: 1rem;
+}
+
+.detail-image-column img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    object-fit: cover;
+    aspect-ratio: 16 / 9;
+}
+
+.competencies-section {
+    background-color: var(--light-gray-bg);
+}
+
+.competency-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.competency-card {
+    background-color: var(--white);
+    border: 1px solid #eee;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.competency-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.competency-card i {
+    font-size: 2.5rem;
+    color: var(--light-blue);
+    margin-bottom: 1rem;
+}
+
+.competency-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: var(--dark-text);
+}
+
+.cta-section {
+    text-align: center;
+    background-color: var(--white);
+}
+
+.cta-section h2 {
+    font-size: 2.2rem;
+    color: var(--accent-gold);
+}
+
+.cta-section p {
+    max-width: 600px;
+    margin: 1rem auto 2rem auto;
+    color: var(--light-text);
+}
+
+
+/* --- Gaya Halaman Projects, Articles, Clients --- */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(17, 28, 58, 0.07);
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.project-info {
+    padding: 20px;
+}
+
+.project-info h3 {
+    margin-bottom: 10px;
+    color: var(--dark-text);
+}
+
+.project-tags {
+    margin: 15px 0;
+}
+
+.project-tags span {
+    background-color: #eee;
+    color: var(--light-text);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-right: 5px;
+}
+
+.project-link {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: var(--accent-gold);
+    font-weight: 600;
+}
+
+.article-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+}
+
+.article-card {
+    display: flex;
+    gap: 30px;
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(17, 28, 58, 0.07);
+    transition: box-shadow 0.3s ease;
+}
+
+.article-card:hover {
+    box-shadow: 0 12px 30px rgba(17, 28, 58, 0.1);
+}
+
+.article-card img {
+    width: 300px;
+    height: 100%;
+    object-fit: cover;
+}
+
+.article-info {
+    padding: 20px;
+}
+
+.article-meta {
+    font-size: 0.8rem;
+    color: var(--light-text);
+    margin-bottom: 10px;
+}
+
+.article-link {
+    display: inline-block;
+    margin-top: 15px;
+    text-decoration: none;
+    color: var(--accent-gold);
+    font-weight: 600;
+}
+
+.client-grid {
+    display: grid;
+    /* ▼▼▼ PERUBAHAN DI SINI: Atur 4 kolom di layar besar ▼▼▼ */
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    align-items: center;
+    justify-items: center;
+}
+
+.client-logo {
+    background: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    padding: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.client-logo:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.client-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+}
+
+/* --- Decorative Shapes --- */
+.decorative-shape {
+    position: absolute;
+    z-index: 0;
+    opacity: 0.1;
+    color: var(--light-blue);
+}
+
+.shape-projects {
+    top: 20px;
+    left: -50px;
+    transform: rotate(15deg);
+}
+
+.shape-articles {
+    top: 40px;
+    right: -60px;
+    transform: rotate(-25deg);
+}
+
+.shape-clients {
+    bottom: 20px;
+    left: -40px;
+    transform: rotate(45deg);
+    width: 150px;
+    height: 150px;
+}
+
+
+/* --- Tombol Musik & Animasi Koin --- */
+#music-toggle-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 101;
+    width: 50px;
+    height: 50px;
+    background-color: var(--accent-gold);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    transition: transform 0.2s ease;
+}
+
+#music-toggle-btn:hover {
+    transform: scale(1.1);
+}
+
+#coin-animation-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.coin {
+    position: absolute;
+    top: -10%;
+    color: var(--accent-gold);
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 1rem;
+    opacity: 0.7;
+    content: '\f51e'; 
+    animation-name: fall;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+}
+
+@keyframes fall {
+    from {
+        transform: translateY(0) rotate(0deg);
+    }
+    to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+
+/* --- Media Queries untuk Responsif (Mobile) --- */
+@media (max-width: 992px) {
+    .client-grid {
+        /* Kembali menjadi 2 kolom di tablet */
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .navbar .container {
+        flex-direction: column;
+    }
+    
+    .navbar .logo-container {
+        margin-bottom: 1rem;
+    }
+
+    .navbar nav ul {
+        margin-top: 0;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .navbar nav li {
+        margin: 0 10px 10px 10px;
+    }
+
+    .skills-grid {
+        /* ▼▼▼ PERUBAHAN DI SINI: Kembali menjadi 1 kolom di mobile ▼▼▼ */
+        grid-template-columns: 1fr;
+    }
+
+    .detail-main-content {
+        flex-direction: column;
+    }
+
+    .detail-hero-title {
+        font-size: 2.2rem;
+    }
+
+    .detail-image-column img {
+        margin: 0 auto 20px auto;
+    }
+    
+    .article-card {
+        flex-direction: column;
+    }
+    
+    .article-card img {
+        width: 100%;
+        height: 200px;
+    }
+    
+    .decorative-shape {
+        display: none;
+    }
+
+    .client-logo {
+        width: 120px;
+        height: 120px;
+        padding: 10px;
+    }
 }

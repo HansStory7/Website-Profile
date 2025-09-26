@@ -1,28 +1,37 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HansSites</title>
-    
+    <title>HansSites | Personal Profile</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <link rel="icon" href="logo-hanssites.png" type="image/png">
     
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+    <div id="coin-animation-container"></div>
 
     <header class="navbar">
         <div class="container">
-            <a href="#" class="logo">HansSites</a>
+            <a href="index.html" class="logo-container">
+                <img src="logo-hanssites.png" alt="HansSites Logo" class="header-logo">
+                <span class="logo">HansSites</span>
+            </a>
             <nav>
                 <ul>
-                    <li><a href="#tentang">Tentang Saya</a></li>
-                    <li><a href="#keahlian">Keahlian</a></li>
-                    <li><a href="#kontak">Kontak</a></li>
+                    <li><a href="#tentang">About</a></li>
+                    <li><a href="#keahlian">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#articles">Articles</a></li>
+                    <li><a href="#clients">Clients</a></li>
+                    <li><a href="#kontak">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -30,18 +39,24 @@
 
     <main class="hero">
         <div class="container">
-            <h1>Selamat Datang di Dunia Digital Saya</h1>
+            <h1>Welcome to My Digital World</h1>
             <p class="subtitle">Accountant | Web & App Developer</p>
-            <a href="#kontak" class="cta-button">Hubungi Saya</a>
+            <a href="#kontak" class="cta-button">Contact Me</a>
         </div>
     </main>
 
+    <div class="wave-container">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#ffffff" fill-opacity="1" d="M0,160L80,176C160,192,320,224,480,213.3C640,203,800,149,960,138.7C1120,128,1280,160,1360,176L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
+        </svg>
+    </div>
+
     <section id="tentang" class="about-section hidden">
         <div class="container">
-            <h2 class="section-title">Tentang Saya</h2>
+            <h2 class="section-title">About</h2>
             <div class="about-content">
                 <div class="profile-picture">
-                    <img src="Profile.jpeg" alt="Foto Profil Hans">
+                    <img src="Profile.jpeg" alt="Hans's Profile Picture">
                 </div>
                 <div class="bio">
                     <h3>Hello, I'm Hans</h3>
@@ -51,60 +66,212 @@
                     <p>
                         Alongside my accounting profession, I am also pursuing my passion in technology as a Web and App Developer. By combining financial expertise with digital innovation, I strive to build solutions that are not only functional and user-friendly, but also efficient in supporting businesses and individuals. My goal is to integrate precision from the world of accounting with creativity in technology, delivering impactful results in both fields.
                     </p>
+                    <div class="animated-icon scales-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <div class="wave-container wave-flipped">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#58b4ff" fill-opacity="1" d="M0,160L80,176C160,192,320,224,480,213.3C640,203,800,149,960,138.7C1120,128,1280,160,1360,176L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
+        </svg>
+    </div>
 
     <section id="keahlian" class="skills-section hidden">
         <div class="container">
-            <h2 class="section-title">Keahlian Utama</h2>
+            <h2 class="section-title">Core Competencies</h2>
             <div class="skills-grid">
                 <div class="skill-card">
-                    <i class="fas fa-calculator"></i>
-                    <h3>[Keahlian 1]</h3>
-                    <p>Deskripsi singkat tentang keahlian ini.</p>
+                    <a href="keahlian1.html">
+                        <i class="fas fa-calculator"></i>
+                        <h3>Financial Analysis & Management</h3>
+                        <p>Skilled in managing financial records, preparing reports, and analyzing data to support effective decision-making.</p>
+                    </a>
                 </div>
                 <div class="skill-card">
-                    <i class="fas fa-chart-line"></i>
-                    <h3>[Keahlian 2]</h3>
-                    <p>Deskripsi singkat tentang keahlian ini.</p>
+                    <a href="#">
+                        <i class="fas fa-code"></i>
+                        <h3>Web Development</h3>
+                        <p>Building responsive and modern websites using the latest technologies for a great user experience.</p>
+                    </a>
                 </div>
                 <div class="skill-card">
-                    <i class="fas fa-file-invoice-dollar"></i>
-                    <h3>[Keahlian 3]</h3>
-                    <p>Deskripsi singkat tentang keahlian ini.</p>
+                    <a href="#">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>App Development</h3>
+                        <p>Creating functional and user-friendly mobile applications for various platforms.</p>
+                    </a>
                 </div>
-                 <div class="skill-card">
-                    <i class="fas fa-paint-brush"></i>
-                    <h3>[Keahlian 4]</h3>
-                    <p>Deskripsi singkat tentang keahlian ini.</p>
+                <div class="skill-card">
+                    <a href="#">
+                        <i class="fas fa-database"></i>
+                        <h3>Data Analysis</h3>
+                        <p>Analyzing and interpreting complex data to provide valuable business insights.</p>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
+    
+    <div class="wave-container">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#58b4ff" fill-opacity="1" d="M0,160L80,176C160,192,320,224,480,213.3C640,203,800,149,960,138.7C1120,128,1280,160,1360,176L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
+        </svg>
+    </div>
+    
+    <section id="projects" class="projects-section hidden">
+        <div class="decorative-shape shape-projects">
+            <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="80" cy="80" r="70" stroke-width="10" stroke="currentColor" fill="none"/>
+                <circle cx="130" cy="130" r="40" fill="currentColor"/>
+            </svg>
+        </div>
+        <div class="container">
+            <h2 class="section-title">Featured Project</h2>
+            
+            <div class="video-player-container">
+                <img src="VideoCover-HansSites1.png" alt="Video Cover" class="video-cover">
+                <div class="play-button">
+                    <i class="fas fa-play"></i>
+                </div>
+                <video class="video-element" src="Video-HansSites1.mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="video-controls">
+                    <div class="progress-bar">
+                        <div class="progress-filled"></div>
+                    </div>
+                    <div class="controls-main">
+                        <button class="control-btn toggle-play" title="Play/Pause"><i class="fas fa-play"></i></button>
+                        <button class="control-btn skip-btn" data-skip="-10" title="Rewind 10s"><i class="fas fa-backward"></i></button>
+                        <button class="control-btn skip-btn" data-skip="10" title="Forward 10s"><i class="fas fa-forward"></i></button>
+                        <div class="time-display">00:00 / 00:00</div>
+                        <button class="control-btn fullscreen-btn" title="Fullscreen"><i class="fas fa-expand"></i></button>
+                    </div>
+                </div>
+            </div>
 
+            <h3 class="subsection-title">Other Projects</h3>
+            <div class="project-grid">
+                <div class="project-card">
+                    <img src="project-thumbnail-1.jpg" alt="Project 1 Thumbnail">
+                    <div class="project-info">
+                        <h3>Project Title 1</h3>
+                        <p>A brief description of the project, highlighting the main goal and the solution provided.</p>
+                        <div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+                        <a href="#" class="project-link">View Details</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img src="project-thumbnail-2.jpg" alt="Project 2 Thumbnail">
+                    <div class="project-info">
+                        <h3>Project Title 2</h3>
+                        <p>A brief description of the project, highlighting the main goal and the solution provided.</p>
+                        <div class="project-tags"><span>React</span><span>Node.js</span></div>
+                        <a href="#" class="project-link">View Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="view-more-container">
+                <a href="projects.html" class="view-more-btn">View All Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="wave-container wave-flipped">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#f8f9fa" fill-opacity="1" d="M0,160L80,176C160,192,320,224,480,213.3C640,203,800,149,960,138.7C1120,128,1280,160,1360,176L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
+        </svg>
+    </div>
+
+    <section id="articles" class="articles-section hidden">
+        <div class="decorative-shape shape-articles">
+            <svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                <line x1="10" y1="190" x2="190" y2="10" stroke="currentColor" stroke-width="15"/>
+                <line x1="10" y1="150" x2="150" y2="10" stroke="currentColor" stroke-width="15"/>
+            </svg>
+        </div>
+        <div class="container">
+            <h2 class="section-title">Recent Articles</h2>
+            <div class="article-grid">
+                <div class="article-card">
+                    <img src="article-thumbnail-1.jpg" alt="Article 1 Thumbnail">
+                    <div class="article-info">
+                        <p class="article-meta">September 26, 2025 · 5 min read</p>
+                        <h3>The Intersection of Finance and Technology</h3>
+                        <p>An exploration of how modern technology is reshaping the accounting industry...</p>
+                        <a href="#" class="article-link">Read More</a>
+                    </div>
+                </div>
+            </div>
+             <div class="view-more-container">
+                <a href="articles.html" class="view-more-btn">View All Articles</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="wave-container">
+         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+             <path fill="#f8f9fa" fill-opacity="1" d="M0,160L80,176C160,192,320,224,480,213.3C640,203,800,149,960,138.7C1120,128,1280,160,1360,176L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
+         </svg>
+    </div>
+
+    <section id="clients" class="clients-section hidden">
+        <div class="decorative-shape shape-clients">
+            <svg width="200" height="200" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <rect x="20" y="0" width="10" height="100" fill="currentColor" />
+                <rect x="0" y="45" width="100" height="10" fill="currentColor" />
+            </svg>
+        </div>
+        <div class="container">
+             <h2 class="section-title">Trusted By</h2>
+             <div class="client-grid">
+                <div class="client-logo"><img src="client-logo-1.png" alt="Client Logo 1"></div>
+                <div class="client-logo"><img src="client-logo-2.jpg" alt="Client Logo 2"></div>
+                <div class="client-logo"><img src="client-logo-3.jpg" alt="Client Logo 3"></div>
+                <div class="client-logo"><img src="client-logo-4.jpg" alt="Client Logo 4"></div>
+             </div>
+             <div class="view-more-container">
+                <a href="clients.html" class="view-more-btn">View All Clients</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="wave-container wave-flipped">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#ffffff" fill-opacity="1" d="M0,160L80,176C160,192,320,224,480,213.3C640,203,800,149,960,138.7C1120,128,1280,160,1360,176L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
+        </svg>
+    </div>
+    
     <section id="kontak" class="contact-section hidden">
         <div class="container">
-            <h2 class="section-title">Terhubung dengan Saya</h2>
-            <p>Jangan ragu untuk menghubungi saya melalui platform di bawah ini:</p>
+            <h2 class="section-title">Get in Touch</h2>
+            <p>Feel free to contact me through the platforms below:</p>
             <div class="social-links">
                 <a href="https://www.instagram.com/hansstory._/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.linkedin.com/in/farhan-abdullah-hansstory7/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="mailto:[Alamat Email Anda]" target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                <a href="[Link Github/Portfolio Anda]" target="_blank" aria-label="Github"><i class="fab fa-github"></i></a>
+                <a href="https://mail.google.com/mail/u/0/?view=cm&tf=1&fs=1&to=hansstory7@gmail.com" target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://wa.me/6281212789018" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 - HansSites. All rights reserved.</p>
+            <p>&copy; 2025 - <img src="logo-hanssites.png" alt="HansSites Logo" class="footer-logo"> HansSites. All rights reserved.</p>
         </div>
     </footer>
+    
+    <audio id="background-music" src="background-music.mp3" loop></audio>
+    <button id="music-toggle-btn" title="Play/Pause Music">
+        <i class="fas fa-volume-mute"></i>
+    </button>
     
     <script src="script.js"></script>
 
 </body>
-</html>
-
+</html> 
