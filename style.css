@@ -1,15 +1,15 @@
-/* --- Definisi Variabel Warna & Font --- */
+/* --- Color & Font Variables Definition --- */
 :root {
     --white: #FFFFFF;
     --light-blue: #58b4ff;
-    --accent-gold: #D4AF37;
+    --accent-gold: #FFC300; /* Brighter Gold */
     --dark-text: #333333;
     --light-text: #666666;
     --light-gray-bg: #f8f9fa;
     --font-family: 'Poppins', sans-serif;
 }
 
-/* --- Reset & Gaya Dasar --- */
+/* --- Reset & Basic Styles --- */
 * {
     margin: 0;
     padding: 0;
@@ -36,7 +36,7 @@ body {
 
 /* --- Navbar --- */
 .navbar {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.4); /* 60% Transparency */
     backdrop-filter: blur(10px);
     padding: 1rem 0;
     position: fixed;
@@ -65,7 +65,7 @@ body {
 }
 
 .header-logo {
-    height: 70px;
+    height: 60px;
     margin-right: 10px;
     vertical-align: middle;
 }
@@ -75,9 +75,8 @@ body {
     font-weight: 700;
     color: var(--accent-gold);
     background-color: var(--white);
-    padding: 5px 12px;
+    padding: 5px 15px;
     border-radius: 8px;
-    display: inline-block;
 }
 
 .navbar nav ul {
@@ -108,13 +107,47 @@ body {
     justify-content: center;
     text-align: center;
     padding-top: 60px;
-    background-image:
-        linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url('Header-Background.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     color: #FFFFFF;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+.hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-slideshow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 500%; /* 100% x 5 images */
+    height: 100%;
+    display: flex;
+    z-index: 0;
+    transition: transform 1.5s ease-in-out;
+}
+
+.slide {
+    width: 20%; /* 100% / 5 images */
+    height: 100%;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .hero .subtitle {
@@ -137,14 +170,16 @@ body {
     text-decoration: none;
     font-weight: 600;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    cursor: pointer;
 }
 
 .cta-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+    box-shadow: 0 10px 20px rgba(255, 195, 0, 0.3);
 }
 
-/* --- Gaya Section Umum --- */
+/* --- General Section Styles --- */
 section {
     position: relative;
     overflow: hidden;
@@ -200,7 +235,7 @@ section {
     transform: scaleY(-1);
 }
 
-/* --- Tentang Saya Section --- */
+/* --- About Me Section --- */
 .about-section {
     background-color: var(--white);
     position: relative;
@@ -250,19 +285,22 @@ section {
     50% { transform: rotate(-5deg); }
 }
 
-/* --- Keahlian Section --- */
+/* --- Skills Section --- */
 .skills-section {
     background-color: var(--light-blue);
     padding-top: 150px !important;
     margin-top: -1px;
 }
 
+.skills-section .section-title {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
 .skills-grid {
     display: grid;
-    /* ▼▼▼ PERUBAHAN DI SINI: Membuat grid 2x2 di layar besar ▼▼▼ */
     grid-template-columns: repeat(2, 1fr);
-    max-width: 800px; /* Batasi lebar maksimum agar tidak terlalu lebar */
-    margin: 0 auto;  /* Pusatkan grid */
+    max-width: 800px;
+    margin: 0 auto;
     gap: 30px;
 }
 
@@ -320,7 +358,7 @@ section {
 }
 
 .clients-section {
-    background-image: 
+    background-image:
         linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
         url('clients-background.jpg');
     background-size: cover;
@@ -351,7 +389,7 @@ section {
     color: var(--white);
 }
 
-/* --- Video Player (di dalam seksi Project) --- */
+/* --- Video Player --- */
 .video-player-container {
     position: relative;
     width: 100%;
@@ -386,7 +424,7 @@ section {
 }
 
 .play-button {
-    background-color: rgba(212, 175, 55, 0.8);
+    background-color: rgba(255, 195, 0, 0.8);
     color: var(--white);
     border-radius: 50%;
     display: flex;
@@ -484,7 +522,7 @@ section {
     transition: width 0.1s linear;
 }
 
-/* --- Kontak & Social Links Section --- */
+/* --- Contact & Social Links Section --- */
 .contact-section {
     text-align: center;
     padding-top: 150px !important;
@@ -520,12 +558,12 @@ footer {
 }
 
 .footer-logo {
-    height: 30px;
+    height: 20px;
     vertical-align: middle;
     margin: 0 5px;
 }
 
-/* --- Animasi Scroll --- */
+/* --- Scroll Animation --- */
 .hidden {
     opacity: 0;
     transform: translateY(50px);
@@ -537,39 +575,50 @@ footer {
     transform: translateY(0);
 }
 
-/* --- Halaman Detail (keahlian1.html, projects.html, dll) --- */
+/* --- Detail Page Styles (Skills, etc.) --- */
 .detail-hero {
-    background-color: var(--light-blue);
-    padding: 120px 0 60px 0;
+    background-image: linear-gradient(135deg, #58b4ff 0%, #2e86de 100%);
+    padding: 140px 0 80px 0;
     text-align: center;
     color: var(--white);
+    border-bottom: 5px solid var(--accent-gold);
 }
 
 .detail-hero-subtitle {
     font-weight: 300;
     font-size: 1.2rem;
+    opacity: 0.9;
 }
 
 .detail-hero-title {
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 700;
     color: var(--white);
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
 }
 
 .page-content {
-    padding: 60px 0 80px 0;
+    padding: 80px 0;
+    background-color: #fdfdfd;
 }
 
 .detail-main-content {
     display: flex;
-    gap: 40px;
+    gap: 50px;
     align-items: center;
-    padding: 40px 0;
+    margin-bottom: 80px;
 }
 
 .detail-image-column {
-    flex: 1;
+    flex: 0 0 45%;
+    text-align: center;
+}
+
+.detail-image-column img {
+    max-width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
 }
 
 .detail-text-column {
@@ -577,22 +626,21 @@ footer {
 }
 
 .detail-text-column h2 {
-    font-size: 2rem;
-    color: var(--accent-gold);
-    margin-bottom: 1rem;
+    font-size: 2.2rem;
+    color: var(--dark-text);
+    margin-bottom: 1.5rem;
+    border-left: 4px solid var(--accent-gold);
+    padding-left: 15px;
 }
 
-.detail-image-column img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 10px;
-    object-fit: cover;
-    aspect-ratio: 16 / 9;
+.detail-text-column p {
+    color: var(--light-text);
+    margin-bottom: 1rem;
+    line-height: 1.8;
 }
 
 .competencies-section {
+    padding: 80px 0;
     background-color: var(--light-gray-bg);
 }
 
@@ -604,48 +652,62 @@ footer {
 
 .competency-card {
     background-color: var(--white);
-    border: 1px solid #eee;
+    border: 1px solid #e9ecef;
     padding: 30px;
     border-radius: 10px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 4px solid var(--light-blue);
 }
 
 .competency-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
 }
 
 .competency-card i {
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: var(--light-blue);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    display: block;
 }
 
 .competency-card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+    margin-bottom: 0.75rem;
     color: var(--dark-text);
 }
 
+.competency-card p {
+    color: var(--light-text);
+    font-size: 0.95rem;
+}
+
 .cta-section {
+    padding: 80px 0;
     text-align: center;
     background-color: var(--white);
 }
 
 .cta-section h2 {
-    font-size: 2.2rem;
-    color: var(--accent-gold);
+    font-size: 2.5rem;
+    color: var(--dark-text);
+    margin-bottom: 1rem;
 }
 
 .cta-section p {
     max-width: 600px;
-    margin: 1rem auto 2rem auto;
+    margin: 0 auto 2.5rem auto;
     color: var(--light-text);
+    font-size: 1.1rem;
 }
 
 
-/* --- Gaya Halaman Projects, Articles, Clients --- */
+/* --- Styles for Projects, Articles, Clients Pages --- */
+.project-grid, .article-grid, .client-grid {
+    padding-top: 40px;
+}
+
 .project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -747,7 +809,6 @@ footer {
 
 .client-grid {
     display: grid;
-    /* ▼▼▼ PERUBAHAN DI SINI: Atur 4 kolom di layar besar ▼▼▼ */
     grid-template-columns: repeat(4, 1fr);
     gap: 30px;
     align-items: center;
@@ -780,36 +841,7 @@ footer {
     border-radius: 50%;
 }
 
-/* --- Decorative Shapes --- */
-.decorative-shape {
-    position: absolute;
-    z-index: 0;
-    opacity: 0.1;
-    color: var(--light-blue);
-}
-
-.shape-projects {
-    top: 20px;
-    left: -50px;
-    transform: rotate(15deg);
-}
-
-.shape-articles {
-    top: 40px;
-    right: -60px;
-    transform: rotate(-25deg);
-}
-
-.shape-clients {
-    bottom: 20px;
-    left: -40px;
-    transform: rotate(45deg);
-    width: 150px;
-    height: 150px;
-}
-
-
-/* --- Tombol Musik & Animasi Koin --- */
+/* --- Music Button & Coin Animation --- */
 #music-toggle-btn {
     position: fixed;
     bottom: 20px;
@@ -866,11 +898,9 @@ footer {
     }
 }
 
-
-/* --- Media Queries untuk Responsif (Mobile) --- */
+/* --- Media Queries for Responsive Design --- */
 @media (max-width: 992px) {
     .client-grid {
-        /* Kembali menjadi 2 kolom di tablet */
         grid-template-columns: repeat(2, 1fr);
     }
 }
@@ -903,20 +933,7 @@ footer {
     }
 
     .skills-grid {
-        /* ▼▼▼ PERUBAHAN DI SINI: Kembali menjadi 1 kolom di mobile ▼▼▼ */
         grid-template-columns: 1fr;
-    }
-
-    .detail-main-content {
-        flex-direction: column;
-    }
-
-    .detail-hero-title {
-        font-size: 2.2rem;
-    }
-
-    .detail-image-column img {
-        margin: 0 auto 20px auto;
     }
     
     .article-card {
@@ -927,16 +944,19 @@ footer {
         width: 100%;
         height: 200px;
     }
-    
-    .decorative-shape {
-        display: none;
-    }
 
     .client-logo {
         width: 120px;
         height: 120px;
         padding: 10px;
     }
-
+    
+    .detail-main-content {
+        flex-direction: column;
+    }
+    
+    .detail-hero-title {
+        font-size: 2.5rem;
+    }
 }
 
