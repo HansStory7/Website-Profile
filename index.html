@@ -5,27 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HansSites | Personal Profile</title>
-    
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    
-    <!-- Favicon -->
     <link rel="icon" href="logo-hanssites.png" type="image/png">
-    
-    <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <!-- Container for the falling coin animation -->
     <div id="coin-animation-container"></div>
 
-    <!-- Navbar -->
     <header class="navbar">
         <div class="container">
             <a href="index.html" class="logo-container">
@@ -45,30 +35,34 @@
         </div>
     </header>
 
-    <!-- Hero Section with Background Slideshow -->
     <main class="hero">
         <div class="hero-slideshow">
-            <div class="slide"><img src="header-background-1.jpg" alt="Background Image 1"></div>
-            <div class="slide"><img src="header-background-2.jpg" alt="Background Image 2"></div>
-            <div class="slide"><img src="header-background-3.jpg" alt="Background Image 3"></div>
-            <div class="slide"><img src="header-background-4.jpg" alt="Background Image 4"></div>
-            <div class="slide"><img src="header-background-5.jpg" alt="Background Image 5"></div>
+            <div class="slide"><img src="header-background-1.jpg" alt="Slideshow Image 1"></div>
+            <div class="slide"><img src="header-background-2.jpg" alt="Slideshow Image 2"></div>
+            <div class="slide"><img src="header-background-3.jpg" alt="Slideshow Image 3"></div>
+            <div class="slide"><img src="header-background-4.jpg" alt="Slideshow Image 4"></div>
+            <div class="slide"><img src="header-background-5.jpg" alt="Slideshow Image 5"></div>
         </div>
+        
         <div class="container">
-            <h1>Welcome to My Digital World</h1>
-            <p class="subtitle">Accountant | Web & App Developer</p>
-            <a href="#kontak" class="cta-button">Contact Me</a>
+            <div class="hero-content">
+                <h1>Welcome to My Digital World</h1>
+                <p class="subtitle">Accountant | Web & App Developer</p>
+                <div class="hero-controls">
+                    <button class="slide-nav-inline prev-slide" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
+                    <a href="#kontak" class="cta-button">Contact Me</a>
+                    <button class="slide-nav-inline next-slide" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
         </div>
     </main>
-
-    <!-- Wave Divider -->
+    
     <div class="wave-container">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
             <path fill="#ffffff" fill-opacity="1" d="M0,160L80,176C160,192,320,224,480,213.3C640,203,800,149,960,138.7C1120,128,1280,160,1360,176L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
         </svg>
     </div>
 
-    <!-- About Me Section -->
     <section id="tentang" class="about-section hidden">
         <div class="container">
             <h2 class="section-title">About Me</h2>
@@ -92,14 +86,12 @@
         </div>
     </section>
 
-    <!-- Wave Divider (Flipped) -->
     <div class="wave-container wave-flipped">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
             <path fill="#58b4ff" fill-opacity="1" d="M0,160L80,176C160,192,320,224,480,213.3C640,203,800,149,960,138.7C1120,128,1280,160,1360,176L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
         </svg>
     </div>
 
-    <!-- Core Competencies Section -->
     <section id="keahlian" class="skills-section hidden">
         <div class="container">
             <h2 class="section-title">Core Competencies</h2>
@@ -136,17 +128,15 @@
         </div>
     </section>
     
-    <!-- Wave Divider -->
     <div class="wave-container">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
             <path fill="#58b4ff" fill-opacity="1" d="M0,160L80,176C160,192,320,224,480,213.3C640,203,800,149,960,138.7C1120,128,1280,160,1360,176L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
         </svg>
     </div>
     
-    <!-- Featured Project Section -->
     <section id="projects" class="projects-section hidden">
         <div class="container">
-            <h2 class="section-title">Featured Project</h2>
+            <h2 class="section-title">Featured Projects</h2>
             
             <div class="video-player-container">
                 <img src="VideoCover-HansSites1.png" alt="Video Cover" class="video-cover">
@@ -170,24 +160,29 @@
                 </div>
             </div>
 
-            <h3 class="subsection-title">Other Projects</h3>
             <div class="project-grid">
                 <div class="project-card">
                     <img src="project-thumbnail-1.jpg" alt="Project 1 Thumbnail">
                     <div class="project-info">
-                        <h3>Project Title 1</h3>
-                        <p>A brief description of the project, highlighting the main goal and the solution provided.</p>
-                        <div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
-                        <a href="#" class="project-link">View Details</a>
+                        <h3>Financial Reporting</h3>
+                        <p>A comprehensive suite for generating accurate and insightful financial statements for enterprises.</p>
+                        <div class="project-tags">
+                                <span>Balance Sheet</span>
+                                <span>Income Statement</span>
+                                <span>Cash Flow Statement</span>
+                                <span>Statement of Changes in Equity</span>
+                                <span>Notes to Financial Statements</span>
+                            </div>
+                        <a href="project1.html" class="project-link">View Details</a>
                     </div>
                 </div>
                 <div class="project-card">
                     <img src="project-thumbnail-2.jpg" alt="Project 2 Thumbnail">
                     <div class="project-info">
-                        <h3>Project Title 2</h3>
-                        <p>A brief description of the project, highlighting the main goal and the solution provided.</p>
+                        <h3>Web Design Showcase</h3>
+                        <p>Creating visually appealing, user-friendly websites with a focus on responsive design and modern UI/UX principles.</p>
                         <div class="project-tags"><span>React</span><span>Node.js</span></div>
-                        <a href="#" class="project-link">View Details</a>
+                        <a href="project2.html" class="project-link">View Details</a>
                     </div>
                 </div>
             </div>
@@ -198,25 +193,34 @@
         </div>
     </section>
 
-    <!-- Wave Divider (Flipped) -->
     <div class="wave-container wave-flipped">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
             <path fill="#f8f9fa" fill-opacity="1" d="M0,160L80,176C160,192,320,224,480,213.3C640,203,800,149,960,138.7C1120,128,1280,160,1360,176L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
         </svg>
     </div>
 
-    <!-- Recent Articles Section -->
     <section id="articles" class="articles-section hidden">
         <div class="container">
             <h2 class="section-title">Recent Articles</h2>
             <div class="article-grid">
+                <!-- Article 1 Preview -->
                 <div class="article-card">
-                    <img src="article-thumbnail-1.jpg" alt="Article 1 Thumbnail">
+                    <img src="https://images.unsplash.com/photo-1674049406232-f28892b5335a?q=80&w=2070&auto=format&fit=crop" alt="AI and Accounting">
                     <div class="article-info">
-                        <p class="article-meta">September 26, 2025 · 5 min read</p>
-                        <h3>The Intersection of Finance and Technology</h3>
-                        <p>An exploration of how modern technology is reshaping the accounting industry...</p>
-                        <a href="#" class="article-link">Read More</a>
+                        <p class="article-meta">October 1, 2025 · 7 min read</p>
+                        <h3>The Future of AI in Accounting</h3>
+                        <p>Exploring how AI is automating tasks, enhancing data analysis, and reshaping the role of the modern accountant.</p>
+                        <a href="article1.html" class="article-link">Read More</a>
+                    </div>
+                </div>
+                <!-- Article 2 Preview -->
+                <div class="article-card">
+                    <img src="https://images.unsplash.com/photo-1639755491103-6a97b2c0d5a3?q=80&w=1932&auto=format&fit=crop" alt="Blockchain Technology">
+                    <div class="article-info">
+                        <p class="article-meta">September 15, 2025 · 5 min read</p>
+                        <h3>Understanding Blockchain's Impact on Financial Audits</h3>
+                        <p>A look into how blockchain technology offers unprecedented transparency and security, transforming the traditional auditing process.</p>
+                        <a href="article2.html" class="article-link">Read More</a>
                     </div>
                 </div>
             </div>
@@ -226,14 +230,12 @@
         </div>
     </section>
 
-    <!-- Wave Divider -->
-     <div class="wave-container">
+    <div class="wave-container">
          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
              <path fill="#f8f9fa" fill-opacity="1" d="M0,160L80,176C160,192,320,224,480,213.3C640,203,800,149,960,138.7C1120,128,1280,160,1360,176L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
          </svg>
     </div>
 
-    <!-- Clients Section -->
     <section id="clients" class="clients-section hidden">
         <div class="container">
              <h2 class="section-title">Trusted By</h2>
@@ -242,6 +244,8 @@
                 <div class="client-logo"><img src="client-logo-2.png" alt="Client Logo 2"></div>
                 <div class="client-logo"><img src="client-logo-3.png" alt="Client Logo 3"></div>
                 <div class="client-logo"><img src="client-logo-4.png" alt="Client Logo 4"></div>
+                <div class="client-logo"><img src="client-logo-5.png" alt="Client Logo 5"></div>
+                <div class="client-logo"><img src="client-logo-6.png" alt="Client Logo 6"></div>
              </div>
              <div class="view-more-container">
                 <a href="clients.html" class="view-more-btn">View All Clients</a>
@@ -249,14 +253,12 @@
         </div>
     </section>
 
-    <!-- Wave Divider (Flipped) -->
     <div class="wave-container wave-flipped">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
             <path fill="#ffffff" fill-opacity="1" d="M0,160L80,176C160,192,320,224,480,213.3C640,203,800,149,960,138.7C1120,128,1280,160,1360,176L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path>
         </svg>
     </div>
     
-    <!-- Contact Section -->
     <section id="kontak" class="contact-section hidden">
         <div class="container">
             <h2 class="section-title">Get in Touch</h2>
@@ -264,26 +266,82 @@
             <div class="social-links">
                 <a href="https://www.instagram.com/hansstory._/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.linkedin.com/in/farhan-abdullah-hansstory7/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                <a href="mailto:hansstory7@gmail.com" target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://mail.google.com/mail/u/0/?view=cm&tf=1&fs=1&to=hansstory7@gmail.com" target="_blank" aria-label="Email"><i class="fas fa-envelope"></i></a>
                 <a href="https://wa.me/6281212789018" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="policy-links">
+                <a href="#" id="open-guidance">Guidance</a> |
+                <a href="#" id="open-terms">Terms & Conditions</a> |
+                <a href="#" id="open-privacy">Privacy Policy</a>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="container">
             <p>&copy; 2025 - <img src="logo-hanssites.png" alt="HansSites Logo" class="footer-logo"> HansSites. All rights reserved.</p>
         </div>
     </footer>
     
-    <!-- Background Music Controls -->
     <audio id="background-music" src="background-music.mp3" loop></audio>
+
+    <button id="email-popup-btn" title="Send a Message">
+        <i class="fas fa-envelope"></i>
+    </button>
     <button id="music-toggle-btn" title="Play/Pause Music">
         <i class="fas fa-volume-mute"></i>
     </button>
+
+    <!-- Email Popup Modal -->
+    <div id="email-popup-modal" class="popup-modal">
+        <div class="popup-content">
+            <span class="close-popup-btn">&times;</span>
+            <h3>Send a Quick Message</h3>
+            <form id="email-popup-form">
+                <textarea id="popup-message" name="message" rows="6" placeholder="Type your message here..."></textarea>
+                <a id="send-email-link" class="cta-button" href="#">Send via Email Client</a>
+            </form>
+            <div class="popup-footer">
+                <img src="logo-hanssites.png" alt="HansSites Logo" class="popup-logo">
+                <span>Powered by Hans</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Guidance Modal -->
+    <div id="guidance-modal" class="popup-modal">
+        <div class="popup-content">
+            <span class="close-popup-btn">&times;</span>
+            <h2>Guidance</h2>
+            <p>Welcome to my personal site. Here you can explore my skills, projects, and articles. Use the navigation bar to jump to different sections. If you wish to contact me, please use the social media links or the quick message popup. Thank you for visiting!</p>
+        </div>
+    </div>
+
+    <!-- Terms & Conditions Modal -->
+    <div id="terms-modal" class="popup-modal">
+        <div class="popup-content">
+            <span class="close-popup-btn">&times;</span>
+            <h2>Terms & Conditions</h2>
+            <p>By accessing this website, you agree to be bound by these terms of service, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws.</p>
+            <ul>
+                <li>The content on this website is for your general information and use only. It is subject to change without notice.</li>
+                <li>This website contains material which is owned by or licensed to us. This material includes, but is not limited to, the design, layout, look, appearance and graphics. Reproduction is prohibited.</li>
+                <li>Unauthorized use of this website may give rise to a claim for damages and/or be a criminal offense.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div id="privacy-modal" class="popup-modal">
+        <div class="popup-content">
+            <span class="close-popup-btn">&times;</span>
+            <h2>Privacy Policy</h2>
+            <p>Your privacy is important to us. It is our policy to respect your privacy regarding any information we may collect from you across our website.</p>
+            <p>We only ask for personal information when we truly need it to provide a service to you. We collect it by fair and lawful means, with your knowledge and consent. We also let you know why we’re collecting it and how it will be used.</p>
+            <p>We don’t share any personally identifying information publicly or with third-parties, except when required to by law.</p>
+        </div>
+    </div>
     
-    <!-- JavaScript Script -->
     <script src="script.js"></script>
 
 </body>

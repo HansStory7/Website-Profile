@@ -4,87 +4,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skill Details - Web Development</title>
-
+    <title>HansSites | Web Development</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
+    <link rel="icon" href="logo-hanssites.png" type="image/png">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <header class="navbar">
+    <header class="navbar scrolled">
         <div class="container">
-            <a href="index.html" class="logo">Back to Home</a>
+            <a href="index.html" class="logo-container">
+                <img src="logo-hanssites.png" alt="HansSites Logo" class="header-logo">
+                <span class="logo">HansSites</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html#tentang">About</a></li>
+                    <li><a href="index.html#keahlian">Skills</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#articles">Articles</a></li>
+                    <li><a href="index.html#clients">Clients</a></li>
+                    <li><a href="index.html#kontak">Contact</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
-    <section class="detail-hero">
-        <div class="container">
-            <p class="detail-hero-subtitle">Skill Details</p>
-            <h1 class="detail-hero-title">Web Development</h1>
-        </div>
-    </section>
+    <main>
+        <section class="detail-hero">
+            <div class="container">
+                <h1 class="detail-hero-title">Web Development</h1>
+                <p class="detail-hero-subtitle">Building Modern and Responsive Digital Experiences.</p>
+            </div>
+        </section>
 
-    <main class="page-content">
-        <div class="container">
-            <div class="detail-main-content">
-                <div class="detail-image-column">
-                    <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2070&auto=format&fit=crop" alt="Web Development" class="page-image">
+        <section class="page-content">
+            <div class="container">
+                <div class="detail-main-content">
+                    <div class="detail-image-column">
+                        <img src="https://placehold.co/600x400/58b4ff/FFFFFF?text=Code+on+Screen" alt="Code on a computer screen">
+                    </div>
+                    <div class="detail-text-column">
+                        <h2>Crafting Digital Solutions</h2>
+                        <p>
+                           I specialize in developing high-quality, responsive websites from the ground up. My approach combines clean code with modern design principles to create web experiences that are not only visually appealing but also fast, secure, and intuitive to use.
+                        </p>
+                        <p>
+                           From personal portfolios to complex web applications, I am proficient in the full development lifecycle, ensuring each project is tailored to meet the specific needs of the client and their audience.
+                        </p>
+                    </div>
                 </div>
-                <div class="detail-text-column">
-                    <h2>In-Depth Description</h2>
-                    <p>
-                        My passion for technology is channeled through web development, where I focus on creating modern, responsive, and high-performance websites. I believe that a great website is a blend of clean aesthetics, intuitive functionality, and robust technical architecture.
-                    </p>
-                    <p>
-                        I have experience in both front-end and back-end development, allowing me to build comprehensive solutions from the user interface to the server-side logic. I am committed to writing clean, maintainable code and utilizing the latest technologies to deliver exceptional user experiences.
-                    </p>
+
+                <section class="competencies-section">
+                    <h2 class="subsection-title">Core Competencies</h2>
+                    <div class="competency-grid">
+                        <div class="competency-card">
+                            <i class="fab fa-html5"></i>
+                            <h3>Front-End Development</h3>
+                            <p>Using HTML, CSS, and JavaScript to build beautiful user interfaces.</p>
+                        </div>
+                        <div class="competency-card">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h3>Responsive Design</h3>
+                            <p>Ensuring a seamless experience across all devices, from desktops to phones.</p>
+                        </div>
+                        <div class="competency-card">
+                            <i class="fas fa-cogs"></i>
+                            <h3>Back-End Logic</h3>
+                            <p>Developing server-side logic and database integration for dynamic websites.</p>
+                        </div>
+                         <div class="competency-card">
+                            <i class="fas fa-rocket"></i>
+                            <h3>Performance Optimization</h3>
+                            <p>Implementing best practices to ensure fast load times and smooth performance.</p>
+                        </div>
+                    </div>
+                </section>
+                
+                <div class="view-more-container" style="margin-top: 80px;">
+                    <a href="index.html#keahlian" class="view-more-btn">&larr; Back to Skills</a>
                 </div>
             </div>
-        </div>
+        </section>
     </main>
-
-    <section class="competencies-section">
-        <div class="container">
-            <h2 class="section-title">Key Competencies</h2>
-            <div class="competency-grid">
-                <div class="competency-card">
-                    <i class="fas fa-desktop"></i>
-                    <h3>Front-End Development</h3>
-                    <p>Building interactive user interfaces using HTML5, CSS3, and JavaScript frameworks like React.</p>
-                </div>
-                <div class="competency-card">
-                    <i class="fas fa-server"></i>
-                    <h3>Back-End Development</h3>
-                    <p>Developing server-side logic, databases, and APIs to power web applications using technologies like Node.js.</p>
-                </div>
-                <div class="competency-card">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h3>Responsive Design</h3>
-                    <p>Ensuring websites look and function perfectly on all devices, from desktops to mobile phones.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="cta-section">
-        <div class="container">
-            <h2>Interested in Collaborating?</h2>
-            <p>See other projects or contact me directly to discuss how I can help you.</p>
-            <a href="index.html#kontak" class="cta-button">Contact Me</a>
-        </div>
-    </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 - HansSites. All rights reserved.</p>
+            <p>&copy; 2025 - <img src="logo-hanssites.png" alt="HansSites Logo" class="footer-logo"> HansSites. All rights reserved.</p>
         </div>
     </footer>
 
 </body>
-
 </html>
