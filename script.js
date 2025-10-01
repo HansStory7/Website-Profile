@@ -1,170 +1,266 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
 
-    // --- 1. NAVBAR SCROLL EFFECT ---
-    // Mengubah tampilan navbar saat halaman di-scroll
+    // --- NAVBAR SCROLL EFFECT ---
     const navbar = document.querySelector('.navbar');
-    if (navbar) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-    }
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
 
-    // --- 2. FADE-IN ANIMATION ON SCROLL ---
-    // Menggunakan Intersection Observer untuk memunculkan seksi saat terlihat
-    const hiddenElements = document.querySelectorAll('.hidden');
+    // --- SCROLL REVEAL ANIMATION ---
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('show');
             }
         });
     }, {
-        threshold: 0.1 // Memicu saat 10% elemen terlihat
+        threshold: 0.1
     });
 
-    hiddenElements.forEach(el => observer.observe(el));
+    const hiddenElements = document.querySelectorAll('.hidden');
+    hiddenElements.forEach((el) => observer.observe(el));
 
-    // --- 3. CUSTOM VIDEO PLAYER ---
-    const videoContainer = document.querySelector('.video-player-container');
-    if (videoContainer) {
-        const video = videoContainer.querySelector('.video-element');
-        const playButton = videoContainer.querySelector('.play-button');
-        const togglePlayBtn = videoContainer.querySelector('.toggle-play');
-        const progressBar = videoContainer.querySelector('.progress-bar');
-        const progressFilled = videoContainer.querySelector('.progress-filled');
-        const timeDisplay = videoContainer.querySelector('.time-display');
-        const fullscreenBtn = videoContainer.querySelector('.fullscreen-btn');
-        const skipButtons = videoContainer.querySelectorAll('.skip-btn');
+    // --- CUSTOM VIDEO PLAYER ---
+    const videoPlayerContainer = document.querySelector('.video-player-container');
+    if (videoPlayerContainer) {
+        const video = videoPlayerContainer.querySelector('.video-element');
+        const playButton = videoPlayerContainer.querySelector('.play-button');
+        const coverImage = videoPlayerContainer.querySelector('.video-cover');
+        const togglePlayBtn = videoPlayerContainer.querySelector('.toggle-play');
+        const skipButtons = videoPlayerContainer.querySelectorAll('.skip-btn');
+        const progressBar = videoPlayerContainer.querySelector('.progress-bar');
+        const progressFilled = videoPlayerContainer.querySelector('.progress-filled');
+        const timeDisplay = videoPlayerContainer.querySelector('.time-display');
+        const fullscreenBtn = videoPlayerContainer.querySelector('.fullscreen-btn');
 
-        // Fungsi untuk memformat waktu dari detik ke format MM:SS
-        function formatTime(seconds) {
-            const minutes = Math.floor(seconds / 60);
-            const remainingSeconds = Math.floor(seconds % 60);
-            return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`;
-        }
-
-        // Fungsi Play/Pause
         function togglePlay() {
             if (video.paused) {
                 video.play();
-                videoContainer.classList.add('playing');
-                videoContainer.classList.remove('paused');
-                togglePlayBtn.innerHTML = '<i class="fas fa-pause"></i>';
             } else {
                 video.pause();
-                videoContainer.classList.remove('playing');
-                videoContainer.classList.add('paused');
-                togglePlayBtn.innerHTML = '<i class="fas fa-play"></i>';
             }
         }
 
-        // Update progress bar
+        function updatePlayIcon() {
+            const icon = video.paused ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>';
+            togglePlayBtn.innerHTML = icon;
+            videoPlayerContainer.classList.toggle('paused', video.paused);
+        }
+
+        function handleSkip() {
+            video.currentTime += parseFloat(this.dataset.skip);
+        }
+
         function handleProgress() {
             const percent = (video.currentTime / video.duration) * 100;
             progressFilled.style.width = `${percent}%`;
-            timeDisplay.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
+
+            const formatTime = (time) => {
+                const minutes = Math.floor(time / 60).toString().padStart(2, '0');
+                const seconds = Math.floor(time % 60).toString().padStart(2, '0');
+                return `${minutes}:${seconds}`;
+            };
+            
+            if (!isNaN(video.duration)) {
+               timeDisplay.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
+            }
         }
 
-        // Scrub (mencari posisi) video
         function scrub(e) {
             const scrubTime = (e.offsetX / progressBar.offsetWidth) * video.duration;
             video.currentTime = scrubTime;
         }
-
-        // Fullscreen
+        
         function toggleFullscreen() {
             if (!document.fullscreenElement) {
-                videoContainer.requestFullscreen().catch(err => {
+                videoPlayerContainer.requestFullscreen().catch(err => {
                     alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
                 });
             } else {
                 document.exitFullscreen();
             }
         }
-        
-        // Skip
-        function skip() {
-            video.currentTime += parseFloat(this.dataset.skip);
+
+        if (coverImage) {
+            coverImage.addEventListener('click', () => {
+                videoPlayerContainer.classList.add('playing');
+                video.play();
+            });
         }
-
-        // Event Listeners
-        playButton.addEventListener('click', togglePlay);
+        if (playButton) {
+             playButton.addEventListener('click', () => {
+                videoPlayerContainer.classList.add('playing');
+                video.play();
+            });
+        }
+        
         video.addEventListener('click', togglePlay);
-        togglePlayBtn.addEventListener('click', togglePlay);
+        video.addEventListener('play', updatePlayIcon);
+        video.addEventListener('pause', updatePlayIcon);
         video.addEventListener('timeupdate', handleProgress);
-        video.addEventListener('loadedmetadata', handleProgress); // Untuk menampilkan durasi awal
-        fullscreenBtn.addEventListener('click', toggleFullscreen);
-        skipButtons.forEach(button => button.addEventListener('click', skip));
-
+        
+        togglePlayBtn.addEventListener('click', togglePlay);
+        skipButtons.forEach(button => button.addEventListener('click', handleSkip));
+        
         let mousedown = false;
         progressBar.addEventListener('click', scrub);
         progressBar.addEventListener('mousemove', (e) => mousedown && scrub(e));
         progressBar.addEventListener('mousedown', () => mousedown = true);
         progressBar.addEventListener('mouseup', () => mousedown = false);
-    }
-    
-    // --- 4. BACKGROUND MUSIC TOGGLE ---
-    const musicToggleBtn = document.getElementById('music-toggle-btn');
-    const backgroundMusic = document.getElementById('background-music');
-    if(musicToggleBtn && backgroundMusic) {
-        backgroundMusic.volume = 0.3; // Atur volume awal
         
-        musicToggleBtn.addEventListener('click', function() {
-            if (backgroundMusic.paused) {
-                backgroundMusic.play();
-                this.innerHTML = '<i class="fas fa-volume-up"></i>';
-            } else {
-                backgroundMusic.pause();
-                this.innerHTML = '<i class="fas fa-volume-mute"></i>';
-            }
-        });
+        fullscreenBtn.addEventListener('click', toggleFullscreen);
     }
 
-    // --- 5. FALLING COIN ANIMATION ---
+    // --- COIN ANIMATION ---
     const coinContainer = document.getElementById('coin-animation-container');
     if (coinContainer) {
-        function createCoin() {
+        setInterval(() => {
             const coin = document.createElement('div');
             coin.classList.add('coin');
-            coin.innerHTML = '<i class="fas fa-coins"></i>'; // Menggunakan ikon koin
-            
-            coin.style.left = `${Math.random() * 100}vw`;
-            const duration = Math.random() * 5 + 5; // Durasi jatuh 5-10 detik
-            const size = Math.random() * 10 + 10;   // Ukuran koin 10-20px
-            
-            coin.style.animationDuration = `${duration}s`;
-            coin.style.fontSize = `${size}px`;
-            
+            coin.innerHTML = '<i class="fas fa-coins"></i>';
+            coin.style.left = Math.random() * 100 + 'vw';
+            coin.style.animationDuration = Math.random() * 3 + 4 + 's';
+            coin.style.fontSize = Math.random() * 10 + 10 + 'px';
             coinContainer.appendChild(coin);
-            
-            // Hapus koin setelah animasi selesai
+
             setTimeout(() => {
                 coin.remove();
-            }, duration * 1000);
-        }
-        // Membuat koin baru setiap 500ms
-        setInterval(createCoin, 500);
+            }, 7000);
+        }, 500);
     }
-    
-    // --- 6. HERO SLIDESHOW ---
+
+    // --- BACKGROUND MUSIC ---
+    const backgroundMusic = document.getElementById('background-music');
+    const musicToggleBtn = document.getElementById('music-toggle-btn');
+    if (backgroundMusic && musicToggleBtn) {
+        
+        const updateMusicIcon = () => {
+            const icon = backgroundMusic.paused ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
+            musicToggleBtn.innerHTML = icon;
+        };
+        
+        musicToggleBtn.addEventListener('click', () => {
+            if (backgroundMusic.paused) {
+                backgroundMusic.play().catch(error => {
+                    console.error("Music play failed:", error);
+                });
+            } else {
+                backgroundMusic.pause();
+            }
+        });
+        
+        backgroundMusic.onplay = updateMusicIcon;
+        backgroundMusic.onpause = updateMusicIcon;
+    }
+
+    // --- HERO SLIDESHOW ---
     const slideshow = document.querySelector('.hero-slideshow');
     if (slideshow) {
         const slides = slideshow.querySelectorAll('.slide');
         const totalSlides = slides.length;
+        const nextButtons = document.querySelectorAll('.next-slide');
+        const prevButtons = document.querySelectorAll('.prev-slide');
         let currentSlide = 0;
+        let slideInterval;
 
-        function showNextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            // Geser kontainer slideshow ke kiri sebesar persentase slide saat ini
+        function goToSlide(slideIndex) {
+            currentSlide = (slideIndex + totalSlides) % totalSlides;
             const offset = currentSlide * (100 / totalSlides);
             slideshow.style.transform = `translateX(-${offset}%)`;
         }
 
-        // Ganti slide setiap 5 detik (5000 milidetik)
-        setInterval(showNextSlide, 4000);
+        function showNextSlide() {
+            goToSlide(currentSlide + 1);
+        }
+
+        function showPrevSlide() {
+            goToSlide(currentSlide - 1);
+        }
+
+        function startSlideShow() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(showNextSlide, 4000);
+        }
+
+        nextButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                showNextSlide();
+                startSlideShow(); // Reset timer
+            });
+        });
+
+        prevButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                showPrevSlide();
+                startSlideShow(); // Reset timer
+            });
+        });
+
+        startSlideShow();
     }
+
+
+    // --- EMAIL POPUP ---
+    const emailPopupBtn = document.getElementById('email-popup-btn');
+    const emailPopupModal = document.getElementById('email-popup-modal');
+    const sendEmailLink = document.getElementById('send-email-link');
+    const popupMessage = document.getElementById('popup-message');
+
+    if (emailPopupBtn && emailPopupModal && sendEmailLink) {
+        const emailCloseBtn = emailPopupModal.querySelector('.close-popup-btn');
+
+        emailPopupBtn.addEventListener('click', () => {
+            emailPopupModal.classList.add('show');
+        });
+
+        emailCloseBtn.addEventListener('click', () => {
+            emailPopupModal.classList.remove('show');
+        });
+        
+        sendEmailLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            const email = 'hansstory7@gmail.com';
+            const subject = 'Message from HansSites Visitor';
+            const body = encodeURIComponent(popupMessage.value);
+            
+            const mailtoLink = `mailto:${email}?subject=${subject}&body=${body}`;
+            window.location.href = mailtoLink;
+        });
+    }
+    
+    // --- POLICY POPUPS ---
+    const popups = [
+        { btnId: 'open-guidance', modalId: 'guidance-modal' },
+        { btnId: 'open-terms', modalId: 'terms-modal' },
+        { btnId: 'open-privacy', modalId: 'privacy-modal' }
+    ];
+
+    popups.forEach(popup => {
+        const openBtn = document.getElementById(popup.btnId);
+        const modal = document.getElementById(popup.modalId);
+        
+        if (openBtn && modal) {
+            const closeBtn = modal.querySelector('.close-popup-btn');
+            openBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                modal.classList.add('show');
+            });
+
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('show');
+            });
+        }
+    });
+
+    // Close any modal on outside click
+    window.addEventListener('click', (event) => {
+        if (event.target.classList.contains('popup-modal')) {
+            event.target.classList.remove('show');
+        }
+    });
 });
+
