@@ -10,6 +10,39 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // --- NAVBAR ACTIVE LINK ON SCROLL ---
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('nav ul li a');
+
+    function navHighlighter() {
+        let scrollY = window.pageYOffset;
+        
+        sections.forEach(current => {
+            const sectionHeight = current.offsetHeight;
+            const sectionTop = current.offsetTop - 150;
+            let sectionId = current.getAttribute('id');
+
+            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === '#' + sectionId) {
+                        link.classList.add('active');
+                    }
+                });
+            } else {
+                 // This part handles the case where you scroll out of a section
+                 navLinks.forEach(link => {
+                    if (link.getAttribute('href') === '#' + sectionId) {
+                        link.classList.remove('active');
+                    }
+                });
+            }
+        });
+    }
+
+    window.addEventListener('scroll', navHighlighter);
+
+
     // --- SCROLL REVEAL ANIMATION ---
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {

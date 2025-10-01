@@ -93,11 +93,29 @@ body {
     color: var(--dark-text);
     font-weight: 600;
     transition: color 0.3s ease;
+    position: relative;
 }
 
 .navbar nav a:hover {
     color: var(--accent-gold);
 }
+
+.navbar nav a.active {
+    color: var(--accent-gold);
+}
+
+.navbar nav a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 5px;
+    height: 5px;
+    background-color: var(--accent-gold);
+    border-radius: 50%;
+}
+
 
 /* --- Hero Section --- */
 .hero {
