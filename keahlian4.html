@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HansSites | Data Analysis</title>
+    <title>Data Analysis | HansSites</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -12,7 +11,6 @@
     <link rel="icon" href="logo-hanssites.png" type="image/png">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
     <header class="navbar scrolled">
@@ -30,6 +28,11 @@
                     <li><a href="index.html#clients">Clients</a></li>
                     <li><a href="index.html#kontak">Contact</a></li>
                 </ul>
+                <div class="search-container">
+                    <input type="text" id="search-input" class="search-input" placeholder="Search content..." autocomplete="off">
+                    <button class="search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+                    <div id="search-suggestions" class="suggestions-panel"></div>
+                </div>
             </nav>
         </div>
     </header>
@@ -37,57 +40,53 @@
     <main>
         <section class="detail-hero">
             <div class="container">
+                <p class="detail-hero-subtitle">Core Competency</p>
                 <h1 class="detail-hero-title">Data Analysis</h1>
-                <p class="detail-hero-subtitle">Turning Complex Data into Actionable Insights.</p>
             </div>
         </section>
 
         <section class="page-content">
             <div class="container">
+                 <a href="index.html#keahlian" class="view-more-btn" style="margin-bottom: 40px; display: inline-block;">&larr; Back to Skills</a>
+
                 <div class="detail-main-content">
                     <div class="detail-image-column">
-                        <img src="https://placehold.co/600x400/58b4ff/FFFFFF?text=Data+Visualization" alt="A dashboard with data visualizations">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" alt="Dashboard with data visualizations">
                     </div>
                     <div class="detail-text-column">
-                        <h2>Unlocking Data's Potential</h2>
-                        <p>
-                           In today's world, data is a powerful asset. I specialize in analyzing large datasets to uncover hidden trends, patterns, and insights that can inform business strategy and drive growth. My analytical approach is both rigorous and creative.
-                        </p>
-                        <p>
-                           From data cleaning and processing to statistical analysis and visualization, I provide end-to-end data services that transform raw information into a clear and compelling narrative.
-                        </p>
+                        <h2>Uncovering Insights from Data</h2>
+                        <p>My analytical skills, honed through years of accounting, are directly applicable to the world of data analysis. I excel at cleaning, transforming, and interpreting large datasets to uncover hidden trends, patterns, and insights that can inform business strategy.</p>
+                        <p>I use a variety of tools to process information and present my findings in clear, digestible formats, such as interactive dashboards and visualizations.</p>
                     </div>
                 </div>
 
-                <section class="competencies-section">
-                    <h2 class="subsection-title">Core Competencies</h2>
+                <div class="competencies-section">
+                     <h3 class="subsection-title">Key Competencies</h3>
                     <div class="competency-grid">
                         <div class="competency-card">
-                            <i class="fas fa-calculator"></i>
-                            <h3>Statistical Analysis</h3>
-                            <p>Applying statistical methods to validate hypotheses and findings.</p>
+                            <i class="fas fa-table"></i>
+                            <h3>Data Wrangling</h3>
+                            <p>Expertise in cleaning, structuring, and preparing data for analysis using tools like Python and SQL.</p>
                         </div>
                         <div class="competency-card">
-                            <i class="fas fa-chart-pie"></i>
+                            <i class="fas fa-chart-bar"></i>
                             <h3>Data Visualization</h3>
-                            <p>Creating clear and impactful charts and dashboards to communicate results.</p>
+                            <p>Creating compelling charts and dashboards to communicate complex data stories effectively.</p>
                         </div>
                         <div class="competency-card">
                             <i class="fas fa-brain"></i>
-                            <h3>Business Intelligence</h3>
-                            <p>Developing BI reports that provide a comprehensive view of performance.</p>
-                        </div>
-                         <div class="competency-card">
-                            <i class="fas fa-robot"></i>
-                            <h3>Predictive Modeling</h3>
-                            <p>Using data to build models that forecast future trends and outcomes.</p>
+                            <h3>Statistical Analysis</h3>
+                            <p>Applying statistical methods to identify significant patterns and make data-driven predictions.</p>
                         </div>
                     </div>
-                </section>
-                
-                <div class="view-more-container" style="margin-top: 80px;">
-                    <a href="index.html#keahlian" class="view-more-btn">&larr; Back to Skills</a>
                 </div>
+
+                <div class="cta-section">
+                    <h2>Need to Make Sense of Your Data?</h2>
+                    <p>Let's turn your raw data into your most valuable asset.</p>
+                    <a href="index.html#kontak" class="cta-button">Get in Touch</a>
+                </div>
+
             </div>
         </section>
     </main>
@@ -97,6 +96,7 @@
             <p>&copy; 2025 - <img src="logo-hanssites.png" alt="HansSites Logo" class="footer-logo"> HansSites. All rights reserved.</p>
         </div>
     </footer>
-
+    <script src="script.js"></script>
 </body>
 </html>
+

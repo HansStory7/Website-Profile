@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blockchain's Impact on Financial Audits | HansSites</title>
+    <title>Blockchain in Audits | HansSites</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -28,6 +28,11 @@
                     <li><a href="index.html#clients">Clients</a></li>
                     <li><a href="index.html#kontak">Contact</a></li>
                 </ul>
+                <div class="search-container">
+                    <input type="text" id="search-input" class="search-input" placeholder="Search content..." autocomplete="off">
+                    <button class="search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+                    <div id="search-suggestions" class="suggestions-panel"></div>
+                </div>
             </nav>
         </div>
     </header>
@@ -35,51 +40,26 @@
     <main>
         <section class="detail-hero">
             <div class="container">
-                <p class="detail-hero-subtitle">Published on September 15, 2025</p>
+                <p class="detail-hero-subtitle">Article</p>
                 <h1 class="detail-hero-title">Blockchain's Impact on Financial Audits</h1>
             </div>
         </section>
 
         <section class="page-content">
-            <div class="container">
-                <div class="detail-main-content">
-                    <div class="detail-image-column">
-                        <img src="https://images.unsplash.com/photo-1639755491103-6a97b2c0d5a3?q=80&w=1932&auto=format&fit=crop" alt="Blockchain technology visualization">
-                    </div>
-                    <div class="detail-text-column">
-                        <h2>A New Era of Transparency and Trust</h2>
-                        <p>
-                            Blockchain technology, the distributed ledger system behind cryptocurrencies, is poised to bring unprecedented transparency and security to financial auditing. By creating an immutable and time-stamped record of all transactions, blockchain fundamentally changes how auditors verify financial information.
-                        </p>
-                        <p>
-                            Instead of relying on sample-based testing and manual confirmations, auditors can access a shared, unalterable ledger. This allows for real-time, continuous auditing, where transactions are verified as they occur. The result is a more efficient, accurate, and trustworthy audit process that significantly reduces the risk of fraud and error.
-                        </p>
-                    </div>
-                </div>
+            <div class="container" style="max-width: 800px;">
+                <a href="articles.html" class="view-more-btn" style="margin-bottom: 40px; display: inline-block;">&larr; Back to Articles</a>
+                <p class="article-meta" style="text-align: left; margin-bottom: 20px;">September 15, 2025 · 5 min read</p>
+                <img src="https://images.unsplash.com/photo-1639755491103-6a97b2c0d5a3?q=80&w=1932&auto=format&fit=crop" alt="Blockchain Technology" style="width: 100%; border-radius: 10px; margin-bottom: 30px;">
+                
+                <h2>A Ledger of Trust</h2>
+                <p>Blockchain technology, the decentralized and immutable ledger system behind cryptocurrencies like Bitcoin, is poised to revolutionize the world of financial auditing. Traditional audits often rely on sampling and verification of records provided by the company. This process can be time-consuming and still carries a risk of undetected errors or fraud. Blockchain offers a fundamentally different approach.</p>
+                
+                <h2>Unprecedented Transparency and Immutability</h2>
+                <p>At its core, a blockchain is a shared, distributed ledger where transactions are recorded in blocks and cryptographically linked together. Once a transaction is added to the chain, it cannot be altered or deleted. This immutability provides auditors with a single, tamper-proof source of truth. Instead of verifying records, auditors can directly access and analyze the transaction history on the blockchain, ensuring a level of integrity that is difficult to achieve with traditional systems.</p>
 
-                <div class="competencies-section" style="background-color: transparent; padding-top: 0;">
-                    <h2 class="subsection-title">Key Transformations</h2>
-                    <div class="competency-grid">
-                        <div class="competency-card">
-                            <i class="fas fa-link"></i>
-                            <h3>Immutable Audit Trail</h3>
-                            <p>Every transaction is permanently recorded and linked, creating a tamper-proof audit trail from start to finish.</p>
-                        </div>
-                        <div class="competency-card">
-                            <i class="fas fa-clock"></i>
-                            <h3>Continuous Auditing</h3>
-                            <p>Enables auditors to move from periodic checks to continuous, real-time assurance of financial data.</p>
-                        </div>
-                        <div class="competency-card">
-                            <i class="fas fa-cogs"></i>
-                            <h3>Automation of Verification</h3>
-                            <p>Smart contracts can automatically verify that transactions meet predefined criteria, streamlining the audit process.</p>
-                        </div>
-                    </div>
-                </div>
-                 <div class="cta-section">
-                    <a href="articles.html" class="view-more-btn">← Back to All Articles</a>
-                </div>
+                <h2>The Shift to Continuous Auditing</h2>
+                <p>The real-time nature of blockchain opens the door to continuous auditing. Instead of performing audits periodically (e.g., quarterly or annually), auditors can monitor transactions as they happen. Smart contracts—self-executing contracts with the terms of the agreement directly written into code—can automatically verify that transactions comply with predefined rules, flagging exceptions for auditor review in real time. This proactive approach significantly reduces audit risk and provides more timely assurance to stakeholders.</p>
+
             </div>
         </section>
     </main>
@@ -89,6 +69,7 @@
             <p>&copy; 2025 - <img src="logo-hanssites.png" alt="HansSites Logo" class="footer-logo"> HansSites. All rights reserved.</p>
         </div>
     </footer>
-
+    <script src="script.js"></script>
 </body>
 </html>
+

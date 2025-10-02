@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Future of AI in Accounting | HansSites</title>
+    <title>AI in Accounting | HansSites</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -28,6 +28,11 @@
                     <li><a href="index.html#clients">Clients</a></li>
                     <li><a href="index.html#kontak">Contact</a></li>
                 </ul>
+                <div class="search-container">
+                    <input type="text" id="search-input" class="search-input" placeholder="Search content..." autocomplete="off">
+                    <button class="search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+                    <div id="search-suggestions" class="suggestions-panel"></div>
+                </div>
             </nav>
         </div>
     </header>
@@ -35,51 +40,29 @@
     <main>
         <section class="detail-hero">
             <div class="container">
-                <p class="detail-hero-subtitle">Published on October 1, 2025</p>
+                <p class="detail-hero-subtitle">Article</p>
                 <h1 class="detail-hero-title">The Future of AI in Accounting</h1>
             </div>
         </section>
 
         <section class="page-content">
-            <div class="container">
-                <div class="detail-main-content">
-                    <div class="detail-image-column">
-                        <img src="https://images.unsplash.com/photo-1674049406232-f28892b5335a?q=80&w=2070&auto=format&fit=crop" alt="AI and futuristic technology">
-                    </div>
-                    <div class="detail-text-column">
-                        <h2>How Artificial Intelligence is Reshaping the Industry</h2>
-                        <p>
-                            The accounting profession is undergoing a seismic shift, driven by the rapid advancements in Artificial Intelligence (AI). What was once a field dominated by manual data entry and repetitive tasks is now evolving into a dynamic, strategic, and forward-looking discipline. AI is not replacing accountants; it's empowering them to provide greater value than ever before.
-                        </p>
-                        <p>
-                            AI-powered software now automates routine processes like transaction categorization, invoice processing, and bank reconciliations with incredible accuracy and speed. This automation frees up accountants to focus on higher-value activities such as financial analysis, strategic advisory, and risk management.
-                        </p>
-                    </div>
-                </div>
+            <div class="container" style="max-width: 800px;">
+                 <a href="articles.html" class="view-more-btn" style="margin-bottom: 40px; display: inline-block;">&larr; Back to Articles</a>
+                 <p class="article-meta" style="text-align: left; margin-bottom: 20px;">October 1, 2025 · 7 min read</p>
+                 <img src="https://images.unsplash.com/photo-1674049406232-f28892b5335a?q=80&w=2070&auto=format&fit=crop" alt="AI and Accounting" style="width: 100%; border-radius: 10px; margin-bottom: 30px;">
+                
+                <h2>The Dawn of a New Era</h2>
+                <p>Artificial Intelligence (AI) is no longer a futuristic concept; it's a present-day reality that is actively reshaping industries, and accounting is no exception. For decades, the role of an accountant has been synonymous with meticulous data entry, reconciliation, and reporting. While these tasks remain crucial, AI is introducing a paradigm shift, automating the mundane and elevating the accountant's role to that of a strategic advisor.</p>
+                
+                <h2>Automation of Repetitive Tasks</h2>
+                <p>One of the most significant impacts of AI in accounting is the automation of high-volume, repetitive tasks. AI-powered software can now handle data entry, transaction categorization, and bank reconciliations with incredible speed and accuracy. This frees up accountants from hours of manual labor, allowing them to focus on more complex and value-added activities.</p>
+                
+                <h2>Enhanced Data Analysis and Insights</h2>
+                <p>Beyond automation, AI offers powerful analytical capabilities. Machine learning algorithms can analyze vast datasets to identify patterns, anomalies, and predictive insights that would be impossible for a human to detect. For example, AI can analyze expense reports to flag potential fraud, forecast cash flow with greater accuracy, and identify opportunities for cost savings. This transforms financial data from a historical record into a forward-looking strategic asset.</p>
 
-                <div class="competencies-section" style="background-color: transparent; padding-top: 0;">
-                    <h2 class="subsection-title">Key Impacts of AI</h2>
-                    <div class="competency-grid">
-                        <div class="competency-card">
-                            <i class="fas fa-robot"></i>
-                            <h3>Enhanced Automation</h3>
-                            <p>Eliminates manual errors and drastically reduces the time spent on compliance and bookkeeping tasks.</p>
-                        </div>
-                        <div class="competency-card">
-                            <i class="fas fa-chart-line"></i>
-                            <h3>Predictive Analytics</h3>
-                            <p>AI algorithms can analyze historical data to forecast financial trends, enabling proactive decision-making.</p>
-                        </div>
-                        <div class="competency-card">
-                            <i class="fas fa-shield-alt"></i>
-                            <h3>Improved Fraud Detection</h3>
-                            <p>Machine learning models can identify unusual patterns and anomalies in financial data that may indicate fraudulent activity.</p>
-                        </div>
-                    </div>
-                </div>
-                 <div class="cta-section">
-                    <a href="articles.html" class="view-more-btn">← Back to All Articles</a>
-                </div>
+                <h2>The Evolving Role of the Accountant</h2>
+                <p>With AI handling the "what," accountants are now empowered to focus on the "why" and "what's next." The modern accountant is becoming a data interpreter, a business strategist, and a technology expert. Skills in data analysis, critical thinking, and communication are becoming more important than ever. The future accountant will not be replaced by AI but will work alongside it, leveraging its power to provide deeper, more strategic insights to guide business growth.</p>
+
             </div>
         </section>
     </main>
@@ -89,6 +72,7 @@
             <p>&copy; 2025 - <img src="logo-hanssites.png" alt="HansSites Logo" class="footer-logo"> HansSites. All rights reserved.</p>
         </div>
     </footer>
-
+    <script src="script.js"></script>
 </body>
 </html>
+

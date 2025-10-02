@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Articles | HansSites</title>
+    <title>Articles | HansSites</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -28,6 +28,11 @@
                     <li><a href="index.html#clients">Clients</a></li>
                     <li><a href="index.html#kontak">Contact</a></li>
                 </ul>
+                <div class="search-container">
+                    <input type="text" id="search-input" class="search-input" placeholder="Search content..." autocomplete="off">
+                    <button class="search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+                    <div id="search-suggestions" class="suggestions-panel"></div>
+                </div>
             </nav>
         </div>
     </header>
@@ -35,8 +40,8 @@
     <main>
         <section class="detail-hero">
             <div class="container">
-                <p class="detail-hero-subtitle">My Insights</p>
-                <h1 class="detail-hero-title">All Articles</h1>
+                <p class="detail-hero-subtitle">Insights & Analysis</p>
+                <h1 class="detail-hero-title">My Articles</h1>
             </div>
         </section>
 
@@ -49,7 +54,7 @@
                         <div class="article-info">
                             <p class="article-meta">October 1, 2025 · 7 min read</p>
                             <h3>The Future of AI in Accounting</h3>
-                            <p>Exploring how AI is automating tasks, enhancing data analysis, and reshaping the role of the modern accountant.</p>
+                            <p>Exploring how Artificial Intelligence is automating routine tasks, enhancing data analysis capabilities, and fundamentally reshaping the role of the modern accountant.</p>
                             <a href="article1.html" class="article-link">Read More</a>
                         </div>
                     </div>
@@ -59,17 +64,17 @@
                         <div class="article-info">
                             <p class="article-meta">September 15, 2025 · 5 min read</p>
                             <h3>Understanding Blockchain's Impact on Financial Audits</h3>
-                            <p>A look into how blockchain technology offers unprecedented transparency and security, transforming the traditional auditing process.</p>
+                            <p>A deep dive into how blockchain technology offers unprecedented transparency and security, transforming the traditional auditing process into a more efficient and reliable practice.</p>
                             <a href="article2.html" class="article-link">Read More</a>
                         </div>
                     </div>
-                     <!-- Article 3 -->
-                    <div class="article-card">
-                        <img src="https://images.unsplash.com/photo-1599252513997-757ac7a73188?q=80&w=1974&auto=format&fit=crop" alt="ESG Concept">
+                    <!-- Article 3 -->
+                     <div class="article-card">
+                        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop" alt="ESG Reporting">
                         <div class="article-info">
-                            <p class="article-meta">August 20, 2025 · 6 min read</p>
-                            <h3>Navigating The New ESG Reporting Standards</h3>
-                            <p>A guide for modern accountants on the challenges and opportunities in Environmental, Social, and Governance reporting.</p>
+                            <p class="article-meta">August 28, 2025 · 6 min read</p>
+                            <h3>The Rise of ESG: A New Frontier for Financial Reporting</h3>
+                            <p>An overview of the growing importance of Environmental, Social, and Governance (ESG) criteria in financial reporting and how accountants are adapting to this new demand.</p>
                             <a href="article3.html" class="article-link">Read More</a>
                         </div>
                     </div>
@@ -83,7 +88,7 @@
             <p>&copy; 2025 - <img src="logo-hanssites.png" alt="HansSites Logo" class="footer-logo"> HansSites. All rights reserved.</p>
         </div>
     </footer>
-
+    <script src="script.js"></script>
 </body>
 </html>
 

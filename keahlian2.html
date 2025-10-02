@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HansSites | Web Development</title>
+    <title>Web Development | HansSites</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -12,7 +11,6 @@
     <link rel="icon" href="logo-hanssites.png" type="image/png">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
     <header class="navbar scrolled">
@@ -30,6 +28,11 @@
                     <li><a href="index.html#clients">Clients</a></li>
                     <li><a href="index.html#kontak">Contact</a></li>
                 </ul>
+                <div class="search-container">
+                    <input type="text" id="search-input" class="search-input" placeholder="Search content..." autocomplete="off">
+                    <button class="search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+                    <div id="search-suggestions" class="suggestions-panel"></div>
+                </div>
             </nav>
         </div>
     </header>
@@ -37,57 +40,53 @@
     <main>
         <section class="detail-hero">
             <div class="container">
+                <p class="detail-hero-subtitle">Core Competency</p>
                 <h1 class="detail-hero-title">Web Development</h1>
-                <p class="detail-hero-subtitle">Building Modern and Responsive Digital Experiences.</p>
             </div>
         </section>
 
         <section class="page-content">
             <div class="container">
+                 <a href="index.html#keahlian" class="view-more-btn" style="margin-bottom: 40px; display: inline-block;">&larr; Back to Skills</a>
+
                 <div class="detail-main-content">
                     <div class="detail-image-column">
-                        <img src="https://placehold.co/600x400/58b4ff/FFFFFF?text=Code+on+Screen" alt="Code on a computer screen">
+                        <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2070&auto=format&fit=crop" alt="Code on a computer screen">
                     </div>
                     <div class="detail-text-column">
-                        <h2>Crafting Digital Solutions</h2>
-                        <p>
-                           I specialize in developing high-quality, responsive websites from the ground up. My approach combines clean code with modern design principles to create web experiences that are not only visually appealing but also fast, secure, and intuitive to use.
-                        </p>
-                        <p>
-                           From personal portfolios to complex web applications, I am proficient in the full development lifecycle, ensuring each project is tailored to meet the specific needs of the client and their audience.
-                        </p>
+                        <h2>Building Digital Experiences</h2>
+                        <p>I combine my analytical mindset from accounting with the creativity of web development to build clean, efficient, and user-friendly websites. I focus on writing maintainable code and building responsive layouts that work seamlessly across all devices.</p>
+                        <p>My passion lies in solving problems and creating digital tools that are both functional and aesthetically pleasing.</p>
                     </div>
                 </div>
 
-                <section class="competencies-section">
-                    <h2 class="subsection-title">Core Competencies</h2>
+                <div class="competencies-section">
+                     <h3 class="subsection-title">Key Competencies</h3>
                     <div class="competency-grid">
                         <div class="competency-card">
                             <i class="fab fa-html5"></i>
-                            <h3>Front-End Development</h3>
-                            <p>Using HTML, CSS, and JavaScript to build beautiful user interfaces.</p>
+                            <h3>Frontend Development</h3>
+                            <p>Proficient in HTML, CSS, and JavaScript to create responsive and interactive user interfaces.</p>
                         </div>
                         <div class="competency-card">
-                            <i class="fas fa-mobile-alt"></i>
-                            <h3>Responsive Design</h3>
-                            <p>Ensuring a seamless experience across all devices, from desktops to phones.</p>
+                            <i class="fab fa-react"></i>
+                            <h3>Modern Frameworks</h3>
+                            <p>Experienced in using frameworks like React to build dynamic and scalable single-page applications.</p>
                         </div>
                         <div class="competency-card">
-                            <i class="fas fa-cogs"></i>
-                            <h3>Back-End Logic</h3>
-                            <p>Developing server-side logic and database integration for dynamic websites.</p>
-                        </div>
-                         <div class="competency-card">
-                            <i class="fas fa-rocket"></i>
-                            <h3>Performance Optimization</h3>
-                            <p>Implementing best practices to ensure fast load times and smooth performance.</p>
+                            <i class="fas fa-server"></i>
+                            <h3>Backend Integration</h3>
+                            <p>Knowledgeable in connecting to databases and APIs to create full-stack web solutions.</p>
                         </div>
                     </div>
-                </section>
-                
-                <div class="view-more-container" style="margin-top: 80px;">
-                    <a href="index.html#keahlian" class="view-more-btn">&larr; Back to Skills</a>
                 </div>
+
+                <div class="cta-section">
+                    <h2>Have a Web Project in Mind?</h2>
+                    <p>Let's discuss how we can bring your vision to life on the web.</p>
+                    <a href="index.html#kontak" class="cta-button">Get in Touch</a>
+                </div>
+
             </div>
         </section>
     </main>
@@ -97,6 +96,7 @@
             <p>&copy; 2025 - <img src="logo-hanssites.png" alt="HansSites Logo" class="footer-logo"> HansSites. All rights reserved.</p>
         </div>
     </footer>
-
+    <script src="script.js"></script>
 </body>
 </html>
+

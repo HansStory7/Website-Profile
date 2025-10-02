@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Details | Financial Reporting</title>
+    <title>Financial Reporting Project | HansSites</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -28,6 +28,11 @@
                     <li><a href="index.html#clients">Clients</a></li>
                     <li><a href="index.html#kontak">Contact</a></li>
                 </ul>
+                <div class="search-container">
+                    <input type="text" id="search-input" class="search-input" placeholder="Search content..." autocomplete="off">
+                    <button class="search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+                    <div id="search-suggestions" class="suggestions-panel"></div>
+                </div>
             </nav>
         </div>
     </header>
@@ -42,50 +47,45 @@
 
         <section class="page-content">
             <div class="container">
+                <a href="projects.html" class="view-more-btn" style="margin-bottom: 40px; display: inline-block;">&larr; Back to All Projects</a>
+                
                 <div class="detail-main-content">
                     <div class="detail-image-column">
-                        <img src="https://images.unsplash.com/photo-1554224154-26032fddca81?q=80&w=2070&auto=format&fit=crop" alt="Financial documents and charts">
+                        <img src="https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&w=2070&auto=format&fit=crop" alt="Financial reporting documents and charts">
                     </div>
                     <div class="detail-text-column">
                         <h2>Project Overview</h2>
-                        <p>
-                            This project involved developing a comprehensive financial reporting package for a multinational corporation. The goal was to consolidate financial data from various subsidiaries and produce a full set of accurate, compliant, and insightful financial statements.
-                        </p>
-                        <p>
-                            The process included data validation, reconciliation of inter-company transactions, and the application of International Financial Reporting Standards (IFRS) to ensure global compliance. The final output provided stakeholders with a clear and transparent view of the company's financial health.
-                        </p>
+                        <p>This project involved designing and implementing a comprehensive financial reporting system for a mid-sized manufacturing company. The primary goal was to automate the generation of key financial statements and provide deeper insights through detailed analysis, moving from manual spreadsheet-based processes to an integrated system.</p>
+                        <p>The solution streamlined data collection from various departments, ensured compliance with IFRS standards, and produced real-time reports accessible to management.</p>
                     </div>
                 </div>
 
-                <div class="competencies-section" style="background-color: transparent; padding-top: 0;">
-                    <h2 class="subsection-title">Key Components Delivered</h2>
+                <div class="competencies-section" style="background-color: transparent; padding: 40px 0;">
+                    <h3 class="subsection-title">Key Components Delivered</h3>
                     <div class="competency-grid">
                         <div class="competency-card">
                             <i class="fas fa-file-invoice-dollar"></i>
-                            <h3>Consolidated Statements</h3>
-                            <p>Prepared the Balance Sheet, Income Statement, and Cash Flow Statement, consolidating data from over 15 international subsidiaries.</p>
+                            <h3>Balance Sheet Automation</h3>
+                            <p>Developed a system to automatically consolidate assets, liabilities, and equity from the general ledger.</p>
                         </div>
                         <div class="competency-card">
-                            <i class="fas fa-handshake"></i>
-                            <h3>Stakeholder Reporting</h3>
-                            <p>Created tailored summary reports and visualizations for the board of directors, highlighting key performance indicators and financial trends.</p>
+                            <i class="fas fa-chart-line"></i>
+                            <h3>Income Statement Analysis</h3>
+                            <p>Created dynamic income statements with variance analysis against budget and prior periods.</p>
                         </div>
                         <div class="competency-card">
-                            <i class="fas fa-check-double"></i>
-                            <h3>IFRS Compliance</h3>
-                            <p>Ensured all reports strictly adhered to the latest IFRS, including complex areas like revenue recognition and lease accounting.</p>
+                            <i class="fas fa-hand-holding-usd"></i>
+                            <h3>Cash Flow Visualization</h3>
+                            <p>Built interactive dashboards to track operating, investing, and financing activities.</p>
                         </div>
-                        <div class="competency-card">
-                            <i class="fas fa-sticky-note"></i>
+                         <div class="competency-card">
+                            <i class="fas fa-book-open"></i>
                             <h3>Notes to Financial Statements</h3>
-                            <p>Authored detailed notes providing crucial context and transparency on accounting policies, estimates, and contingent liabilities.</p>
+                            <p>Automated the generation of detailed notes, ensuring consistency and accuracy in disclosures.</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="cta-section" style="padding-bottom: 0;">
-                    <a href="projects.html" class="view-more-btn" style="border-width: 2px;">← Back to All Projects</a>
-                </div>
             </div>
         </section>
     </main>
@@ -95,7 +95,7 @@
             <p>&copy; 2025 - <img src="logo-hanssites.png" alt="HansSites Logo" class="footer-logo"> HansSites. All rights reserved.</p>
         </div>
     </footer>
-
+    <script src="script.js"></script>
 </body>
 </html>
 

@@ -25,13 +25,13 @@ document.addEventListener('DOMContentLoaded', function () {
             if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
                 navLinks.forEach(link => {
                     link.classList.remove('active');
-                    if (link.getAttribute('href') === '#' + sectionId) {
+                    if (link.getAttribute('href').includes('#' + sectionId)) {
                         link.classList.add('active');
                     }
                 });
             } else {
                  navLinks.forEach(link => {
-                    if (link.getAttribute('href') === '#' + sectionId) {
+                    if (link.getAttribute('href').includes('#' + sectionId)) {
                         link.classList.remove('active');
                     }
                 });
@@ -39,7 +39,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    window.addEventListener('scroll', navHighlighter);
+    if (window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html')) {
+        window.addEventListener('scroll', navHighlighter);
+    }
 
 
     // --- SCROLL REVEAL ANIMATION ---
@@ -299,6 +301,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const searchInput = document.getElementById('search-input');
     const searchBtn = document.querySelector('.search-btn');
     const suggestionsPanel = document.getElementById('search-suggestions');
+    const isIndexPage = window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html');
     
     const searchKeywords = [
         { keyword: "Financial Analysis", url: "keahlian1.html" },
@@ -328,9 +331,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (searchInput && searchBtn && suggestionsPanel) {
         let activeSuggestionIndex = -1;
 
-        function performSearch() {
+        function performSearchOnIndex() {
             const searchTerm = searchInput.value.toLowerCase();
-            
             const searchableSections = [
                 { items: document.querySelectorAll('#projects .searchable-content'), noResultsEl: document.getElementById('no-results-projects') },
                 { items: document.querySelectorAll('#articles .searchable-content'), noResultsEl: document.getElementById('no-results-articles') },
@@ -338,6 +340,7 @@ document.addEventListener('DOMContentLoaded', function () {
             ];
 
             searchableSections.forEach(section => {
+                if (!section.items) return;
                 let itemsFound = 0;
                 section.items.forEach(item => {
                     const itemText = item.textContent.toLowerCase();
@@ -348,11 +351,24 @@ document.addEventListener('DOMContentLoaded', function () {
                         item.classList.add('search-hide');
                     }
                 });
-
                 if (section.noResultsEl) {
                     section.noResultsEl.style.display = itemsFound === 0 && searchTerm !== '' ? 'block' : 'none';
                 }
             });
+        }
+        
+        function handleSearchRedirect(term) {
+             window.location.href = `index.html?q=${encodeURIComponent(term)}`;
+        }
+        
+        if (isIndexPage) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const query = urlParams.get('q');
+            if (query) {
+                searchInput.value = query;
+                searchInput.focus();
+                performSearchOnIndex();
+            }
         }
         
         function setActiveSuggestion(items) {
@@ -390,7 +406,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 suggestionsPanel.style.display = 'none';
             }
             
-            performSearch();
+            if (isIndexPage) {
+                performSearchOnIndex();
+            }
         });
         
         searchBtn.addEventListener('click', (e) => {
@@ -398,28 +416,40 @@ document.addEventListener('DOMContentLoaded', function () {
                 e.preventDefault();
                 searchInput.focus();
             } else {
-                performSearch();
+                if (!isIndexPage) {
+                    e.preventDefault();
+                    handleSearchRedirect(searchInput.value);
+                } else {
+                    performSearchOnIndex();
+                }
             }
         });
 
         searchInput.addEventListener('keydown', (e) => {
             const suggestionItems = suggestionsPanel.querySelectorAll('.suggestion-item');
-            if (suggestionItems.length === 0) return;
-
+            
             if (e.key === 'ArrowDown') {
                 e.preventDefault();
-                activeSuggestionIndex = (activeSuggestionIndex + 1) % suggestionItems.length;
-                setActiveSuggestion(suggestionItems);
+                if (suggestionItems.length > 0) {
+                    activeSuggestionIndex = (activeSuggestionIndex + 1) % suggestionItems.length;
+                    setActiveSuggestion(suggestionItems);
+                }
             } else if (e.key === 'ArrowUp') {
                 e.preventDefault();
-                activeSuggestionIndex = (activeSuggestionIndex - 1 + suggestionItems.length) % suggestionItems.length;
-                setActiveSuggestion(suggestionItems);
+                if (suggestionItems.length > 0) {
+                    activeSuggestionIndex = (activeSuggestionIndex - 1 + suggestionItems.length) % suggestionItems.length;
+                    setActiveSuggestion(suggestionItems);
+                }
             } else if (e.key === 'Enter') {
                 e.preventDefault();
                 if (activeSuggestionIndex > -1) {
                     suggestionItems[activeSuggestionIndex].click();
-                } else if (suggestionItems.length > 0) {
-                    suggestionItems[0].click();
+                } else {
+                    if (isIndexPage) {
+                        performSearchOnIndex();
+                    } else {
+                        handleSearchRedirect(searchInput.value);
+                    }
                 }
                 suggestionsPanel.style.display = 'none';
             }

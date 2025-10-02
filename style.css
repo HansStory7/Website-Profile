@@ -1135,13 +1135,19 @@ footer {
     margin-bottom: 20px;
 }
 
+.popup-content p {
+    text-align: justify;
+    margin-bottom: 1rem;
+}
+
 .popup-content ul {
     list-style-position: inside;
     padding-left: 10px;
 }
 
 .popup-content li {
-    margin-bottom: 10px;
+    text-align: justify;
+    margin-bottom: 0.75rem;
 }
 
 @keyframes popup-fade-in {
@@ -1256,6 +1262,16 @@ footer {
 }
 
 /* --- Media Queries for Responsive Design --- */
+@media (max-width: 1220px) {
+    .container {
+        max-width: 960px;
+    }
+
+    .clients-section .client-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
 @media (max-width: 992px) {
     .navbar nav {
         flex-wrap: wrap;
@@ -1269,9 +1285,6 @@ footer {
         justify-content: flex-end;
     }
 
-    .clients-section .client-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
     .client-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -1377,12 +1390,10 @@ footer {
         grid-template-columns: 1fr;
     }
     
-    .clients-section .client-grid {
+    .clients-section .client-grid,
+    .client-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
-    }
-    .client-grid {
-        grid-template-columns: repeat(1, 1fr); /* For all other client grids */
     }
     
     .client-logo {

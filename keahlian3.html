@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HansSites | App Development</title>
+    <title>App Development | HansSites</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -12,7 +11,6 @@
     <link rel="icon" href="logo-hanssites.png" type="image/png">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
     <header class="navbar scrolled">
@@ -30,6 +28,11 @@
                     <li><a href="index.html#clients">Clients</a></li>
                     <li><a href="index.html#kontak">Contact</a></li>
                 </ul>
+                <div class="search-container">
+                    <input type="text" id="search-input" class="search-input" placeholder="Search content..." autocomplete="off">
+                    <button class="search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+                    <div id="search-suggestions" class="suggestions-panel"></div>
+                </div>
             </nav>
         </div>
     </header>
@@ -37,57 +40,53 @@
     <main>
         <section class="detail-hero">
             <div class="container">
+                <p class="detail-hero-subtitle">Core Competency</p>
                 <h1 class="detail-hero-title">App Development</h1>
-                <p class="detail-hero-subtitle">Creating Functional and User-Friendly Mobile Applications.</p>
             </div>
         </section>
 
         <section class="page-content">
             <div class="container">
+                 <a href="index.html#keahlian" class="view-more-btn" style="margin-bottom: 40px; display: inline-block;">&larr; Back to Skills</a>
+
                 <div class="detail-main-content">
                     <div class="detail-image-column">
-                        <img src="https://placehold.co/600x400/58b4ff/FFFFFF?text=Mobile+App" alt="A mobile phone displaying an app">
+                        <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=2070&auto=format&fit=crop" alt="Mobile app development interface">
                     </div>
                     <div class="detail-text-column">
-                        <h2>Bringing Ideas to Life</h2>
-                        <p>
-                           I develop mobile applications that are both functional and delightful to use. My focus is on creating a smooth and engaging user experience (UX) supported by clean, efficient code.
-                        </p>
-                        <p>
-                           Whether it's for iOS, Android, or cross-platform solutions, I handle the entire development process, from initial concept and design to deployment and maintenance, ensuring the final product meets the highest standards of quality.
-                        </p>
+                        <h2>Solutions in Your Pocket</h2>
+                        <p>I develop mobile applications that are intuitive, performant, and provide real value to users. My background in finance gives me a unique perspective on creating apps that solve business problems, manage data efficiently, and offer a seamless user experience.</p>
+                        <p>I am passionate about leveraging mobile technology to create accessible and powerful tools for individuals and businesses.</p>
                     </div>
                 </div>
 
-                <section class="competencies-section">
-                    <h2 class="subsection-title">Core Competencies</h2>
+                <div class="competencies-section">
+                     <h3 class="subsection-title">Key Competencies</h3>
                     <div class="competency-grid">
                         <div class="competency-card">
-                            <i class="fab fa-react"></i>
-                            <h3>Cross-Platform</h3>
-                            <p>Building apps for multiple platforms from a single codebase.</p>
+                            <i class="fab fa-apple"></i>
+                            <h3>iOS Development</h3>
+                            <p>Building native applications for the Apple ecosystem with a focus on clean design and performance.</p>
                         </div>
                         <div class="competency-card">
-                            <i class="fas fa-drafting-compass"></i>
-                            <h3>UI/UX Design</h3>
-                            <p>Designing intuitive and attractive interfaces that users love.</p>
+                            <i class="fab fa-android"></i>
+                            <h3>Android Development</h3>
+                            <p>Creating versatile and robust applications for the wide range of devices on the Android platform.</p>
                         </div>
                         <div class="competency-card">
-                            <i class="fas fa-network-wired"></i>
-                            <h3>API Integration</h3>
-                            <p>Connecting apps to third-party services and data sources.</p>
-                        </div>
-                         <div class="competency-card">
-                            <i class="fas fa-tachometer-alt"></i>
-                            <h3>Performance</h3>
-                            <p>Optimizing for speed, responsiveness, and efficient battery usage.</p>
+                            <i class="fas fa-mobile-alt"></i>
+                            <h3>Cross-Platform Solutions</h3>
+                            <p>Using frameworks to develop apps that run on both iOS and Android from a single codebase.</p>
                         </div>
                     </div>
-                </section>
-                
-                <div class="view-more-container" style="margin-top: 80px;">
-                    <a href="index.html#keahlian" class="view-more-btn">&larr; Back to Skills</a>
                 </div>
+
+                <div class="cta-section">
+                    <h2>Have an Idea for an App?</h2>
+                    <p>Let's connect and discuss how we can turn your concept into a reality.</p>
+                    <a href="index.html#kontak" class="cta-button">Get in Touch</a>
+                </div>
+
             </div>
         </section>
     </main>
@@ -97,6 +96,7 @@
             <p>&copy; 2025 - <img src="logo-hanssites.png" alt="HansSites Logo" class="footer-logo"> HansSites. All rights reserved.</p>
         </div>
     </footer>
-
+    <script src="script.js"></script>
 </body>
 </html>
+

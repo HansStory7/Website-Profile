@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HansSites | Financial Analysis & Management</title>
+    <title>Financial Analysis & Management | HansSites</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -12,7 +11,6 @@
     <link rel="icon" href="logo-hanssites.png" type="image/png">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
     <header class="navbar scrolled">
@@ -30,6 +28,11 @@
                     <li><a href="index.html#clients">Clients</a></li>
                     <li><a href="index.html#kontak">Contact</a></li>
                 </ul>
+                <div class="search-container">
+                    <input type="text" id="search-input" class="search-input" placeholder="Search content..." autocomplete="off">
+                    <button class="search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+                    <div id="search-suggestions" class="suggestions-panel"></div>
+                </div>
             </nav>
         </div>
     </header>
@@ -37,57 +40,53 @@
     <main>
         <section class="detail-hero">
             <div class="container">
+                <p class="detail-hero-subtitle">Core Competency</p>
                 <h1 class="detail-hero-title">Financial Analysis & Management</h1>
-                <p class="detail-hero-subtitle">Precision and Strategy in Every Number.</p>
             </div>
         </section>
 
         <section class="page-content">
             <div class="container">
+                 <a href="index.html#keahlian" class="view-more-btn" style="margin-bottom: 40px; display: inline-block;">&larr; Back to Skills</a>
+
                 <div class="detail-main-content">
                     <div class="detail-image-column">
-                        <img src="https://placehold.co/600x400/58b4ff/FFFFFF?text=Financial+Charts" alt="Financial analysis charts">
+                        <img src="https://images.unsplash.com/photo-1633113087822-a0a382155a40?q=80&w=2070&auto=format&fit=crop" alt="Financial analysis charts and graphs">
                     </div>
                     <div class="detail-text-column">
-                        <h2>Mastering Financial Integrity</h2>
-                        <p>
-                           With a strong foundation in accounting principles, I provide comprehensive financial analysis and management services. My expertise lies in translating complex financial data into clear, actionable insights that drive strategic business decisions.
-                        </p>
-                        <p>
-                           From detailed financial reporting and budget forecasting to risk assessment and ensuring regulatory compliance, I am dedicated to maintaining the financial health and integrity of an organization.
-                        </p>
+                        <h2>From Data to Decisions</h2>
+                        <p>With a strong foundation in accounting principles, I specialize in transforming complex financial data into actionable insights. My approach goes beyond mere number-crunching; it's about understanding the story behind the numbers to drive strategic decision-making.</p>
+                        <p>Whether it's evaluating investment opportunities, optimizing costs, or forecasting future performance, my goal is to provide clarity and confidence to stakeholders.</p>
                     </div>
                 </div>
 
-                <section class="competencies-section">
-                    <h2 class="subsection-title">Core Competencies</h2>
+                <div class="competencies-section">
+                     <h3 class="subsection-title">Key Competencies</h3>
                     <div class="competency-grid">
                         <div class="competency-card">
-                            <i class="fas fa-chart-line"></i>
+                            <i class="fas fa-chart-pie"></i>
                             <h3>Financial Modeling</h3>
-                            <p>Creating dynamic models to forecast future financial performance.</p>
+                            <p>Building dynamic models for forecasting, budgeting, and valuation.</p>
                         </div>
                         <div class="competency-card">
-                            <i class="fas fa-tasks"></i>
-                            <h3>Budget Management</h3>
-                            <p>Developing and managing budgets to optimize resource allocation.</p>
-                        </div>
-                        <div class="competency-card">
-                            <i class="fas fa-shield-alt"></i>
-                            <h3>Risk Assessment</h3>
-                            <p>Identifying and mitigating financial risks to ensure stability.</p>
-                        </div>
-                         <div class="competency-card">
-                            <i class="fas fa-file-invoice-dollar"></i>
+                            <i class="fas fa-file-alt"></i>
                             <h3>Statutory Reporting</h3>
-                            <p>Ensuring accurate and timely reporting in compliance with regulations.</p>
+                            <p>Ensuring accurate and compliant financial statements under IFRS and local GAAP.</p>
+                        </div>
+                        <div class="competency-card">
+                            <i class="fas fa-bullseye"></i>
+                            <h3>Performance Analysis</h3>
+                            <p>Analyzing key performance indicators (KPIs) to identify trends and areas for improvement.</p>
                         </div>
                     </div>
-                </section>
-                
-                <div class="view-more-container" style="margin-top: 80px;">
-                    <a href="index.html#keahlian" class="view-more-btn">&larr; Back to Skills</a>
                 </div>
+
+                <div class="cta-section">
+                    <h2>Ready to Improve Your Financial Strategy?</h2>
+                    <p>Let's work together to unlock the full potential of your financial data.</p>
+                    <a href="index.html#kontak" class="cta-button">Get in Touch</a>
+                </div>
+
             </div>
         </section>
     </main>
@@ -97,6 +96,7 @@
             <p>&copy; 2025 - <img src="logo-hanssites.png" alt="HansSites Logo" class="footer-logo"> HansSites. All rights reserved.</p>
         </div>
     </footer>
-
+    <script src="script.js"></script>
 </body>
 </html>
+
