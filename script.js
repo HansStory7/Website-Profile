@@ -12,35 +12,69 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // --- NAVBAR ACTIVE LINK ON SCROLL ---
     const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('nav ul li a');
+    const navLinks = document.querySelectorAll('.navbar nav ul li a');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    const isIndexPage = window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html');
 
-    function navHighlighter() {
+    function navHighlighter() { // This function now only runs on index page scroll
         let scrollY = window.pageYOffset;
-        
-        sections.forEach(current => {
-            const sectionHeight = current.offsetHeight;
-            const sectionTop = current.offsetTop - 150;
-            let sectionId = current.getAttribute('id');
+        let currentSectionId = "";
 
-            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href').includes('#' + sectionId)) {
-                        link.classList.add('active');
-                    }
-                });
-            } else {
-                 navLinks.forEach(link => {
-                    if (link.getAttribute('href').includes('#' + sectionId)) {
-                        link.classList.remove('active');
-                    }
-                });
+        sections.forEach(current => {
+            const sectionTop = current.offsetTop - 150;
+            if (scrollY >= sectionTop) {
+                currentSectionId = current.getAttribute('id');
+            }
+        });
+
+        // Update desktop nav links
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${currentSectionId}`) {
+                link.classList.add('active');
+            }
+        });
+
+        // Update mobile nav links
+        mobileNavLinks.forEach(link => {
+            link.classList.remove('active');
+            const linkHref = link.getAttribute('href');
+            
+            // Handle Home link
+            if (link.getAttribute('href') === 'index.html' && (currentSectionId === '' || scrollY < (document.getElementById('tentang').offsetTop - 150))) {
+                 link.classList.add('active');
+            } 
+            // Handle other section links
+            else if (currentSectionId && linkHref.includes(`#${currentSectionId}`)) {
+                link.classList.add('active');
             }
         });
     }
 
-    if (window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html')) {
+    if (isIndexPage) {
         window.addEventListener('scroll', navHighlighter);
+        navHighlighter(); // Call on load to set initial state
+    } else {
+        // Handle active state for other pages on load
+        const currentPage = window.location.pathname.split('/').pop();
+        
+        mobileNavLinks.forEach(link => {
+            const linkPage = new URL(link.href, window.location.href).pathname.split('/').pop();
+            
+            link.classList.remove('active');
+
+            if (currentPage === linkPage) {
+                link.classList.add('active');
+            } 
+            // Highlight Projects tab if on a project detail page
+            else if (currentPage.startsWith('project') && linkPage === 'projects.html') {
+                 link.classList.add('active');
+            }
+            // Highlight Articles tab if on an article detail page
+            else if (currentPage.startsWith('article') && linkPage === 'articles.html') {
+                 link.classList.add('active');
+            }
+        });
     }
 
 
@@ -239,18 +273,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     // --- EMAIL POPUP ---
-    const emailPopupBtn = document.getElementById('email-popup-btn');
     const emailPopupModal = document.getElementById('email-popup-modal');
-    const sendEmailLink = document.getElementById('send-email-link');
-    const popupMessage = document.getElementById('popup-message');
-
-    if (emailPopupBtn && emailPopupModal && sendEmailLink) {
+    if (emailPopupModal) {
+        const emailPopupBtn = document.getElementById('email-popup-btn');
+        const mobileEmailBtn = document.getElementById('mobile-email-btn');
+        const sendEmailLink = document.getElementById('send-email-link');
+        const popupMessage = document.getElementById('popup-message');
         const emailCloseBtn = emailPopupModal.querySelector('.close-popup-btn');
 
-        emailPopupBtn.addEventListener('click', () => {
-            emailPopupModal.classList.add('show');
-        });
-
+        const openEmailPopup = () => {
+             emailPopupModal.classList.add('show');
+        };
+        
+        if(emailPopupBtn) emailPopupBtn.addEventListener('click', openEmailPopup);
+        if(mobileEmailBtn) {
+            mobileEmailBtn.addEventListener('click', () => {
+                openEmailPopup();
+                mobileEmailBtn.classList.add('clicked');
+                setTimeout(() => {
+                    mobileEmailBtn.classList.remove('clicked');
+                }, 200);
+            });
+        }
+        
         emailCloseBtn.addEventListener('click', () => {
             emailPopupModal.classList.remove('show');
         });
@@ -301,7 +346,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const searchInput = document.getElementById('search-input');
     const searchBtn = document.querySelector('.search-btn');
     const suggestionsPanel = document.getElementById('search-suggestions');
-    const isIndexPage = window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html');
     
     const searchKeywords = [
         { keyword: "Financial Analysis", url: "keahlian1.html" },
