@@ -31,6 +31,11 @@
                     <li><a href="#clients">Clients</a></li>
                     <li><a href="#kontak">Contact</a></li>
                 </ul>
+                <div class="search-container">
+                    <input type="text" id="search-input" class="search-input" placeholder="Search content..." autocomplete="off">
+                    <button class="search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+                    <div id="search-suggestions" class="suggestions-panel"></div>
+                </div>
             </nav>
         </div>
     </header>
@@ -96,28 +101,28 @@
         <div class="container">
             <h2 class="section-title">Core Competencies</h2>
             <div class="skills-grid">
-                <div class="skill-card">
+                <div class="skill-card searchable-content">
                     <a href="keahlian1.html">
                         <i class="fas fa-calculator"></i>
                         <h3>Financial Analysis & Management</h3>
                         <p>Skilled in managing financial records, preparing reports, and analyzing data to support effective decision-making.</p>
                     </a>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card searchable-content">
                     <a href="keahlian2.html">
                         <i class="fas fa-code"></i>
                         <h3>Web Development</h3>
                         <p>Building responsive and modern websites using the latest technologies for a great user experience.</p>
                     </a>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card searchable-content">
                     <a href="keahlian3.html">
                         <i class="fas fa-mobile-alt"></i>
                         <h3>App Development</h3>
                         <p>Creating functional and user-friendly mobile applications for various platforms.</p>
                     </a>
                 </div>
-                <div class="skill-card">
+                <div class="skill-card searchable-content">
                     <a href="keahlian4.html">
                         <i class="fas fa-database"></i>
                         <h3>Data Analysis</h3>
@@ -161,7 +166,7 @@
             </div>
 
             <div class="project-grid">
-                <div class="project-card">
+                <div class="project-card searchable-content">
                     <img src="project-thumbnail-1.jpg" alt="Project 1 Thumbnail">
                     <div class="project-info">
                         <h3>Financial Reporting</h3>
@@ -176,7 +181,7 @@
                         <a href="project1.html" class="project-link">View Details</a>
                     </div>
                 </div>
-                <div class="project-card">
+                <div class="project-card searchable-content">
                     <img src="project-thumbnail-2.jpg" alt="Project 2 Thumbnail">
                     <div class="project-info">
                         <h3>Web Design Showcase</h3>
@@ -185,6 +190,10 @@
                         <a href="project2.html" class="project-link">View Details</a>
                     </div>
                 </div>
+            </div>
+
+            <div id="no-results-projects" class="no-results-message" style="display: none;">
+                <p>No projects found matching your search.</p>
             </div>
 
             <div class="view-more-container">
@@ -204,7 +213,7 @@
             <h2 class="section-title">Recent Articles</h2>
             <div class="article-grid">
                 <!-- Article 1 Preview -->
-                <div class="article-card">
+                <div class="article-card searchable-content">
                     <img src="https://images.unsplash.com/photo-1674049406232-f28892b5335a?q=80&w=2070&auto=format&fit=crop" alt="AI and Accounting">
                     <div class="article-info">
                         <p class="article-meta">October 1, 2025 · 7 min read</p>
@@ -214,7 +223,7 @@
                     </div>
                 </div>
                 <!-- Article 2 Preview -->
-                <div class="article-card">
+                <div class="article-card searchable-content">
                     <img src="https://images.unsplash.com/photo-1639755491103-6a97b2c0d5a3?q=80&w=1932&auto=format&fit=crop" alt="Blockchain Technology">
                     <div class="article-info">
                         <p class="article-meta">September 15, 2025 · 5 min read</p>
@@ -224,6 +233,11 @@
                     </div>
                 </div>
             </div>
+
+            <div id="no-results-articles" class="no-results-message" style="display: none;">
+                <p>No articles found matching your search.</p>
+            </div>
+
              <div class="view-more-container">
                 <a href="articles.html" class="view-more-btn">View All Articles</a>
             </div>

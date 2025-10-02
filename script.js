@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 });
             } else {
-                 // This part handles the case where you scroll out of a section
                  navLinks.forEach(link => {
                     if (link.getAttribute('href') === '#' + sectionId) {
                         link.classList.remove('active');
@@ -295,5 +294,142 @@ document.addEventListener('DOMContentLoaded', function () {
             event.target.classList.remove('show');
         }
     });
+
+    // --- LIVE SEARCH WITH SUGGESTIONS ---
+    const searchInput = document.getElementById('search-input');
+    const searchBtn = document.querySelector('.search-btn');
+    const suggestionsPanel = document.getElementById('search-suggestions');
+    
+    const searchKeywords = [
+        { keyword: "Financial Analysis", url: "keahlian1.html" },
+        { keyword: "Management", url: "keahlian1.html" },
+        { keyword: "Web Development", url: "keahlian2.html" },
+        { keyword: "App Development", url: "keahlian3.html" },
+        { keyword: "Data Analysis", url: "keahlian4.html" },
+        { keyword: "Financial Reporting", url: "project1.html" },
+        { keyword: "Balance Sheet", url: "project1.html" },
+        { keyword: "Income Statement", url: "project1.html" },
+        { keyword: "Cash Flow", url: "project1.html" },
+        { keyword: "Web Design", url: "project2.html" },
+        { keyword: "React", url: "project2.html" },
+        { keyword: "Node.js", url: "project2.html" },
+        { keyword: "AI in Accounting", url: "article1.html" },
+        { keyword: "Blockchain", url: "article2.html" },
+        { keyword: "Audits", url: "article2.html" },
+        { keyword: "ESG", url: "article3.html" },
+        { keyword: "Sustainability", url: "article3.html" },
+        { keyword: "System Implementation", url: "projects.html" },
+        { keyword: "Budgeting", url: "projects.html" },
+        { keyword: "Forecasting", url: "projects.html" },
+        { keyword: "QuickBooks", url: "projects.html" },
+        { keyword: "Automation", url: "projects.html" }
+    ];
+
+    if (searchInput && searchBtn && suggestionsPanel) {
+        let activeSuggestionIndex = -1;
+
+        function performSearch() {
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            const searchableSections = [
+                { items: document.querySelectorAll('#projects .searchable-content'), noResultsEl: document.getElementById('no-results-projects') },
+                { items: document.querySelectorAll('#articles .searchable-content'), noResultsEl: document.getElementById('no-results-articles') },
+                { items: document.querySelectorAll('#keahlian .searchable-content'), noResultsEl: null } 
+            ];
+
+            searchableSections.forEach(section => {
+                let itemsFound = 0;
+                section.items.forEach(item => {
+                    const itemText = item.textContent.toLowerCase();
+                    if (itemText.includes(searchTerm)) {
+                        item.classList.remove('search-hide');
+                        itemsFound++;
+                    } else {
+                        item.classList.add('search-hide');
+                    }
+                });
+
+                if (section.noResultsEl) {
+                    section.noResultsEl.style.display = itemsFound === 0 && searchTerm !== '' ? 'block' : 'none';
+                }
+            });
+        }
+        
+        function setActiveSuggestion(items) {
+            items.forEach(item => item.classList.remove('active'));
+            if (activeSuggestionIndex > -1) {
+                items[activeSuggestionIndex].classList.add('active');
+            }
+        }
+
+        searchInput.addEventListener('input', () => {
+            const inputText = searchInput.value.toLowerCase();
+            suggestionsPanel.innerHTML = '';
+            activeSuggestionIndex = -1;
+            
+            if (inputText.length > 0) {
+                const filteredKeywords = searchKeywords.filter(item => item.keyword.toLowerCase().includes(inputText));
+                
+                if (filteredKeywords.length > 0) {
+                    filteredKeywords.forEach((itemObj, index) => {
+                        const item = document.createElement('div');
+                        item.classList.add('suggestion-item');
+                        item.textContent = itemObj.keyword;
+                        item.onclick = () => window.location.href = itemObj.url;
+                        item.addEventListener('mouseover', () => {
+                            activeSuggestionIndex = index;
+                            setActiveSuggestion(suggestionsPanel.querySelectorAll('.suggestion-item'));
+                        });
+                        suggestionsPanel.appendChild(item);
+                    });
+                    suggestionsPanel.style.display = 'block';
+                } else {
+                    suggestionsPanel.style.display = 'none';
+                }
+            } else {
+                suggestionsPanel.style.display = 'none';
+            }
+            
+            performSearch();
+        });
+        
+        searchBtn.addEventListener('click', (e) => {
+            if (window.getComputedStyle(searchInput).width === '40px') {
+                e.preventDefault();
+                searchInput.focus();
+            } else {
+                performSearch();
+            }
+        });
+
+        searchInput.addEventListener('keydown', (e) => {
+            const suggestionItems = suggestionsPanel.querySelectorAll('.suggestion-item');
+            if (suggestionItems.length === 0) return;
+
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                activeSuggestionIndex = (activeSuggestionIndex + 1) % suggestionItems.length;
+                setActiveSuggestion(suggestionItems);
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                activeSuggestionIndex = (activeSuggestionIndex - 1 + suggestionItems.length) % suggestionItems.length;
+                setActiveSuggestion(suggestionItems);
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                if (activeSuggestionIndex > -1) {
+                    suggestionItems[activeSuggestionIndex].click();
+                } else if (suggestionItems.length > 0) {
+                    suggestionItems[0].click();
+                }
+                suggestionsPanel.style.display = 'none';
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!searchBtn.contains(e.target) && !searchInput.contains(e.target)) {
+                suggestionsPanel.style.display = 'none';
+            }
+        });
+    }
 });
 
