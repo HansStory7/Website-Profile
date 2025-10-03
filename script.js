@@ -12,11 +12,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // --- NAVBAR ACTIVE LINK ON SCROLL ---
     const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.navbar nav ul li a');
+    const navLinks = document.querySelectorAll('.desktop-nav a');
     const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
     const isIndexPage = window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html');
 
-    function navHighlighter() { // This function now only runs on index page scroll
+    function navHighlighter() { 
         let scrollY = window.pageYOffset;
         let currentSectionId = "";
 
@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        // Update desktop nav links
         navLinks.forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('href') === `#${currentSectionId}`) {
@@ -35,16 +34,13 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        // Update mobile nav links
         mobileNavLinks.forEach(link => {
             link.classList.remove('active');
             const linkHref = link.getAttribute('href');
             
-            // Handle Home link
             if (link.getAttribute('href') === 'index.html' && (currentSectionId === '' || scrollY < (document.getElementById('tentang').offsetTop - 150))) {
                  link.classList.add('active');
             } 
-            // Handle other section links
             else if (currentSectionId && linkHref.includes(`#${currentSectionId}`)) {
                 link.classList.add('active');
             }
@@ -53,9 +49,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (isIndexPage) {
         window.addEventListener('scroll', navHighlighter);
-        navHighlighter(); // Call on load to set initial state
+        navHighlighter();
     } else {
-        // Handle active state for other pages on load
         const currentPage = window.location.pathname.split('/').pop();
         
         mobileNavLinks.forEach(link => {
@@ -66,11 +61,9 @@ document.addEventListener('DOMContentLoaded', function () {
             if (currentPage === linkPage) {
                 link.classList.add('active');
             } 
-            // Highlight Projects tab if on a project detail page
             else if (currentPage.startsWith('project') && linkPage === 'projects.html') {
                  link.classList.add('active');
             }
-            // Highlight Articles tab if on an article detail page
             else if (currentPage.startsWith('article') && linkPage === 'articles.html') {
                  link.classList.add('active');
             }
@@ -335,7 +328,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Close any modal on outside click
     window.addEventListener('click', (event) => {
         if (event.target.classList.contains('popup-modal')) {
             event.target.classList.remove('show');
@@ -502,6 +494,39 @@ document.addEventListener('DOMContentLoaded', function () {
         document.addEventListener('click', (e) => {
             if (!searchBtn.contains(e.target) && !searchInput.contains(e.target)) {
                 suggestionsPanel.style.display = 'none';
+            }
+        });
+    }
+
+    // --- MOBILE MENU TOGGLE ---
+    const menuToggleBtn = document.querySelector('.mobile-menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+
+    if (menuToggleBtn && mobileMenu) {
+        menuToggleBtn.addEventListener('click', () => {
+            menuToggleBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggleBtn.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+    }
+
+    // --- MOBILE SEARCH EXPAND BEHAVIOR ---
+    if (searchInput) {
+        const navbarContainer = document.querySelector('.navbar .container');
+        searchInput.addEventListener('focus', () => {
+            if (window.innerWidth <= 992) {
+                navbarContainer.classList.add('search-active');
+            }
+        });
+        searchInput.addEventListener('blur', () => {
+            if (window.innerWidth <= 992) {
+                navbarContainer.classList.remove('search-active');
             }
         });
     }

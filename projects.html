@@ -1,152 +1,181 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>My Projects | HansSites</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-        <link rel="icon" href="logo-hanssites.png" type="image/png">
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects | HansSites</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="icon" href="logo-hanssites.png" type="image/png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-        <header class="navbar scrolled">
-            <div class="container">
-                <a href="index.html" class="logo-container">
-                    <img src="logo-hanssites.png" alt="HansSites Logo" class="header-logo">
-                    <span class="logo">HansSites</span>
-                </a>
-                <nav>
-                    <ul>
-                        <li><a href="index.html#tentang">About</a></li>
-                        <li><a href="index.html#keahlian">Skills</a></li>
-                        <li><a href="index.html#projects">Projects</a></li>
-                        <li><a href="index.html#articles">Articles</a></li>
-                        <li><a href="index.html#clients">Clients</a></li>
-                        <li><a href="index.html#kontak">Contact</a></li>
-                    </ul>
-                    <div class="search-container">
-                        <input type="text" id="search-input" class="search-input" placeholder="Search content..." autocomplete="off">
-                        <button class="search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
-                        <div id="search-suggestions" class="suggestions-panel"></div>
-                    </div>
-                </nav>
-            </div>
-        </header>
-
-        <main>
-            <section class="detail-hero">
-                <div class="container">
-                    <p class="detail-hero-subtitle">My Portfolio</p>
-                    <h1 class="detail-hero-title">My Projects</h1>
-                </div>
-            </section>
-
-            <section class="page-content">
-                <div class="container">
-                    <div class="project-grid">
-                        <!-- Project 1 -->
-                        <div class="project-card">
-                            <img src="https://images.unsplash.com/photo-1554224154-26032fddca81?q=80&w=2070&auto=format&fit=crop" alt="Financial Reporting Documents">
-                            <div class="project-info">
-                                <h3>Financial Reporting</h3>
-                                <p>A comprehensive suite for generating accurate and insightful financial statements for enterprises.</p>
-                                <div class="project-tags">
-                                    <span>Balance Sheet</span>
-                                    <span>Income Statement</span>
-                                    <span>Cash Flow Statement</span>
-                                </div>
-                                <a href="project1.html" class="project-link">View Details</a>
-                            </div>
-                        </div>
-                        <!-- Project 2 -->
-                        <div class="project-card">
-                            <img src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?q=80&w=2072&auto=format&fit=crop" alt="Web Design">
-                            <div class="project-info">
-                                <h3>Web Design Showcase</h3>
-                                <p>Creating visually appealing, user-friendly websites with a focus on responsive design and modern UI/UX principles.</p>
-                                <div class="project-tags"><span>React</span><span>Node.js</span><span>UI/UX</span></div>
-                                <a href="project2.html" class="project-link">View Details</a>
-                            </div>
-                        </div>
-                        <!-- Project 3 -->
-                        <div class="project-card">
-                            <img src="https://images.unsplash.com/photo-1633113087822-a0a382155a40?q=80&w=2070&auto=format&fit=crop" alt="System Implementation">
-                            <div class="project-info">
-                                <h3>Financial System Implementation</h3>
-                                <p>Led the implementation of a new cloud-based accounting system, streamlining financial operations and improving reporting accuracy and speed.</p>
-                                <div class="project-tags"><span>System Migration</span><span>QuickBooks</span><span>Automation</span></div>
-                            </div>
-                        </div>
-                        <!-- Project 4 -->
-                        <div class="project-card">
-                            <img src="https://images.unsplash.com/photo-1556155092-490a1ba16284?q=80&w=2070&auto=format&fit=crop" alt="Budgeting">
-                            <div class="project-info">
-                                <h3>Budgeting and Forecasting Model</h3>
-                                <p>Developed a dynamic financial model for a retail company to improve budgeting accuracy and provide rolling forecasts for better strategic planning.</p>
-                                <div class="project-tags"><span>Financial Modeling</span><span>Budgeting</span><span>Forecasting</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <footer>
-            <div class="container">
-                <p>&copy; 2025 - <img src="logo-hanssites.png" alt="HansSites Logo" class="footer-logo"> HansSites. All rights reserved.</p>
-            </div>
-        </footer>
-        
-        <audio id="background-music" src="background-music.mp3" loop></audio>
-        <button id="music-toggle-btn" title="Play/Pause Music"><i class="fas fa-volume-mute"></i></button>
-
-        <!-- Email Popup Modal -->
-        <div id="email-popup-modal" class="popup-modal">
-            <div class="popup-content">
-                <span class="close-popup-btn">&times;</span>
-                <h3>Send a Quick Message</h3>
-                <form id="email-popup-form">
-                    <textarea id="popup-message" name="message" rows="6" placeholder="Type your message here..."></textarea>
-                    <a id="send-email-link" class="cta-button" href="#">Send via Email Client</a>
-                </form>
-                <div class="popup-footer">
-                    <img src="logo-hanssites.png" alt="HansSites Logo" class="popup-logo">
-                    <span>Powered by Hans</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile Bottom Navigation -->
-        <nav class="mobile-nav">
-            <a href="index.html" class="mobile-nav-link">
-                <i class="fas fa-home"></i>
-                <span>Home</span>
+    <header class="navbar scrolled">
+        <div class="container">
+            <a href="index.html" class="logo-container">
+                <img src="logo-hanssites.png" alt="HansSites Logo" class="header-logo">
+                <span class="logo">HansSites</span>
             </a>
-            <a href="projects.html" class="mobile-nav-link">
-                <i class="fas fa-briefcase"></i>
-                <span>Projects</span>
-            </a>
-            <div class="mobile-nav-center">
-                <button id="mobile-email-btn" class="mobile-nav-center-btn" title="Send a Message">
-                    <i class="fas fa-envelope"></i>
+            
+            <nav class="desktop-nav">
+                <ul>
+                    <li><a href="index.html#tentang">About</a></li>
+                    <li><a href="index.html#keahlian">Skills</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#articles">Articles</a></li>
+                    <li><a href="index.html#clients">Clients</a></li>
+                    <li><a href="index.html#kontak">Contact</a></li>
+                </ul>
+            </nav>
+    
+            <div class="header-right-group">
+                <div class="search-container">
+                    <input type="text" id="search-input" class="search-input" placeholder="Search content..." autocomplete="off">
+                    <button class="search-btn" aria-label="Search"><i class="fas fa-search"></i></button>
+                    <div id="search-suggestions" class="suggestions-panel"></div>
+                </div>
+                <button class="mobile-menu-toggle" aria-label="Open Menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
                 </button>
             </div>
-            <a href="articles.html" class="mobile-nav-link">
-                <i class="fas fa-newspaper"></i>
-                <span>Articles</span>
-            </a>
-            <a href="index.html#kontak" class="mobile-nav-link">
-                <i class="fas fa-user"></i>
-                <span>Account</span>
-            </a>
-        </nav>
+        </div>
+    
+        <div class="mobile-menu">
+            <nav>
+                <ul>
+                    <li><a href="index.html#tentang">About</a></li>
+                    <li><a href="index.html#keahlian">Skills</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#articles">Articles</a></li>
+                    <li><a href="index.html#clients">Clients</a></li>
+                    <li><a href="index.html#kontak">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-        <script src="script.js"></script>
+    <main>
+        <section class="detail-hero">
+            <div class="container">
+                <p class="detail-hero-subtitle">My Portfolio</p>
+                <h1 class="detail-hero-title">My Projects</h1>
+            </div>
+        </section>
 
-    </body>
-    </html>
+        <section class="page-content">
+            <div class="container">
+                <div class="project-grid">
+                    <!-- Project 1 -->
+                    <div class="project-card">
+                        <img src="coverthumbnail-project1.jpg" alt="Website Wisata">
+                        <div class="project-info">
+                            <h3>Thè Ciliwung Tea Estate</h3>
+                            <p>Located in Puncak, Bogor, Thè Ciliwung is a place where time slows down. Built with love and respect for nature, we offer an oasis of tranquility for those who want to escape the hustle and bustle of city life. Every corner is designed to provide maximum comfort and an unforgettable experience.</p>
+                            <div class="project-tags">
+                            </div>
+                            <a href="https://hansstory7.github.io/The-Ciliwung/" target="_blank" class="project-link">Kunjungi Website</a>
+                        </div>
+                    </div>
+                    <!-- Project 2 -->
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1522199755839-a2bacb67c546?q=80&w=2072&auto=format&fit=crop" alt="Web Design">
+                        <div class="project-info">
+                            <h3>Web Design Showcase</h3>
+                            <p>Creating visually appealing, user-friendly websites with a focus on responsive design and modern UI/UX principles.</p>
+                            <div class="project-tags"><span>React</span><span>Node.js</span><span>UI/UX</span></div>
+                            <a href="project2.html" class="project-link">View Details</a>
+                        </div>
+                    </div>
+                    <!-- Project 3 -->
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1633113087822-a0a382155a40?q=80&w=2070&auto=format&fit=crop" alt="System Implementation">
+                        <div class="project-info">
+                            <h3>Financial System Implementation</h3>
+                            <p>Led the implementation of a new cloud-based accounting system, streamlining financial operations and improving reporting accuracy and speed.</p>
+                            <div class="project-tags"><span>System Migration</span><span>QuickBooks</span><span>Automation</span></div>
+                        </div>
+                    </div>
+                    <!-- Project 4 -->
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1556155092-490a1ba16284?q=80&w=2070&auto=format&fit=crop" alt="Budgeting">
+                        <div class="project-info">
+                            <h3>Budgeting and Forecasting Model</h3>
+                            <p>Developed a dynamic financial model for a retail company to improve budgeting accuracy and provide rolling forecasts for better strategic planning.</p>
+                            <div class="project-tags"><span>Financial Modeling</span><span>Budgeting</span><span>Forecasting</span></div>
+                        </div>
+                    </div>
+                    <!-- Project 5 -->
+                    <div class="project-card">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop" alt="Project 5">
+                        <div class="project-info">
+                            <h3>New Project Title</h3>
+                            <p>A brief description of this new and exciting project will go here. It showcases skills in X, Y, and Z.</p>
+                            <div class="project-tags"><span>New Tag 1</span><span>New Tag 2</span></div>
+                            <a href="project5.html" class="project-link">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 - <img src="logo-hanssites.png" alt="HansSites Logo" class="footer-logo"> HansSites. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <audio id="background-music" src="background-music.mp3" loop></audio>
+    <button id="music-toggle-btn" title="Play/Pause Music"><i class="fas fa-volume-mute"></i></button>
+
+    <!-- Email Popup Modal -->
+    <div id="email-popup-modal" class="popup-modal">
+        <div class="popup-content">
+            <span class="close-popup-btn">&times;</span>
+            <h3>Send a Quick Message</h3>
+            <form id="email-popup-form">
+                <textarea id="popup-message" name="message" rows="6" placeholder="Type your message here..."></textarea>
+                <a id="send-email-link" class="cta-button" href="#">Send via Email Client</a>
+            </form>
+            <div class="popup-footer">
+                <img src="logo-hanssites.png" alt="HansSites Logo" class="popup-logo">
+                <span>Powered by Hans</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-nav">
+        <a href="index.html" class="mobile-nav-link">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="projects.html" class="mobile-nav-link">
+            <i class="fas fa-briefcase"></i>
+            <span>Projects</span>
+        </a>
+        <div class="mobile-nav-center">
+            <button id="mobile-email-btn" class="mobile-nav-center-btn" title="Send a Message">
+                <i class="fas fa-envelope"></i>
+            </button>
+        </div>
+        <a href="articles.html" class="mobile-nav-link">
+            <i class="fas fa-newspaper"></i>
+            <span>Articles</span>
+        </a>
+        <a href="index.html#kontak" class="mobile-nav-link">
+            <i class="fas fa-user"></i>
+            <span>Account</span>
+        </a>
+    </nav>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
 
