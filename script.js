@@ -85,6 +85,35 @@ document.addEventListener('DOMContentLoaded', function () {
     const hiddenElements = document.querySelectorAll('.hidden');
     hiddenElements.forEach((el) => observer.observe(el));
 
+    // --- INFINITE HORIZONTAL SCROLL FOR SKILLS ---
+    function setupInfiniteScroll() {
+        const skillsGrid = document.querySelector('#keahlian .skills-grid');
+        if (!skillsGrid || window.innerWidth > 768) return; // Only apply on mobile view
+
+        const originalItems = Array.from(skillsGrid.children);
+        if (originalItems.length === 0) return;
+
+        // Clone all items and append them to create a seamless loop
+        originalItems.forEach(item => {
+            skillsGrid.appendChild(item.cloneNode(true));
+        });
+
+        let animationFrame;
+        skillsGrid.addEventListener('scroll', () => {
+            cancelAnimationFrame(animationFrame);
+            animationFrame = requestAnimationFrame(() => {
+                const originalContentWidth = skillsGrid.scrollWidth / 2;
+                // If the scroll position has passed the end of the original content
+                if (skillsGrid.scrollLeft >= originalContentWidth) {
+                    // Reset the scroll position to the equivalent point in the first half
+                    skillsGrid.scrollLeft -= originalContentWidth;
+                }
+            });
+        });
+    }
+
+    setupInfiniteScroll();
+
     // --- CUSTOM VIDEO PLAYER ---
     const videoPlayerContainer = document.querySelector('.video-player-container');
     if (videoPlayerContainer) {

@@ -72,6 +72,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative; /* Needed for absolute positioning of search */
 }
 
 .logo-container {
@@ -428,6 +429,11 @@ section {
     box-shadow: 0 0 25px rgba(0,0,0,0.05);
 }
 
+.bio {
+    display: flex;
+    flex-direction: column;
+}
+
 .bio h3 {
     font-size: 1.8rem;
     margin-bottom: 1rem;
@@ -445,6 +451,7 @@ section {
     margin-top: 20px;
     display: inline-block;
     animation: rocking 3s ease-in-out infinite;
+    align-self: center;
 }
 
 @keyframes rocking {
@@ -1361,26 +1368,42 @@ footer {
 
 @media (max-width: 992px) {
     .desktop-nav {
-        display: none; /* Sembunyikan navigasi desktop */
+        display: none;
     }
     
     .mobile-menu-toggle {
-        display: block; /* Tampilkan tombol menu hamburger */
+        display: block;
+    }
+
+    .header-right-group {
+        min-width: 85px;
+        justify-content: flex-end;
     }
 
     .search-input:focus {
-        width: calc(100vw - 150px); /* Adjust width based on viewport */
+        /* Lebar sekarang ditangani oleh kelas .search-active */
     }
 
-    .navbar .logo-container.search-active .logo {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    
-    .navbar .logo-container.search-active .header-logo {
-        /* Logo image stays */
+    .navbar .container.search-active .logo {
+        display: none;
     }
 
+    .navbar .container.search-active .search-container {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 5;
+    }
+
+    .navbar .container.search-active .search-input {
+        width: 180px;
+        text-indent: 0;
+        padding-left: 45px;
+        padding-right: 15px;
+        cursor: text;
+        border: 1px solid var(--light-blue);
+        box-shadow: 0 4px 12px rgba(88, 180, 255, 0.25);
+    }
 
     .article-card {
         flex-direction: column;
@@ -1624,4 +1647,5 @@ footer {
         box-shadow: 0 0 15px rgba(88, 180, 255, 0.5);
     }
 }
+
 
