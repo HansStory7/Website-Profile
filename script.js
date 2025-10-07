@@ -67,6 +67,9 @@ document.addEventListener('DOMContentLoaded', function () {
             else if (currentPage.startsWith('article') && linkPage === 'articles.html') {
                  link.classList.add('active');
             }
+             else if (currentPage.startsWith('keahlian') && new URL(link.href, window.location.href).hash === '#keahlian') {
+                link.classList.add('active');
+            }
         });
     }
 
@@ -84,35 +87,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const hiddenElements = document.querySelectorAll('.hidden');
     hiddenElements.forEach((el) => observer.observe(el));
-
-    // --- INFINITE HORIZONTAL SCROLL FOR SKILLS ---
-    function setupInfiniteScroll() {
-        const skillsGrid = document.querySelector('#keahlian .skills-grid');
-        if (!skillsGrid || window.innerWidth > 768) return; // Only apply on mobile view
-
-        const originalItems = Array.from(skillsGrid.children);
-        if (originalItems.length === 0) return;
-
-        // Clone all items and append them to create a seamless loop
-        originalItems.forEach(item => {
-            skillsGrid.appendChild(item.cloneNode(true));
-        });
-
-        let animationFrame;
-        skillsGrid.addEventListener('scroll', () => {
-            cancelAnimationFrame(animationFrame);
-            animationFrame = requestAnimationFrame(() => {
-                const originalContentWidth = skillsGrid.scrollWidth / 2;
-                // If the scroll position has passed the end of the original content
-                if (skillsGrid.scrollLeft >= originalContentWidth) {
-                    // Reset the scroll position to the equivalent point in the first half
-                    skillsGrid.scrollLeft -= originalContentWidth;
-                }
-            });
-        });
-    }
-
-    setupInfiniteScroll();
 
     // --- CUSTOM VIDEO PLAYER ---
     const videoPlayerContainer = document.querySelector('.video-player-container');
@@ -257,10 +231,14 @@ document.addEventListener('DOMContentLoaded', function () {
         let currentSlide = 0;
         let slideInterval;
 
+        if (slides.length > 0) {
+            slides[0].classList.add('active-slide'); // Initialize first slide
+        }
+
         function goToSlide(slideIndex) {
+            slides[currentSlide].classList.remove('active-slide');
             currentSlide = (slideIndex + totalSlides) % totalSlides;
-            const offset = currentSlide * (100 / totalSlides);
-            slideshow.style.transform = `translateX(-${offset}%)`;
+            slides[currentSlide].classList.add('active-slide');
         }
 
         function showNextSlide() {
@@ -299,8 +277,6 @@ document.addEventListener('DOMContentLoaded', function () {
     if (emailPopupModal) {
         const emailPopupBtn = document.getElementById('email-popup-btn');
         const mobileEmailBtn = document.getElementById('mobile-email-btn');
-        const sendEmailLink = document.getElementById('send-email-link');
-        const popupMessage = document.getElementById('popup-message');
         const emailCloseBtn = emailPopupModal.querySelector('.close-popup-btn');
 
         const openEmailPopup = () => {
@@ -320,16 +296,6 @@ document.addEventListener('DOMContentLoaded', function () {
         
         emailCloseBtn.addEventListener('click', () => {
             emailPopupModal.classList.remove('show');
-        });
-        
-        sendEmailLink.addEventListener('click', (e) => {
-            e.preventDefault();
-            const email = 'hansstory7@gmail.com';
-            const subject = 'Message from HansSites Visitor';
-            const body = encodeURIComponent(popupMessage.value);
-            
-            const mailtoLink = `mailto:${email}?subject=${subject}&body=${body}`;
-            window.location.href = mailtoLink;
         });
     }
     
@@ -369,28 +335,38 @@ document.addEventListener('DOMContentLoaded', function () {
     const suggestionsPanel = document.getElementById('search-suggestions');
     
     const searchKeywords = [
-        { keyword: "Financial Analysis", url: "keahlian1.html" },
-        { keyword: "Management", url: "keahlian1.html" },
-        { keyword: "Web Development", url: "keahlian2.html" },
-        { keyword: "App Development", url: "keahlian3.html" },
-        { keyword: "Data Analysis", url: "keahlian4.html" },
-        { keyword: "Financial Reporting", url: "project1.html" },
-        { keyword: "Balance Sheet", url: "project1.html" },
-        { keyword: "Income Statement", url: "project1.html" },
-        { keyword: "Cash Flow", url: "project1.html" },
-        { keyword: "Web Design", url: "project2.html" },
-        { keyword: "React", url: "project2.html" },
-        { keyword: "Node.js", url: "project2.html" },
+        // Skills
+        { keyword: "Financial Reporting", url: "keahlian1.html" },
+        { keyword: "Taxation", url: "keahlian2.html" },
+        { keyword: "Auditing", url: "keahlian3.html" },
+        { keyword: "Budgeting & Forecasting", url: "keahlian4.html" },
+        { keyword: "Perpajakan", url: "keahlian2.html" },
+        { keyword: "Anggaran", url: "keahlian4.html" },
+
+        // Projects
+        { keyword: "Thé Ciliwung Tea Estate", url: "project1.html" },
+        { keyword: "Tourism Website", url: "project1.html" },
+        { keyword: "HansSites News Blog", url: "project2.html" },
+        { keyword: "Blog Berita", url: "project2.html" },
+        
+        // Articles
         { keyword: "AI in Accounting", url: "article1.html" },
+        { keyword: "Artificial Intelligence", url: "article1.html" },
         { keyword: "Blockchain", url: "article2.html" },
-        { keyword: "Audits", url: "article2.html" },
-        { keyword: "ESG", url: "article3.html" },
+        { keyword: "Financial Audits", url: "article2.html" },
+        { keyword: "ESG Reporting", url: "article3.html" },
         { keyword: "Sustainability", url: "article3.html" },
-        { keyword: "System Implementation", url: "projects.html" },
-        { keyword: "Budgeting", url: "projects.html" },
-        { keyword: "Forecasting", url: "projects.html" },
-        { keyword: "QuickBooks", url: "projects.html" },
-        { keyword: "Automation", url: "projects.html" }
+        
+        // General Pages/Sections
+        { keyword: "About Me", url: "index.html#tentang" },
+        { keyword: "Skills", url: "index.html#keahlian" },
+        { keyword: "Projects", url: "index.html#projects" },
+        { keyword: "Articles", url: "index.html#articles" },
+        { keyword: "Clients", url: "index.html#clients" },
+        { keyword: "Contact", url: "index.html#kontak" },
+        { keyword: "All Projects", url: "projects.html" },
+        { keyword: "All Articles", url: "articles.html" },
+        { keyword: "All Clients", url: "clients.html" }
     ];
 
     if (searchInput && searchBtn && suggestionsPanel) {
@@ -431,7 +407,9 @@ document.addEventListener('DOMContentLoaded', function () {
             const query = urlParams.get('q');
             if (query) {
                 searchInput.value = query;
-                searchInput.focus();
+                setTimeout(() => { // Delay focus to ensure layout is ready
+                     searchInput.focus();
+                }, 100);
                 performSearchOnIndex();
             }
         }
@@ -546,18 +524,51 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // --- MOBILE SEARCH EXPAND BEHAVIOR ---
-    if (searchInput) {
-        const navbarContainer = document.querySelector('.navbar .container');
+    const navbarElement = document.querySelector('.navbar');
+    if (searchInput && navbarElement) {
         searchInput.addEventListener('focus', () => {
             if (window.innerWidth <= 992) {
-                navbarContainer.classList.add('search-active');
+                navbarElement.classList.add('search-active');
             }
         });
         searchInput.addEventListener('blur', () => {
             if (window.innerWidth <= 992) {
-                navbarContainer.classList.remove('search-active');
+                 // Only remove if not clicking on suggestions
+                setTimeout(() => {
+                    if (document.activeElement !== searchInput) {
+                        navbarElement.classList.remove('search-active');
+                    }
+                }, 100);
             }
         });
+    }
+
+     // --- INFINITE SCROLL FOR SKILLS ---
+    const skillsGrid = document.querySelector('.skills-grid');
+    if (skillsGrid && window.innerWidth <= 768) {
+        let isScrolling;
+        const scrollContent = Array.from(skillsGrid.children);
+        scrollContent.forEach(item => {
+            const clone = item.cloneNode(true);
+            skillsGrid.appendChild(clone);
+        });
+
+        skillsGrid.addEventListener('scroll', () => {
+            window.clearTimeout(isScrolling);
+            
+            const maxScrollLeft = skillsGrid.scrollWidth / 2;
+            
+            if (skillsGrid.scrollLeft >= maxScrollLeft) {
+                skillsGrid.scrollLeft -= maxScrollLeft;
+            } else if (skillsGrid.scrollLeft <= 0) {
+                 // This case is tricky without prepending, but less common with natural scrolling
+            }
+
+            isScrolling = setTimeout(() => {
+                // The 'scrollend' event is new, this is a fallback.
+                // You could add snap-to-item logic here if desired.
+            }, 150);
+        }, false);
     }
 });
 

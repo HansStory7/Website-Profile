@@ -75,7 +75,7 @@
 
     <main class="hero">
         <div class="hero-slideshow">
-            <div class="slide"><img src="header-background-1.jpg" alt="Slideshow Image 1"></div>
+            <div class="slide active-slide"><img src="header-background-1.jpg" alt="Slideshow Image 1"></div>
             <div class="slide"><img src="header-background-2.jpg" alt="Slideshow Image 2"></div>
             <div class="slide"><img src="header-background-3.jpg" alt="Slideshow Image 3"></div>
             <div class="slide"><img src="header-background-4.jpg" alt="Slideshow Image 4"></div>
@@ -136,30 +136,30 @@
             <div class="skills-grid">
                 <div class="skill-card searchable-content">
                     <a href="keahlian1.html">
-                        <i class="fas fa-calculator"></i>
-                        <h3>Financial Analysis & Management</h3>
-                        <p>Skilled in managing financial records, preparing reports, and analyzing data to support effective decision-making.</p>
+                        <i class="fas fa-file-invoice-dollar"></i>
+                        <h3>Financial Reporting</h3>
+                        <p>Expertise in preparing accurate financial statements and reports in accordance with applicable standards.</p>
                     </a>
                 </div>
                 <div class="skill-card searchable-content">
                     <a href="keahlian2.html">
-                        <i class="fas fa-code"></i>
-                        <h3>Web Development</h3>
-                        <p>Building responsive and modern websites using the latest technologies for a great user experience.</p>
+                        <i class="fas fa-landmark"></i>
+                        <h3>Taxation</h3>
+                        <p>In-depth knowledge of tax regulations, planning, and compliance to ensure efficiency.</p>
                     </a>
                 </div>
                 <div class="skill-card searchable-content">
                     <a href="keahlian3.html">
-                        <i class="fas fa-mobile-alt"></i>
-                        <h3>App Development</h3>
-                        <p>Creating functional and user-friendly mobile applications for various platforms.</p>
+                        <i class="fas fa-clipboard-check"></i>
+                        <h3>Auditing</h3>
+                        <p>Conducting detailed examinations of financial records to ensure accuracy and compliance.</p>
                     </a>
                 </div>
                 <div class="skill-card searchable-content">
                     <a href="keahlian4.html">
-                        <i class="fas fa-database"></i>
-                        <h3>Data Analysis</h3>
-                        <p>Analyzing and interpreting complex data to provide valuable business insights.</p>
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Budgeting & Forecasting</h3>
+                        <p>Developing financial plans and projections to guide strategic business decisions.</p>
                     </a>
                 </div>
             </div>
@@ -200,19 +200,19 @@
 
             <div class="project-grid">
                 <div class="project-card searchable-content">
-                    <img src="coverthumbnail-project1.jpg" alt="Website Wisata">
+                    <img src="coverthumbnail-project1.jpg" alt="Thé Ciliwung Tea Estate">
                     <div class="project-info">
-                        <h3>Thè Ciliwung Tea Estate</h3>
-                        <p>Located in Puncak, Bogor, Thè Ciliwung is a place where time slows down. Built with love and respect for nature, we offer an oasis of tranquility for those who want to escape the hustle and bustle of city life. Every corner is designed to provide maximum comfort and an unforgettable experience.</p>
+                        <h3>Thé Ciliwung Tea Estate</h3>
+                        <p>A tranquil tea estate in Puncak, Bogor, offering a serene escape from city life. This project focused on creating an elegant and peaceful online presence for a unique tourist destination.</p>
                         <a href="project1.html" class="project-link">View Details</a>
                     </div>
                 </div>
                 <div class="project-card searchable-content">
-                    <img src="project-thumbnail-2.jpg" alt="Project 2 Thumbnail">
+                    <img src="https://images.unsplash.com/photo-1495020689067-958852a7765e?q=80&w=2069&auto=format&fit=crop" alt="HansSites News Blog">
                     <div class="project-info">
-                        <h3>Web Design Showcase</h3>
-                        <p>Creating visually appealing, user-friendly websites with a focus on responsive design and modern UI/UX principles.</p>
-                        <div class="project-tags"><span>React</span><span>Node.js</span></div>
+                        <h3>HansSites News Blog</h3>
+                        <p>A personal blog project to share insights and news. Built with a focus on readability, a clean minimalist design, and an intuitive content management experience.</p>
+                        <div class="project-tags"><span>Blog</span><span>Content Creation</span></div>
                         <a href="project2.html" class="project-link">View Details</a>
                     </div>
                 </div>
@@ -334,9 +334,9 @@
         <div class="popup-content">
             <span class="close-popup-btn">&times;</span>
             <h3>Send a Quick Message</h3>
-            <form id="email-popup-form">
+            <form id="email-popup-form" action="https://formspree.io/f/mkgqzppe" method="POST">
                 <textarea id="popup-message" name="message" rows="6" placeholder="Type your message here..."></textarea>
-                <a id="send-email-link" class="cta-button" href="#">Send via Email Client</a>
+                <button type="submit" class="cta-button">Send Message</button>
             </form>
             <div class="popup-footer">
                 <img src="logo-hanssites.png" alt="HansSites Logo" class="popup-logo">
