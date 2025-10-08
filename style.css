@@ -60,8 +60,13 @@ body {
     top: 0;
     z-index: 100;
     border-bottom: 1px solid #eee;
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease-in-out;
 }
+
+.navbar.navbar-hidden {
+    transform: translateY(-100%);
+}
+
 
 .navbar.scrolled {
     background-color: var(--white);
@@ -798,7 +803,8 @@ footer {
 /* --- Detail Page Styles (Skills, etc.) --- */
 .detail-hero {
     background-image: linear-gradient(135deg, #58b4ff 0%, #2e86de 100%);
-    padding: 90px 0 30px 0;
+    padding: 70px 0 20px 0;
+    margin-top: 50px;
     text-align: center;
     color: var(--white);
     border-bottom: 5px solid var(--accent-gold);
@@ -811,7 +817,7 @@ footer {
 }
 
 .detail-hero-title {
-    font-size: 2rem;
+    font-size: 1.9rem;
     font-weight: 700;
     color: var(--white);
     text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
@@ -827,6 +833,11 @@ footer {
     gap: 50px;
     align-items: center;
     margin-bottom: 80px;
+}
+
+.article-body p,
+.article-body ul li {
+    text-align: justify;
 }
 
 .detail-image-column {
@@ -1008,7 +1019,7 @@ footer {
 
 .article-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 40px;
 }
 
@@ -1054,6 +1065,111 @@ footer {
     align-self: flex-end;
 }
 
+/* New styles for full-width article cards */
+.article-card-full {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(17, 28, 58, 0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative; /* For the banner */
+}
+
+.article-card-full:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(17, 28, 58, 0.1);
+}
+
+.article-card-full img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.article-date-banner {
+    position: absolute;
+    top: 0;
+    left: 30px;
+    background-color: var(--accent-gold);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 0 0 8px 8px;
+    text-align: center;
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.article-date-banner .day {
+    font-size: 1.8rem;
+    display: block;
+}
+
+.article-date-banner .month {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.suggested-articles-section {
+    padding: 60px 0;
+    background-color: var(--light-gray-bg);
+    border-top: 1px solid #e9ecef;
+}
+
+.suggestion-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.suggestion-card {
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(17, 28, 58, 0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.suggestion-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(17, 28, 58, 0.1);
+}
+
+.suggestion-card a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.suggestion-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.suggestion-card-info {
+    padding: 20px;
+}
+
+.suggestion-card-info h4 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: var(--dark-text);
+}
+
+.suggestion-card-info p {
+    font-size: 0.9rem;
+    color: var(--light-text);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
 .client-logo {
     background: var(--white);
     display: flex;
@@ -1082,10 +1198,9 @@ footer {
 
 
 /* --- Music Button & Coin Animation --- */
-#music-toggle-btn {
+#music-toggle-btn, #email-popup-btn {
     position: fixed;
     bottom: 20px;
-    right: 20px;
     z-index: 101;
     width: 50px;
     height: 50px;
@@ -1097,15 +1212,22 @@ footer {
     cursor: pointer;
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     transition: transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#music-toggle-btn:hover {
+#music-toggle-btn:hover, #email-popup-btn:hover {
     transform: scale(1.1);
 }
 
-/* --- Email Popup Button --- */
+#music-toggle-btn {
+    right: 20px;
+}
+
 #email-popup-btn {
-    display: none;
+    right: 80px;
+    display: none; /* Hidden by default, shown on desktop via media query */
 }
 
 /* --- Email Popup Modal --- */
@@ -1359,6 +1481,25 @@ footer {
 
 
 /* --- Media Queries for Responsive Design --- */
+@media (min-width: 993px) {
+    .navbar .container {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+    }
+    .desktop-nav {
+        margin: 0;
+        justify-self: center;
+    }
+}
+
+@media (min-width: 769px) {
+    #email-popup-btn {
+        display: flex;
+    }
+}
+
+
 @media (max-width: 1220px) {
     .container {
         max-width: 960px;
@@ -1562,11 +1703,12 @@ footer {
     }
     
     .detail-hero {
-        padding: 80px 0 30px 0;
+        padding: 70px 0 20px 0;
+        margin-top: 50px;
     }
     
     .detail-hero-title {
-        font-size: 2rem;
+        font-size: 1.9rem;
     }
     
     #music-toggle-btn {
@@ -1577,7 +1719,7 @@ footer {
     }
     
     #email-popup-btn {
-        display: none;
+        display: none !important; /* Always hide on mobile */
     }
 
     .mobile-nav {

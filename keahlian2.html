@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Development | HansSites</title>
+    <title>Taxation | HansSites</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
 </head>
 <body>
 
-    <header class="navbar scrolled">
+    <header class="navbar">
         <div class="container">
             <a href="index.html" class="logo-container">
                 <img src="logo-hanssites.png" alt="HansSites Logo" class="header-logo">
@@ -63,7 +63,7 @@
         <section class="detail-hero">
             <div class="container">
                 <p class="detail-hero-subtitle">Core Competency</p>
-                <h1 class="detail-hero-title">Web Development</h1>
+                <h1 class="detail-hero-title">Taxation</h1>
             </div>
         </section>
 
@@ -73,12 +73,12 @@
 
                 <div class="detail-main-content">
                     <div class="detail-image-column">
-                        <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=2070&auto=format&fit=crop" alt="Code on a computer screen">
+                        <img src="https://images.unsplash.com/photo-1585331505473-7586f82259a4?q=80&w=2070&auto=format&fit=crop" alt="Tax forms and a calculator">
                     </div>
                     <div class="detail-text-column">
-                        <h2>Building Digital Experiences</h2>
-                        <p>I combine my analytical mindset from accounting with the creativity of web development to build clean, efficient, and user-friendly websites. I focus on writing maintainable code and building responsive layouts that work seamlessly across all devices.</p>
-                        <p>My passion lies in solving problems and creating digital tools that are both functional and aesthetically pleasing.</p>
+                        <h2>Navigating Tax Complexity</h2>
+                        <p>I provide comprehensive tax services, focusing on compliance and strategic planning for both individuals and corporations. Understanding the intricacies of tax law is crucial for financial health, and I am dedicated to helping clients navigate this complex landscape effectively.</p>
+                        <p>My goal is to minimize tax liabilities while ensuring full compliance with all regulations, providing peace of mind and financial optimization.</p>
                     </div>
                 </div>
 
@@ -86,26 +86,26 @@
                      <h3 class="subsection-title">Key Competencies</h3>
                     <div class="competency-grid">
                         <div class="competency-card">
-                            <i class="fab fa-html5"></i>
-                            <h3>Frontend Development</h3>
-                            <p>Proficient in HTML, CSS, and JavaScript to create responsive and interactive user interfaces.</p>
+                            <i class="fas fa-file-signature"></i>
+                            <h3>Tax Compliance</h3>
+                            <p>Preparing and filing accurate tax returns for individuals and businesses, ensuring all deadlines are met.</p>
                         </div>
                         <div class="competency-card">
-                            <i class="fab fa-react"></i>
-                            <h3>Modern Frameworks</h3>
-                            <p>Experienced in using frameworks like React to build dynamic and scalable single-page applications.</p>
+                            <i class="fas fa-lightbulb"></i>
+                            <h3>Strategic Tax Planning</h3>
+                            <p>Identifying opportunities for tax savings and developing strategies to optimize financial outcomes.</p>
                         </div>
                         <div class="competency-card">
-                            <i class="fas fa-server"></i>
-                            <h3>Backend Integration</h3>
-                            <p>Knowledgeable in connecting to databases and APIs to create full-stack web solutions.</p>
+                            <i class="fas fa-balance-scale-left"></i>
+                            <h3>Tax Law & Regulations</h3>
+                            <p>Staying up-to-date with evolving tax laws to provide informed advice and ensure compliance.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="cta-section">
-                    <h2>Have a Web Project in Mind?</h2>
-                    <p>Let's discuss how we can bring your vision to life on the web.</p>
+                    <h2>Looking for Tax Expertise?</h2>
+                    <p>Let's discuss how I can assist with your tax planning and compliance needs.</p>
                     <a href="index.html#kontak" class="cta-button">Get in Touch</a>
                 </div>
 
@@ -119,6 +119,49 @@
         </div>
     </footer>
     
+    <audio id="background-music" src="background-music.mp3" loop></audio>
+    <button id="music-toggle-btn" title="Play/Pause Music"><i class="fas fa-volume-mute"></i></button>
+    <button id="email-popup-btn" title="Send a Message"><i class="fas fa-envelope"></i></button>
+
+    <div id="email-popup-modal" class="popup-modal">
+        <div class="popup-content">
+            <span class="close-popup-btn">&times;</span>
+            <h3>Send a Quick Message</h3>
+            <form id="email-popup-form" action="https://formspree.io/f/mkgqzppe" method="POST">
+                <textarea id="popup-message" name="message" rows="6" placeholder="Type your message here..."></textarea>
+                <button type="submit" class="cta-button">Send Message</button>
+            </form>
+            <div class="popup-footer">
+                <img src="logo-hanssites.png" alt="HansSites Logo" class="popup-logo">
+                <span>Powered by Hans</span>
+            </div>
+        </div>
+    </div>
+
+    <nav class="mobile-nav">
+        <a href="index.html" class="mobile-nav-link">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="projects.html" class="mobile-nav-link">
+            <i class="fas fa-briefcase"></i>
+            <span>Projects</span>
+        </a>
+        <div class="mobile-nav-center">
+            <button id="mobile-email-btn" class="mobile-nav-center-btn" title="Send a Message">
+                <i class="fas fa-envelope"></i>
+            </button>
+        </div>
+        <a href="articles.html" class="mobile-nav-link">
+            <i class="fas fa-newspaper"></i>
+            <span>Articles</span>
+        </a>
+        <a href="index.html#kontak" class="mobile-nav-link">
+            <i class="fas fa-user"></i>
+            <span>Account</span>
+        </a>
+    </nav>
     <script src="script.js"></script>
 </body>
 </html>
+

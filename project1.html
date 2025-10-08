@@ -13,7 +13,7 @@
 </head>
 <body>
 
-    <header class="navbar scrolled">
+    <header class="navbar">
         <div class="container">
             <a href="index.html" class="logo-container">
                 <img src="logo-hanssites.png" alt="HansSites Logo" class="header-logo">
@@ -64,7 +64,7 @@
             <div class="container">
                 <p class="detail-hero-subtitle">Case Study</p>
                 <h1 class="detail-hero-title">Thé Ciliwung Tea Estate</h1>
-                <a href="https://hansstory7.github.io/The-Ciliwung/" target="_blank" class="cta-button" style="margin-top: 25px;">Visit Website</a>
+                <a href="https://hansstory7.github.io/The-Ciliwung/" target="_blank" class="cta-button" style="margin-top: 20px;">Visit Website</a>
             </div>
         </section>
 
@@ -74,12 +74,12 @@
                 
                 <div class="detail-main-content">
                     <div class="detail-image-column">
-                        <img src="https://images.unsplash.com/photo-1618820633426-6b3e-9a-type a message" alt="Ciliwung river scenery">
+                        <img src="https://images.unsplash.com/photo-1618820633426-6b3e9a4a7b3c?q=80&w=2070&auto=format&fit=crop" alt="River view">
                     </div>
                     <div class="detail-text-column">
                         <h2>Project Overview</h2>
-                        <p>Thé Ciliwung Tea Estate is a website project aimed at introducing and promoting tourist destinations along the Ciliwung River. The website is designed to be a digital guide for tourists wanting to explore the natural beauty and culture around this historic river.</p>
-                        <p>Built with fundamental web technologies like HTML, CSS, and JavaScript, the project focuses on delivering clear information, easy navigation, and a responsive design. You can visit the live site directly.</p>
+                        <p>Thé Ciliwung Tea Estate is a website project aimed at introducing and promoting tourist destinations along the Ciliwung River. This website is designed to be a digital guide for tourists who want to explore the natural beauty and culture around this historic river.</p>
+                        <p>Built with basic web technologies like HTML, CSS, and JavaScript, this project focuses on clear information delivery, easy navigation, and responsive design. You can visit the site directly at <a href="https://hansstory7.github.io/The-Ciliwung/" target="_blank">https://hansstory7.github.io/The-Ciliwung/</a>.</p>
                     </div>
                 </div>
 
@@ -89,7 +89,7 @@
                         <div class="competency-card">
                             <i class="fas fa-map-marked-alt"></i>
                             <h3>Interactive Map</h3>
-                            <p>Displays key tourist locations along the river for easy exploration.</p>
+                            <p>Displays important tourist locations along the river for easy exploration.</p>
                         </div>
                         <div class="competency-card">
                             <i class="fas fa-images"></i>
@@ -99,12 +99,12 @@
                         <div class="competency-card">
                             <i class="fas fa-mobile-alt"></i>
                             <h3>Responsive Design</h3>
-                            <p>Ensures the site adapts well to various devices, from desktops to mobile phones.</p>
+                            <p>The site's display adapts well to various devices, from desktops to mobile phones.</p>
                         </div>
                          <div class="competency-card">
                             <i class="fas fa-info-circle"></i>
                             <h3>Practical Information</h3>
-                            <p>Provides essential details like opening hours, ticket prices, and travel tips for visitors.</p>
+                            <p>Provides essential information such as opening hours, ticket prices, and visiting tips for tourists.</p>
                         </div>
                     </div>
                 </div>
@@ -118,7 +118,27 @@
             <p>&copy; 2025 - <img src="logo-hanssites.png" alt="HansSites Logo" class="footer-logo"> HansSites. All rights reserved.</p>
         </div>
     </footer>
+    
+    <audio id="background-music" src="background-music.mp3" loop></audio>
+    <button id="music-toggle-btn" title="Play/Pause Music"><i class="fas fa-volume-mute"></i></button>
+    <button id="email-popup-btn" title="Send a Message"><i class="fas fa-envelope"></i></button>
 
+    <!-- Email Popup Modal -->
+    <div id="email-popup-modal" class="popup-modal">
+        <div class="popup-content">
+            <span class="close-popup-btn">&times;</span>
+            <h3>Send a Quick Message</h3>
+            <form id="email-popup-form" action="https://formspree.io/f/mkgqzppe" method="POST">
+                <textarea id="popup-message" name="message" rows="6" placeholder="Type your message here..."></textarea>
+                <button type="submit" class="cta-button">Send Message</button>
+            </form>
+            <div class="popup-footer">
+                <img src="logo-hanssites.png" alt="HansSites Logo" class="popup-logo">
+                <span>Powered by Hans</span>
+            </div>
+        </div>
+    </div>
+    
     <!-- Mobile Bottom Navigation -->
     <nav class="mobile-nav">
         <a href="index.html" class="mobile-nav-link">
@@ -143,7 +163,6 @@
             <span>Account</span>
         </a>
     </nav>
-    
     <script src="script.js"></script>
 
 </body>

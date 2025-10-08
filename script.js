@@ -1,14 +1,35 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    // --- NAVBAR SCROLL EFFECT ---
+    // --- NAVBAR SCROLL & HIDE LOGIC ---
     const navbar = document.querySelector('.navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
+    let lastScrollY = window.scrollY;
+
+    const handleNavScroll = () => {
+        const currentScrollY = window.scrollY;
+        const isIndexPage = window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html');
+
+        // Scrolled class for styling
+        if (currentScrollY > 50) {
             navbar.classList.add('scrolled');
         } else {
             navbar.classList.remove('scrolled');
         }
-    });
+
+        // Hide/show navbar on non-index pages
+        if (!isIndexPage) {
+            if (currentScrollY > lastScrollY && currentScrollY > navbar.offsetHeight) {
+                // Scrolling down
+                navbar.classList.add('navbar-hidden');
+            } else {
+                // Scrolling up
+                navbar.classList.remove('navbar-hidden');
+            }
+        }
+        lastScrollY = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleNavScroll);
+
 
     // --- NAVBAR ACTIVE LINK ON SCROLL ---
     const sections = document.querySelectorAll('section[id]');
@@ -67,9 +88,6 @@ document.addEventListener('DOMContentLoaded', function () {
             else if (currentPage.startsWith('article') && linkPage === 'articles.html') {
                  link.classList.add('active');
             }
-             else if (currentPage.startsWith('keahlian') && new URL(link.href, window.location.href).hash === '#keahlian') {
-                link.classList.add('active');
-            }
         });
     }
 
@@ -87,6 +105,36 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const hiddenElements = document.querySelectorAll('.hidden');
     hiddenElements.forEach((el) => observer.observe(el));
+    
+    // --- SKILLS INFINITE SCROLL ---
+    const skillsGrid = document.querySelector('.skills-grid');
+    if (skillsGrid && window.innerWidth <= 768) {
+        let isScrolling;
+        const items = Array.from(skillsGrid.children);
+        const itemWidth = items[0].offsetWidth + parseInt(getComputedStyle(skillsGrid).gap);
+
+        // Clone items for seamless loop
+        items.forEach(item => {
+            const clone = item.cloneNode(true);
+            skillsGrid.appendChild(clone);
+        });
+
+        let scrollTimeout;
+        skillsGrid.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                const scrollLeft = skillsGrid.scrollLeft;
+                const totalWidth = skillsGrid.scrollWidth / 2;
+
+                if (scrollLeft >= totalWidth) {
+                    skillsGrid.scrollLeft -= totalWidth;
+                } else if (scrollLeft <= 0) {
+                    // This case is handled by the browser's native scroll behavior
+                }
+            }, 50); // Adjust delay as needed
+        });
+    }
+
 
     // --- CUSTOM VIDEO PLAYER ---
     const videoPlayerContainer = document.querySelector('.video-player-container');
@@ -205,8 +253,25 @@ document.addEventListener('DOMContentLoaded', function () {
         const updateMusicIcon = () => {
             const icon = backgroundMusic.paused ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
             musicToggleBtn.innerHTML = icon;
+            sessionStorage.setItem('musicIsPlaying', !backgroundMusic.paused);
         };
         
+        const resumeMusic = () => {
+            const musicWasPlaying = sessionStorage.getItem('musicIsPlaying') === 'true';
+            const lastTime = sessionStorage.getItem('musicCurrentTime');
+
+            if (musicWasPlaying && lastTime) {
+                backgroundMusic.currentTime = parseFloat(lastTime);
+                backgroundMusic.play().catch(error => {
+                    console.log("Autoplay prevented. User must interact first.");
+                    sessionStorage.setItem('musicIsPlaying', 'false');
+                    updateMusicIcon();
+                });
+            }
+        };
+
+        resumeMusic();
+
         musicToggleBtn.addEventListener('click', () => {
             if (backgroundMusic.paused) {
                 backgroundMusic.play().catch(error => {
@@ -219,6 +284,12 @@ document.addEventListener('DOMContentLoaded', function () {
         
         backgroundMusic.onplay = updateMusicIcon;
         backgroundMusic.onpause = updateMusicIcon;
+
+        window.addEventListener('beforeunload', () => {
+            if (!backgroundMusic.paused) {
+                sessionStorage.setItem('musicCurrentTime', backgroundMusic.currentTime);
+            }
+        });
     }
 
     // --- HERO SLIDESHOW ---
@@ -340,33 +411,26 @@ document.addEventListener('DOMContentLoaded', function () {
         { keyword: "Taxation", url: "keahlian2.html" },
         { keyword: "Auditing", url: "keahlian3.html" },
         { keyword: "Budgeting & Forecasting", url: "keahlian4.html" },
-        { keyword: "Perpajakan", url: "keahlian2.html" },
-        { keyword: "Anggaran", url: "keahlian4.html" },
-
+        
         // Projects
         { keyword: "Thé Ciliwung Tea Estate", url: "project1.html" },
-        { keyword: "Tourism Website", url: "project1.html" },
         { keyword: "HansSites News Blog", url: "project2.html" },
-        { keyword: "Blog Berita", url: "project2.html" },
-        
+        { keyword: "Hansswink Sweetdrink", url: "project3.html" },
+        { keyword: "Personal Portfolio Site", url: "project4.html" },
+        { keyword: "Financial Reporting Suite", url: "project5.html" },
+
+
         // Articles
         { keyword: "AI in Accounting", url: "article1.html" },
-        { keyword: "Artificial Intelligence", url: "article1.html" },
         { keyword: "Blockchain", url: "article2.html" },
-        { keyword: "Financial Audits", url: "article2.html" },
-        { keyword: "ESG Reporting", url: "article3.html" },
+        { keyword: "Audits", url: "article2.html" },
+        { keyword: "ESG", url: "article3.html" },
         { keyword: "Sustainability", url: "article3.html" },
-        
-        // General Pages/Sections
-        { keyword: "About Me", url: "index.html#tentang" },
-        { keyword: "Skills", url: "index.html#keahlian" },
-        { keyword: "Projects", url: "index.html#projects" },
-        { keyword: "Articles", url: "index.html#articles" },
-        { keyword: "Clients", url: "index.html#clients" },
-        { keyword: "Contact", url: "index.html#kontak" },
-        { keyword: "All Projects", url: "projects.html" },
-        { keyword: "All Articles", url: "articles.html" },
-        { keyword: "All Clients", url: "clients.html" }
+
+        // Other relevant terms
+        { keyword: "Canva", url: "projects.html" },
+        { keyword: "Branding", url: "projects.html" },
+        { keyword: "Marketing", url: "projects.html" }
     ];
 
     if (searchInput && searchBtn && suggestionsPanel) {
@@ -407,9 +471,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const query = urlParams.get('q');
             if (query) {
                 searchInput.value = query;
-                setTimeout(() => { // Delay focus to ensure layout is ready
-                     searchInput.focus();
-                }, 100);
+                searchInput.focus();
                 performSearchOnIndex();
             }
         }
@@ -418,52 +480,67 @@ document.addEventListener('DOMContentLoaded', function () {
             items.forEach(item => item.classList.remove('active'));
             if (activeSuggestionIndex > -1) {
                 items[activeSuggestionIndex].classList.add('active');
+                items[activeSuggestionIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
         }
 
-        searchInput.addEventListener('input', () => {
-            const inputText = searchInput.value.toLowerCase();
+        const showSuggestions = (filter = '') => {
             suggestionsPanel.innerHTML = '';
             activeSuggestionIndex = -1;
+            const inputText = filter.toLowerCase();
+
+            const filteredKeywords = searchKeywords.filter(item => item.keyword.toLowerCase().includes(inputText));
             
-            if (inputText.length > 0) {
-                const filteredKeywords = searchKeywords.filter(item => item.keyword.toLowerCase().includes(inputText));
-                
-                if (filteredKeywords.length > 0) {
-                    filteredKeywords.forEach((itemObj, index) => {
-                        const item = document.createElement('div');
-                        item.classList.add('suggestion-item');
-                        item.textContent = itemObj.keyword;
-                        item.onclick = () => window.location.href = itemObj.url;
-                        item.addEventListener('mouseover', () => {
-                            activeSuggestionIndex = index;
-                            setActiveSuggestion(suggestionsPanel.querySelectorAll('.suggestion-item'));
-                        });
-                        suggestionsPanel.appendChild(item);
+            if (filteredKeywords.length > 0) {
+                filteredKeywords.forEach((itemObj, index) => {
+                    const item = document.createElement('div');
+                    item.classList.add('suggestion-item');
+                    item.textContent = itemObj.keyword;
+                    item.onclick = () => window.location.href = itemObj.url;
+                    item.addEventListener('mouseover', () => {
+                        activeSuggestionIndex = index;
+                        setActiveSuggestion(suggestionsPanel.querySelectorAll('.suggestion-item'));
                     });
-                    suggestionsPanel.style.display = 'block';
-                } else {
-                    suggestionsPanel.style.display = 'none';
-                }
+                    suggestionsPanel.appendChild(item);
+                });
+                suggestionsPanel.style.display = 'block';
             } else {
                 suggestionsPanel.style.display = 'none';
             }
-            
+        }
+
+
+        searchInput.addEventListener('input', () => {
+            showSuggestions(searchInput.value);
             if (isIndexPage) {
                 performSearchOnIndex();
             }
         });
         
         searchBtn.addEventListener('click', (e) => {
-            if (window.getComputedStyle(searchInput).width === '40px') {
-                e.preventDefault();
-                searchInput.focus();
-            } else {
-                if (!isIndexPage) {
-                    e.preventDefault();
-                    handleSearchRedirect(searchInput.value);
+            e.preventDefault();
+            const navbar = document.querySelector('.navbar');
+            const isMobile = window.innerWidth <= 992;
+            const isSearchActive = navbar.classList.contains('search-active');
+            const isInputFocused = document.activeElement === searchInput;
+
+            if (isMobile) {
+                if (!isSearchActive) {
+                    navbar.classList.add('search-active');
+                    searchInput.focus();
                 } else {
-                    performSearchOnIndex();
+                     handleSearchRedirect(searchInput.value);
+                }
+            } else { // Desktop
+                if (!isInputFocused && searchInput.value.trim() === '') {
+                     searchInput.focus();
+                } else {
+                    if (!isIndexPage) {
+                        handleSearchRedirect(searchInput.value);
+                    } else {
+                        performSearchOnIndex();
+                        suggestionsPanel.style.display = 'none';
+                    }
                 }
             }
         });
@@ -473,7 +550,9 @@ document.addEventListener('DOMContentLoaded', function () {
             
             if (e.key === 'ArrowDown') {
                 e.preventDefault();
-                if (suggestionItems.length > 0) {
+                if (window.getComputedStyle(suggestionsPanel).display === 'none') {
+                    showSuggestions(searchInput.value);
+                } else if (suggestionItems.length > 0) {
                     activeSuggestionIndex = (activeSuggestionIndex + 1) % suggestionItems.length;
                     setActiveSuggestion(suggestionItems);
                 }
@@ -501,6 +580,9 @@ document.addEventListener('DOMContentLoaded', function () {
         document.addEventListener('click', (e) => {
             if (!searchBtn.contains(e.target) && !searchInput.contains(e.target)) {
                 suggestionsPanel.style.display = 'none';
+                if (window.innerWidth <= 992) {
+                     document.querySelector('.navbar').classList.remove('search-active');
+                }
             }
         });
     }
@@ -521,54 +603,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 mobileMenu.classList.remove('active');
             });
         });
-    }
-
-    // --- MOBILE SEARCH EXPAND BEHAVIOR ---
-    const navbarElement = document.querySelector('.navbar');
-    if (searchInput && navbarElement) {
-        searchInput.addEventListener('focus', () => {
-            if (window.innerWidth <= 992) {
-                navbarElement.classList.add('search-active');
-            }
-        });
-        searchInput.addEventListener('blur', () => {
-            if (window.innerWidth <= 992) {
-                 // Only remove if not clicking on suggestions
-                setTimeout(() => {
-                    if (document.activeElement !== searchInput) {
-                        navbarElement.classList.remove('search-active');
-                    }
-                }, 100);
-            }
-        });
-    }
-
-     // --- INFINITE SCROLL FOR SKILLS ---
-    const skillsGrid = document.querySelector('.skills-grid');
-    if (skillsGrid && window.innerWidth <= 768) {
-        let isScrolling;
-        const scrollContent = Array.from(skillsGrid.children);
-        scrollContent.forEach(item => {
-            const clone = item.cloneNode(true);
-            skillsGrid.appendChild(clone);
-        });
-
-        skillsGrid.addEventListener('scroll', () => {
-            window.clearTimeout(isScrolling);
-            
-            const maxScrollLeft = skillsGrid.scrollWidth / 2;
-            
-            if (skillsGrid.scrollLeft >= maxScrollLeft) {
-                skillsGrid.scrollLeft -= maxScrollLeft;
-            } else if (skillsGrid.scrollLeft <= 0) {
-                 // This case is tricky without prepending, but less common with natural scrolling
-            }
-
-            isScrolling = setTimeout(() => {
-                // The 'scrollend' event is new, this is a fallback.
-                // You could add snap-to-item logic here if desired.
-            }, 150);
-        }, false);
     }
 });
 

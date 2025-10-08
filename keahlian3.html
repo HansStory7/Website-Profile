@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App Development | HansSites</title>
+    <title>Auditing | HansSites</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
 </head>
 <body>
 
-    <header class="navbar scrolled">
+    <header class="navbar">
         <div class="container">
             <a href="index.html" class="logo-container">
                 <img src="logo-hanssites.png" alt="HansSites Logo" class="header-logo">
@@ -63,7 +63,7 @@
         <section class="detail-hero">
             <div class="container">
                 <p class="detail-hero-subtitle">Core Competency</p>
-                <h1 class="detail-hero-title">App Development</h1>
+                <h1 class="detail-hero-title">Auditing</h1>
             </div>
         </section>
 
@@ -73,12 +73,12 @@
 
                 <div class="detail-main-content">
                     <div class="detail-image-column">
-                        <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=2070&auto=format&fit=crop" alt="Mobile app development interface">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop" alt="Auditor examining financial documents">
                     </div>
                     <div class="detail-text-column">
-                        <h2>Solutions in Your Pocket</h2>
-                        <p>I develop mobile applications that are intuitive, performant, and provide real value to users. My background in finance gives me a unique perspective on creating apps that solve business problems, manage data efficiently, and offer a seamless user experience.</p>
-                        <p>I am passionate about leveraging mobile technology to create accessible and powerful tools for individuals and businesses.</p>
+                        <h2>Ensuring Accuracy and Integrity</h2>
+                        <p>I am experienced in conducting both internal and external audits to provide assurance on financial information. My detail-oriented approach ensures a thorough examination of financial records, internal controls, and operational processes.</p>
+                        <p>My objective is to identify risks, uncover areas for improvement, and ensure that financial statements are a fair and accurate representation of the company's position, thereby building trust with stakeholders.</p>
                     </div>
                 </div>
 
@@ -86,26 +86,26 @@
                      <h3 class="subsection-title">Key Competencies</h3>
                     <div class="competency-grid">
                         <div class="competency-card">
-                            <i class="fab fa-apple"></i>
-                            <h3>iOS Development</h3>
-                            <p>Building native applications for the Apple ecosystem with a focus on clean design and performance.</p>
+                            <i class="fas fa-building"></i>
+                            <h3>Internal & External Audits</h3>
+                            <p>Performing comprehensive audits to assess financial accuracy and operational efficiency.</p>
                         </div>
                         <div class="competency-card">
-                            <i class="fab fa-android"></i>
-                            <h3>Android Development</h3>
-                            <p>Creating versatile and robust applications for the wide range of devices on the Android platform.</p>
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>Risk Assessment</h3>
+                            <p>Identifying and evaluating financial risks and the effectiveness of internal control systems.</p>
                         </div>
                         <div class="competency-card">
-                            <i class="fas fa-mobile-alt"></i>
-                            <h3>Cross-Platform Solutions</h3>
-                            <p>Using frameworks to develop apps that run on both iOS and Android from a single codebase.</p>
+                            <i class="fas fa-search-dollar"></i>
+                            <h3>Fraud Detection</h3>
+                            <p>Utilizing analytical procedures to detect irregularities and potential fraudulent activities.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="cta-section">
-                    <h2>Have an Idea for an App?</h2>
-                    <p>Let's connect and discuss how we can turn your concept into a reality.</p>
+                    <h2>Need an Audit?</h2>
+                    <p>Let's connect to discuss how I can provide assurance and enhance your financial controls.</p>
                     <a href="index.html#kontak" class="cta-button">Get in Touch</a>
                 </div>
 
@@ -119,6 +119,51 @@
         </div>
     </footer>
     
+    <audio id="background-music" src="background-music.mp3" loop></audio>
+    <button id="music-toggle-btn" title="Play/Pause Music"><i class="fas fa-volume-mute"></i></button>
+    <button id="email-popup-btn" title="Send a Message"><i class="fas fa-envelope"></i></button>
+
+    <!-- Email Popup Modal -->
+    <div id="email-popup-modal" class="popup-modal">
+        <div class="popup-content">
+            <span class="close-popup-btn">&times;</span>
+            <h3>Send a Quick Message</h3>
+            <form id="email-popup-form" action="https://formspree.io/f/mkgqzppe" method="POST">
+                <textarea id="popup-message" name="message" rows="6" placeholder="Type your message here..."></textarea>
+                <button type="submit" class="cta-button">Send Message</button>
+            </form>
+            <div class="popup-footer">
+                <img src="logo-hanssites.png" alt="HansSites Logo" class="popup-logo">
+                <span>Powered by Hans</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-nav">
+        <a href="index.html" class="mobile-nav-link">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="projects.html" class="mobile-nav-link">
+            <i class="fas fa-briefcase"></i>
+            <span>Projects</span>
+        </a>
+        <div class="mobile-nav-center">
+            <button id="mobile-email-btn" class="mobile-nav-center-btn" title="Send a Message">
+                <i class="fas fa-envelope"></i>
+            </button>
+        </div>
+        <a href="articles.html" class="mobile-nav-link">
+            <i class="fas fa-newspaper"></i>
+            <span>Articles</span>
+        </a>
+        <a href="index.html#kontak" class="mobile-nav-link">
+            <i class="fas fa-user"></i>
+            <span>Account</span>
+        </a>
+    </nav>
     <script src="script.js"></script>
 </body>
 </html>
+

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Analysis | HansSites</title>
+    <title>Budgeting & Forecasting | HansSites</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
 </head>
 <body>
 
-    <header class="navbar scrolled">
+    <header class="navbar">
         <div class="container">
             <a href="index.html" class="logo-container">
                 <img src="logo-hanssites.png" alt="HansSites Logo" class="header-logo">
@@ -63,7 +63,7 @@
         <section class="detail-hero">
             <div class="container">
                 <p class="detail-hero-subtitle">Core Competency</p>
-                <h1 class="detail-hero-title">Data Analysis</h1>
+                <h1 class="detail-hero-title">Budgeting & Forecasting</h1>
             </div>
         </section>
 
@@ -73,12 +73,12 @@
 
                 <div class="detail-main-content">
                     <div class="detail-image-column">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop" alt="Dashboard with data visualizations">
+                        <img src="https://images.unsplash.com/photo-1632236542614-417e22b988d3?q=80&w=2070&auto=format&fit=crop" alt="Business meeting with financial projection charts">
                     </div>
                     <div class="detail-text-column">
-                        <h2>Uncovering Insights from Data</h2>
-                        <p>My analytical skills, honed through years of accounting, are directly applicable to the world of data analysis. I excel at cleaning, transforming, and interpreting large datasets to uncover hidden trends, patterns, and insights that can inform business strategy.</p>
-                        <p>I use a variety of tools to process information and present my findings in clear, digestible formats, such as interactive dashboards and visualizations.</p>
+                        <h2>Planning for the Future</h2>
+                        <p>My analytical skills are key to creating detailed budgets and accurate financial forecasts. I specialize in developing robust financial models that help organizations plan for future growth, manage resources effectively, and set realistic financial goals.</p>
+                        <p>By analyzing historical data and market trends, I provide forward-looking insights that empower businesses to make proactive, data-driven decisions.</p>
                     </div>
                 </div>
 
@@ -86,26 +86,26 @@
                      <h3 class="subsection-title">Key Competencies</h3>
                     <div class="competency-grid">
                         <div class="competency-card">
-                            <i class="fas fa-table"></i>
-                            <h3>Data Wrangling</h3>
-                            <p>Expertise in cleaning, structuring, and preparing data for analysis using tools like Python and SQL.</p>
+                            <i class="fas fa-calculator"></i>
+                            <h3>Financial Modeling</h3>
+                            <p>Building dynamic and scalable models for budgeting, forecasting, and scenario analysis.</p>
                         </div>
                         <div class="competency-card">
-                            <i class="fas fa-chart-bar"></i>
-                            <h3>Data Visualization</h3>
-                            <p>Creating compelling charts and dashboards to communicate complex data stories effectively.</p>
+                            <i class="fas fa-tasks"></i>
+                            <h3>Variance Analysis</h3>
+                            <p>Comparing actual results against budgets to identify trends and inform future planning.</p>
                         </div>
                         <div class="competency-card">
-                            <i class="fas fa-brain"></i>
-                            <h3>Statistical Analysis</h3>
-                            <p>Applying statistical methods to identify significant patterns and make data-driven predictions.</p>
+                            <i class="fas fa-sitemap"></i>
+                            <h3>Strategic Planning</h3>
+                            <p>Translating long-term business goals into actionable financial plans and budgets.</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="cta-section">
-                    <h2>Need to Make Sense of Your Data?</h2>
-                    <p>Let's turn your raw data into your most valuable asset.</p>
+                    <h2>Ready to Plan Your Financial Future?</h2>
+                    <p>Let's turn your strategic goals into a comprehensive financial roadmap.</p>
                     <a href="index.html#kontak" class="cta-button">Get in Touch</a>
                 </div>
 
@@ -119,6 +119,49 @@
         </div>
     </footer>
     
+    <audio id="background-music" src="background-music.mp3" loop></audio>
+    <button id="music-toggle-btn" title="Play/Pause Music"><i class="fas fa-volume-mute"></i></button>
+    <button id="email-popup-btn" title="Send a Message"><i class="fas fa-envelope"></i></button>
+
+    <div id="email-popup-modal" class="popup-modal">
+        <div class="popup-content">
+            <span class="close-popup-btn">&times;</span>
+            <h3>Send a Quick Message</h3>
+            <form id="email-popup-form" action="https://formspree.io/f/mkgqzppe" method="POST">
+                <textarea id="popup-message" name="message" rows="6" placeholder="Type your message here..."></textarea>
+                <button type="submit" class="cta-button">Send Message</button>
+            </form>
+            <div class="popup-footer">
+                <img src="logo-hanssites.png" alt="HansSites Logo" class="popup-logo">
+                <span>Powered by Hans</span>
+            </div>
+        </div>
+    </div>
+    
+    <nav class="mobile-nav">
+        <a href="index.html" class="mobile-nav-link">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="projects.html" class="mobile-nav-link">
+            <i class="fas fa-briefcase"></i>
+            <span>Projects</span>
+        </a>
+        <div class="mobile-nav-center">
+            <button id="mobile-email-btn" class="mobile-nav-center-btn" title="Send a Message">
+                <i class="fas fa-envelope"></i>
+            </button>
+        </div>
+        <a href="articles.html" class="mobile-nav-link">
+            <i class="fas fa-newspaper"></i>
+            <span>Articles</span>
+        </a>
+        <a href="index.html#kontak" class="mobile-nav-link">
+            <i class="fas fa-user"></i>
+            <span>Account</span>
+        </a>
+    </nav>
     <script src="script.js"></script>
 </body>
 </html>
+
