@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personal Portfolio Site | HansSites</title>
+    <meta property="og:title" content="Project Case Study: Personal Portfolio Site | HansSites">
+    <meta property="og:description" content="A clean and modern personal portfolio website created with Canva to showcase skills, projects, and professional experience.">
+    <meta property="og:image" content="project-thumbnail-4.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="project-thumbnail-4.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -64,7 +69,7 @@
             <div class="container">
                 <p class="detail-hero-subtitle">Case Study</p>
                 <h1 class="detail-hero-title">Personal Portfolio Site</h1>
-                <a href="https://hansspectacles.my.canva.site/022123020farhanabdullah" target="_blank" class="cta-button" style="margin-top: 20px;">Visit Website</a>
+                 <a href="https://hansspectacles.my.canva.site/022123020farhanabdullah" target="_blank" class="cta-button" style="margin-top: 20px;">Visit Website</a>
             </div>
         </section>
 
@@ -74,12 +79,12 @@
                 
                 <div class="detail-main-content">
                     <div class="detail-image-column">
-                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop" alt="Personal Portfolio">
+                        <img src="project-thumbnail-4.jpg" alt="Personal portfolio website design">
                     </div>
                     <div class="detail-text-column">
                         <h2>Project Overview</h2>
-                        <p>This project is a personal portfolio website for Farhan Abdullah, created using Canva's website builder. The site serves as a digital resume and creative space, designed to present personal information, skills, and projects in a visually appealing and easy-to-navigate format.</p>
-                        <p>The design focuses on a clean, modern aesthetic that effectively communicates a professional and personal brand identity.</p>
+                        <p>This project is a personal portfolio website for Farhan Abdullah, designed to serve as a digital CV and showcase his professional profile. Built with Canva, the site features a clean, minimalist design that puts the focus on content and readability. It effectively communicates his skills, educational background, and contact information in a single, accessible page.</p>
+                        <p>The primary goal was to create a professional online presence that is both informative and visually appealing, allowing potential employers or collaborators to quickly get a comprehensive overview of his capabilities.</p>
                     </div>
                 </div>
 
@@ -87,22 +92,28 @@
                     <h3 class="subsection-title">Key Features</h3>
                     <div class="competency-grid">
                         <div class="competency-card">
-                            <i class="fas fa-user-circle"></i>
-                            <h3>Personal Branding</h3>
-                            <p>Establishes a strong visual identity that reflects personal and professional attributes.</p>
+                            <i class="fas fa-user-tie"></i>
+                            <h3>Professional Branding</h3>
+                            <p>A consistent and clean design that reflects a professional image and personal brand.</p>
                         </div>
                         <div class="competency-card">
-                            <i class="fas fa-paint-brush"></i>
-                            <h3>Visual Storytelling</h3>
-                            <p>Utilizes Canva's design tools to create an engaging narrative through visuals and text.</p>
+                            <i class="fas fa-file-alt"></i>
+                            <h3>Single-Page Layout</h3>
+                            <p>All essential information is presented in a streamlined, easy-to-navigate single-page format.</p>
                         </div>
                         <div class="competency-card">
                             <i class="fas fa-link"></i>
-                            <h3>Centralized Hub</h3>
-                            <p>Acts as a single point of access for all professional links, projects, and contact information.</p>
+                            <h3>Integrated Social Links</h3>
+                            <p>Direct links to professional profiles and social media for easy networking and contact.</p>
+                        </div>
+                         <div class="competency-card">
+                            <i class="fas fa-cogs"></i>
+                            <h3>Built with Canva</h3>
+                            <p>Showcases the ability to create polished and functional websites using modern design tools like Canva.</p>
                         </div>
                     </div>
                 </div>
+
             </div>
         </section>
     </main>
@@ -112,11 +123,12 @@
             <p>&copy; 2025 - <img src="logo-hanssites.png" alt="HansSites Logo" class="footer-logo"> HansSites. All rights reserved.</p>
         </div>
     </footer>
-
+    
     <audio id="background-music" src="background-music.mp3" loop></audio>
     <button id="music-toggle-btn" title="Play/Pause Music"><i class="fas fa-volume-mute"></i></button>
     <button id="email-popup-btn" title="Send a Message"><i class="fas fa-envelope"></i></button>
 
+    <!-- Email Popup Modal -->
     <div id="email-popup-modal" class="popup-modal">
         <div class="popup-content">
             <span class="close-popup-btn">&times;</span>
@@ -131,13 +143,14 @@
             </div>
         </div>
     </div>
-
+    
+    <!-- Mobile Bottom Navigation -->
     <nav class="mobile-nav">
         <a href="index.html" class="mobile-nav-link">
             <i class="fas fa-home"></i>
             <span>Home</span>
         </a>
-        <a href="projects.html" class="mobile-nav-link active">
+        <a href="projects.html" class="mobile-nav-link">
             <i class="fas fa-briefcase"></i>
             <span>Projects</span>
         </a>
@@ -155,7 +168,6 @@
             <span>Account</span>
         </a>
     </nav>
-    
     <script src="script.js"></script>
 
 </body>

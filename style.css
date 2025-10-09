@@ -935,7 +935,10 @@ footer {
 
 
 /* --- Styles for Projects, Articles, Clients Pages --- */
-.project-grid, .article-grid {
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 40px;
     padding-top: 40px;
 }
 
@@ -947,10 +950,16 @@ footer {
     justify-items: center;
 }
 
-.project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 30px;
+a.project-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    height: 100%;
+}
+
+a.project-card-link:hover .project-card {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(17, 28, 58, 0.1);
 }
 
 .project-card {
@@ -958,43 +967,42 @@ footer {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 8px 24px rgba(17, 28, 58, 0.07);
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
-    flex-direction: column; /* This is key for equal height */
+    flex-direction: column;
+    height: 100%;
 }
 
-.project-card:hover {
-    transform: translateY(-5px);
-}
 
 .project-card img {
     width: 100%;
-    height: 200px;
+    height: 220px;
     object-fit: cover;
-    display: block;
 }
 
 .project-info {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    flex-grow: 1; /* This makes the info div take up remaining space */
+    flex-grow: 1; 
 }
 
 .project-info h3 {
+    font-size: 1.2rem;
+    min-height: 2.4em;
+    line-height: 1.2em;
     margin-bottom: 10px;
     color: var(--dark-text);
 }
 
 .project-info p {
-    text-align: justify;
     color: var(--light-text);
     margin-bottom: 15px;
-    flex-grow: 1; /* This makes the paragraph take up space */
+    flex-grow: 1; 
 }
 
 .project-tags {
-    margin: 15px 0;
+    margin-top: auto; /* Push tags to the bottom */
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
@@ -1009,38 +1017,14 @@ footer {
 }
 
 .project-link {
-    display: inline-block;
-    margin-top: auto; /* This pushes the link to the bottom */
-    text-decoration: none;
-    color: var(--accent-gold);
-    font-weight: 600;
-    align-self: flex-start;
+   display: none;
 }
 
 .article-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 40px;
-}
-
-.article-card {
-    display: flex;
-    gap: 30px;
-    background: var(--white);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 8px 24px rgba(17, 28, 58, 0.07);
-    transition: box-shadow 0.3s ease, opacity 0.3s ease;
-}
-
-.article-card:hover {
-    box-shadow: 0 12px 30px rgba(17, 28, 58, 0.1);
-}
-
-.article-card img {
-    width: 300px;
-    height: 100%;
-    object-fit: cover;
+    padding-top: 40px;
 }
 
 .article-info {
@@ -1050,10 +1034,31 @@ footer {
     flex-grow: 1;
 }
 
-.article-meta {
+.article-info h3 {
+    font-size: 1.2rem;
+    min-height: 4.8em; /* Ensures space for up to 3 lines for alignment */
+    line-height: 1.2em;
+    margin-bottom: 10px;
+    color: var(--dark-text);
+}
+
+
+.article-info p {
+    flex-grow: 1;
+    margin-bottom: 15px; /* Add margin to separate from the link */
+}
+
+.article-meta-container {
     font-size: 0.8rem;
     color: var(--light-text);
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.image-caption {
+    font-size: 0.8rem;
+    color: var(--light-text);
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 .article-link {
@@ -1065,7 +1070,17 @@ footer {
     align-self: flex-end;
 }
 
-/* New styles for full-width article cards */
+a.article-card-full-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+a.article-card-full-link:hover .article-card-full {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(17, 28, 58, 0.1);
+}
+
 .article-card-full {
     background: var(--white);
     border-radius: 10px;
@@ -1075,11 +1090,7 @@ footer {
     display: flex;
     flex-direction: column;
     position: relative; /* For the banner */
-}
-
-.article-card-full:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(17, 28, 58, 0.1);
+    height: 100%;
 }
 
 .article-card-full img {
@@ -1536,15 +1547,6 @@ footer {
         text-indent: 0;
     }
 
-
-    .article-card {
-        flex-direction: column;
-    }
-    
-    .article-card img {
-        width: 100%;
-        height: 200px;
-    }
 }
 
 @media (max-width: 768px) {
@@ -1653,42 +1655,30 @@ footer {
         padding: 15px;
     }
     
-    .page-content .project-grid, .page-content .article-grid {
-        display: grid;
+    .project-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    .page-content .project-card, .page-content .article-card {
-        flex-direction: row;
-        gap: 15px;
-        align-items: center;
-        min-height: 120px;
-    }
-    
-    .page-content .project-card img, .page-content .article-card img {
-        height: 120px;
-        width: 120px;
-        border-radius: 10px 0 0 10px;
     }
 
-    .project-info h3, .article-info h3 {
-        text-align: center;
+    .article-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .project-info h3 {
         font-size: 1rem;
-        margin-bottom: 5px;
+        min-height: 0;
+        text-align: left;
     }
 
-    .project-info > p, .article-info > p {
+    .project-info > p {
         font-size: 0.8rem;
-        text-align: justify;
         display: -webkit-box;
-        -webkit-line-clamp: 2; /* Shorten to 2 lines */
+        -webkit-line-clamp: 3;
         -webkit-box-orient: vertical;
         overflow: hidden;
         text-overflow: ellipsis;
         margin-bottom: 8px;
     }
-
+    
     .project-tags span, .article-meta {
         font-size: 0.75rem;
     }
