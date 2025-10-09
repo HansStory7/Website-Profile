@@ -425,6 +425,14 @@ document.addEventListener('DOMContentLoaded', function () {
         { keyword: "Blockchain", url: "article2.html" },
         { keyword: "Audits", url: "article2.html" },
         { keyword: "ESG", url: "article3.html" },
+        { keyword: "Japan Economy", url: "article4.html" },
+        { keyword: "Aging Population", url: "article4.html" },
+        { keyword: "Shoplifters", url: "article5.html" },
+        { keyword: "Japanese Cinema", url: "article5.html" },
+        { keyword: "Shōgun", url: "article6.html" },
+        { keyword: "Feudal Japan", url: "article6.html" },
+        { keyword: "Audit Risk", url: "article7.html" },
+        { keyword: "Akuntabilitas", url: "article7.html" },
         { keyword: "Sustainability", url: "article3.html" },
 
         // Other relevant terms
@@ -603,6 +611,112 @@ document.addEventListener('DOMContentLoaded', function () {
                 mobileMenu.classList.remove('active');
             });
         });
+    }
+
+    // --- ARTICLE CATEGORY FILTER, SORT, & PAGINATION ---
+    const articlesPage = document.querySelector('.article-grid');
+    if (articlesPage) {
+        const filtersContainer = document.querySelector('.category-filters');
+        const sortContainer = document.querySelector('.sort-controls');
+        const paginationContainer = document.querySelector('.pagination-controls');
+        const prevButton = document.getElementById('prev-page');
+        const nextButton = document.getElementById('next-page');
+        const pageInfo = document.getElementById('page-info');
+
+        let allArticles = Array.from(articlesPage.querySelectorAll('.article-card-full-link'));
+        const itemsPerPage = 6;
+        let currentPage = 1;
+        let activeCategory = 'all';
+        let sortOrder = 'newest';
+
+        function updateArticles() {
+            // 1. Filter
+            let filteredArticles = allArticles.filter(item => {
+                const itemCategories = item.dataset.category;
+                return activeCategory === 'all' || itemCategories.includes(activeCategory);
+            });
+
+            // 2. Sort
+            filteredArticles.sort((a, b) => {
+                const dateA = new Date(a.dataset.date);
+                const dateB = new Date(b.dataset.date);
+                if (sortOrder === 'newest') {
+                    return dateB - dateA;
+                } else {
+                    return dateA - dateB;
+                }
+            });
+
+            // 3. Paginate
+            const totalPages = Math.ceil(filteredArticles.length / itemsPerPage);
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const paginatedArticles = filteredArticles.slice(startIndex, endIndex);
+
+            // 4. Display
+            articlesPage.innerHTML = ''; // Clear current articles
+            paginatedArticles.forEach(article => {
+                articlesPage.appendChild(article);
+                // Animation logic if needed
+                article.style.opacity = '0';
+                article.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    article.style.opacity = '1';
+                    article.style.transform = 'scale(1)';
+                }, 20);
+            });
+
+            // 5. Update Pagination UI
+            if (paginationContainer) {
+                if (totalPages > 1) {
+                    paginationContainer.style.display = 'flex';
+                    pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+                    prevButton.disabled = currentPage === 1;
+                    nextButton.disabled = currentPage === totalPages;
+                } else {
+                    paginationContainer.style.display = 'none';
+                }
+            }
+        }
+
+        if (filtersContainer) {
+            filtersContainer.addEventListener('click', (e) => {
+                const button = e.target.closest('.filter-btn');
+                if (!button) return;
+                filtersContainer.querySelector('.active').classList.remove('active');
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                currentPage = 1;
+                updateArticles();
+            });
+        }
+        
+        if (sortContainer) {
+             sortContainer.addEventListener('click', (e) => {
+                const button = e.target.closest('.sort-btn');
+                if (!button) return;
+                sortContainer.querySelector('.active').classList.remove('active');
+                button.classList.add('active');
+                sortOrder = button.dataset.sort;
+                updateArticles();
+            });
+        }
+
+        if (paginationContainer) {
+            prevButton.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    updateArticles();
+                }
+            });
+            nextButton.addEventListener('click', () => {
+                currentPage++;
+                updateArticles();
+            });
+        }
+        
+        // Initial load
+        updateArticles();
     }
 });
 

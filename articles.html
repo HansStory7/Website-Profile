@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Articles | HansSites</title>
+    <title>My Articles | HansSites</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -69,49 +69,133 @@
 
         <section class="page-content">
             <div class="container">
+
+                <div class="controls-container">
+                    <div class="category-filters">
+                        <button class="filter-btn active" data-category="all"><i class="fas fa-grip-horizontal"></i> All</button>
+                        <button class="filter-btn" data-category="technology"><i class="fas fa-robot"></i> Technology</button>
+                        <button class="filter-btn" data-category="auditing"><i class="fas fa-clipboard-check"></i> Auditing</button>
+                        <button class="filter-btn" data-category="reporting"><i class="fas fa-chart-bar"></i> Reporting</button>
+                        <button class="filter-btn" data-category="sustainability"><i class="fas fa-leaf"></i> Sustainability</button>
+                    </div>
+                    <div class="sort-controls">
+                        <button class="sort-btn active" data-sort="newest"><i class="fas fa-sort-amount-down"></i> Newest</button>
+                        <button class="sort-btn" data-sort="oldest"><i class="fas fa-sort-amount-up"></i> Oldest</button>
+                    </div>
+                </div>
+
+
                 <div class="article-grid">
-                    <!-- Article 1 -->
-                    <a href="article1.html" class="article-card-full-link">
+                     <!-- Article 6 -->
+                    <a href="article6.html" class="article-card-full-link searchable-content" data-category="reporting" data-date="2025-10-10">
                         <div class="article-card-full">
-                            <div class="article-date-banner">
+                           <div class="article-date-banner">
+                                <span class="day">10</span>
+                                <span class="month">Oct</span>
+                            </div>
+                            <img src="article6-thumbnail-1.jpg" alt="Shogun series art">
+                            <div class="article-info">
+                                <h3>Shōgun (2024): Power, Economy, and Culture in Feudal Japan</h3>
+                                <p>The 2024 series 'Shōgun' is more than just a tale of samurai; it is a masterful depiction of how power in feudal Japan was intrinsically linked to economic control...</p>
+                                 <span class="article-link">Read More &rarr;</span>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Article 7 -->
+                    <a href="article7.html" class="article-card-full-link searchable-content" data-category="auditing reporting" data-date="2025-10-07">
+                        <div class="article-card-full">
+                           <div class="article-date-banner">
+                                <span class="day">07</span>
+                                <span class="month">Oct</span>
+                            </div>
+                            <img src="article7-thumbnail-1.jpg" alt="Audit Risk in Indonesia">
+                            <div class="article-info">
+                                <h3>Understanding Audit Risk in Indonesia: The Key to Transparency</h3>
+                                <p>In a dynamic and complex economic landscape like Indonesia, understanding and managing audit risk is not just a technical task for accountants...</p>
+                                 <span class="article-link">Read More &rarr;</span>
+                            </div>
+                        </div>
+                    </a>
+                     <!-- Article 5 -->
+                     <a href="article5.html" class="article-card-full-link searchable-content" data-category="sustainability reporting" data-date="2025-10-03">
+                        <div class="article-card-full">
+                           <div class="article-date-banner">
+                                <span class="day">03</span>
+                                <span class="month">Oct</span>
+                            </div>
+                            <img src="article5-thumbnail-1.jpg" alt="Japan's Economy in Cinema">
+                            <div class="article-info">
+                                <h3>Japan's Economy on the Big Screen: From ‘Shoplifters’ to Reality</h3>
+                                <p>Behind Japan's gleaming facade of prosperity lies a hidden reality of economic precarity, a subject masterfully explored by its contemporary cinema...</p>
+                                 <span class="article-link">Read More &rarr;</span>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Article 4 -->
+                     <a href="article4.html" class="article-card-full-link searchable-content" data-category="sustainability" data-date="2025-10-09">
+                        <div class="article-card-full">
+                           <div class="article-date-banner">
+                                <span class="day">09</span>
+                                <span class="month">Oct</span>
+                            </div>
+                            <img src="article4-thumbnail-1.jpg" alt="Japan's Economy">
+                            <div class="article-info">
+                                <h3>Japan's Economy: The Shadow of an Aging Population</h3>
+                                <p>Japan stands as a testament to post-war economic miracles, but it grapples with a profound and silent challenge: a rapidly aging population...</p>
+                                 <span class="article-link">Read More &rarr;</span>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Article 1 -->
+                    <a href="article1.html" class="article-card-full-link searchable-content" data-category="technology" data-date="2025-10-01">
+                        <div class="article-card-full">
+                             <div class="article-date-banner">
                                 <span class="day">01</span>
                                 <span class="month">Oct</span>
                             </div>
                             <img src="article1-thumbnail-1.jpg" alt="AI and Accounting">
                             <div class="article-info">
                                 <h3>The Future of AI in Accounting</h3>
-                                <p>Artificial Intelligence (AI) is no longer a futuristic concept from science fiction; it is a tangible force actively reshaping industries, and accounting is at the forefront of this transformation.</p>
+                                <p>Artificial Intelligence (AI) is no longer a futuristic concept from science fiction; it is a tangible force actively reshaping industries...</p>
+                                <span class="article-link">Read More &rarr;</span>
                             </div>
                         </div>
                     </a>
                     <!-- Article 2 -->
-                    <a href="article2.html" class="article-card-full-link">
+                    <a href="article2.html" class="article-card-full-link searchable-content" data-category="technology auditing" data-date="2025-09-15">
                         <div class="article-card-full">
-                             <div class="article-date-banner">
+                            <div class="article-date-banner">
                                 <span class="day">15</span>
                                 <span class="month">Sep</span>
                             </div>
                             <img src="article2-thumbnail-1.jpg" alt="Blockchain Technology">
                             <div class="article-info">
                                 <h3>Understanding Blockchain's Impact on Financial Audits</h3>
-                                <p>Blockchain technology, the decentralized and immutable ledger system famously known for powering cryptocurrencies like Bitcoin, is poised to bring a seismic shift to the world of financial auditing.</p>
+                                <p>Blockchain technology, the decentralized and immutable ledger system famously known for powering cryptocurrencies like Bitcoin...</p>
+                                <span class="article-link">Read More &rarr;</span>
                             </div>
                         </div>
                     </a>
                     <!-- Article 3 -->
-                     <a href="article3.html" class="article-card-full-link">
+                     <a href="article3.html" class="article-card-full-link searchable-content" data-category="reporting sustainability" data-date="2025-08-28">
                         <div class="article-card-full">
-                             <div class="article-date-banner">
+                           <div class="article-date-banner">
                                 <span class="day">28</span>
                                 <span class="month">Aug</span>
                             </div>
                             <img src="article3-thumbnail-1.jpg" alt="ESG Reporting">
                             <div class="article-info">
                                 <h3>The Rise of ESG: A New Frontier for Financial Reporting</h3>
-                                <p>A global shift in consciousness has led investors, consumers, and regulators to demand greater accountability from corporations regarding their impact on the planet and society.</p>
+                                <p>A global shift in consciousness has led investors, consumers, and regulators to demand greater accountability from corporations...</p>
+                                 <span class="article-link">Read More &rarr;</span>
                             </div>
                         </div>
                     </a>
+                </div>
+                <div class="pagination-controls" style="display: none;">
+                    <button class="pagination-btn" id="prev-page" disabled>&larr; Previous</button>
+                    <span id="page-info"></span>
+                    <button class="pagination-btn" id="next-page">Next &rarr;</button>
                 </div>
             </div>
         </section>
