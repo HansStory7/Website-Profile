@@ -872,7 +872,7 @@ footer {
 
 .competencies-section {
     padding: 80px 0;
-    background-color: var(--light-gray-bg);
+    background-color: var(--white); /* Changed from --light-gray-bg */
 }
 
 .competency-grid {
