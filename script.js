@@ -1,317 +1,722 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function () {
 
-    // --- Logika untuk Menu Mobile ---
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileMenuClose = document.getElementById('mobile-menu-close');
-    const mobileMenuLinks = document.querySelectorAll('#mobile-menu a');
+    // --- NAVBAR SCROLL & HIDE LOGIC ---
+    const navbar = document.querySelector('.navbar');
+    let lastScrollY = window.scrollY;
 
-    if (mobileMenuButton && mobileMenu && mobileMenuClose) {
-        const openMobileMenu = () => mobileMenu.classList.add('active');
-        const closeMobileMenu = () => mobileMenu.classList.remove('active');
+    const handleNavScroll = () => {
+        const currentScrollY = window.scrollY;
+        const isIndexPage = window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html');
 
-        mobileMenuButton.addEventListener('click', openMobileMenu);
-        mobileMenuClose.addEventListener('click', closeMobileMenu);
-        
-        // Tutup menu jika link di dalamnya diklik
-        mobileMenuLinks.forEach(link => {
-            // Cek jika link bukan tombol booking sebelum menambahkan event listener
-            if (!link.classList.contains('booking-button')) {
-                link.addEventListener('click', closeMobileMenu);
+        // Scrolled class for styling
+        if (currentScrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+
+        // Hide/show navbar on non-index pages
+        if (!isIndexPage) {
+            if (currentScrollY > lastScrollY && currentScrollY > navbar.offsetHeight) {
+                // Scrolling down
+                navbar.classList.add('navbar-hidden');
+            } else {
+                // Scrolling up
+                navbar.classList.remove('navbar-hidden');
             }
-        });
-    }
-
-    // --- Logika untuk Slideshow di Hero Section ---
-    const slides = document.querySelectorAll('.hero-background');
-    const prevButton = document.querySelector('.prev-slide');
-    const nextButton = document.querySelector('.next-slide');
-    let currentSlide = 0;
-    let slideInterval;
-
-    function showSlide(index) {
-        slides.forEach((slide, i) => {
-            slide.classList.remove('active');
-            if (i === index) {
-                slide.classList.add('active');
-            }
-        });
-    }
-
-    function nextSlide() {
-        currentSlide = (currentSlide + 1) % slides.length;
-        showSlide(currentSlide);
-    }
-
-    function prevSlide() {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        showSlide(currentSlide);
-    }
-
-    function startSlideshow() {
-        slideInterval = setInterval(nextSlide, 4000); // Ganti gambar setiap 4 detik
-    }
-
-    function stopSlideshow() {
-        clearInterval(slideInterval);
-    }
-
-    if (slides.length > 0) {
-        if (prevButton) prevButton.addEventListener('click', () => {
-            prevSlide();
-            stopSlideshow();
-            startSlideshow();
-        });
-        if (nextButton) nextButton.addEventListener('click', () => {
-            nextSlide();
-            stopSlideshow();
-            startSlideshow();
-        });
-        startSlideshow();
-    }
-
-
-    // --- Logika untuk Animasi saat Scroll ---
-    const scrollElements = document.querySelectorAll('.animate-on-scroll');
-    const elementInView = (el, dividend = 1) => {
-        const elementTop = el.getBoundingClientRect().top;
-        return (
-            elementTop <= (window.innerHeight || document.documentElement.clientHeight) / dividend
-        );
+        }
+        lastScrollY = currentScrollY;
     };
 
-    const displayScrollElement = (element) => {
-        element.classList.add('is-visible');
-    };
-
-    const handleScrollAnimation = () => {
-        scrollElements.forEach((el) => {
-            if (elementInView(el, 1.25)) {
-                displayScrollElement(el);
-            }
-        });
-    };
-
-    window.addEventListener('scroll', handleScrollAnimation);
-    // Panggil sekali di awal untuk elemen yang sudah terlihat
-    handleScrollAnimation();
+    window.addEventListener('scroll', handleNavScroll);
 
 
-    // --- Logika untuk Navigasi Aktif saat Scroll ---
-    const sections = document.querySelectorAll('section[id], footer[id]');
-    const navLinks = document.querySelectorAll('.main-nav a, .mobile-menu a');
+    // --- NAVBAR ACTIVE LINK ON SCROLL ---
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.desktop-nav a');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    const isIndexPage = window.location.pathname.endsWith('/') || window.location.pathname.endsWith('index.html');
 
-    const activateNavLink = () => {
-        let currentSectionId = '';
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            if (pageYOffset >= sectionTop - 100) { 
-                currentSectionId = section.getAttribute('id');
+    function navHighlighter() { 
+        let scrollY = window.pageYOffset;
+        let currentSectionId = "";
+
+        sections.forEach(current => {
+            const sectionTop = current.offsetTop - 150;
+            if (scrollY >= sectionTop) {
+                currentSectionId = current.getAttribute('id');
             }
         });
 
         navLinks.forEach(link => {
-            link.classList.remove('active-link');
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${currentSectionId}`) {
+                link.classList.add('active');
+            }
+        });
+
+        mobileNavLinks.forEach(link => {
+            link.classList.remove('active');
             const linkHref = link.getAttribute('href');
-            if (currentSectionId && linkHref && linkHref.includes(currentSectionId)) {
-                link.classList.add('active-link');
-            }
-        });
-    };
-    
-    window.addEventListener('scroll', activateNavLink);
-    activateNavLink();
-
-
-    // --- Logika untuk Modal / Popup ---
-    const modal = document.getElementById('info-modal');
-    const modalTitle = document.getElementById('modal-title');
-    const modalBody = document.getElementById('modal-body');
-    const closeModalButton = document.querySelector('.modal-close');
-    const modalTriggers = document.querySelectorAll('.modal-trigger');
-
-    const modalContent = {
-        panduan: {
-            title: 'Panduan Pengunjung',
-            body: `<p>Selamat datang di Thé Ciliwung! Untuk memastikan pengalaman Anda menyenangkan, harap perhatikan panduan berikut:</p>
-                   <ul>
-                       <li>Check-in dimulai pukul 14:00 dan check-out paling lambat pukul 12:00.</li>
-                       <li>Dilarang membawa makanan dan minuman dari luar ke area resto.</li>
-                       <li>Harap menjaga kebersihan dan tidak membuang sampah sembarangan.</li>
-                       <li>Nyalakan api hanya di area yang telah disediakan.</li>
-                   </ul>`
-        },
-        syarat: {
-            title: 'Syarat dan Ketentuan',
-            body: `<p>Dengan melakukan pemesanan, Anda setuju dengan syarat dan ketentuan kami:</p>
-                   <ul>
-                       <li>Pembatalan dalam 7 hari sebelum tanggal kedatangan akan dikenakan biaya penuh.</li>
-                       <li>Kami tidak bertanggung jawab atas kehilangan atau kerusakan barang pribadi.</li>
-                       <li>Hewan peliharaan tidak diizinkan di area glamping.</li>
-                   </ul>`
-        },
-        kebijakan: {
-            title: 'Kebijakan Privasi',
-            body: `<p>Kami menghargai privasi Anda. Informasi pribadi yang Anda berikan saat pemesanan hanya akan digunakan untuk keperluan reservasi dan tidak akan dibagikan kepada pihak ketiga tanpa persetujuan Anda.</p>`
-        }
-    };
-
-    if (modal && closeModalButton && modalTriggers.length > 0) {
-        modalTriggers.forEach(trigger => {
-            trigger.addEventListener('click', (e) => {
-                e.preventDefault();
-                const modalId = trigger.getAttribute('data-modal-id');
-                const content = modalContent[modalId];
-
-                if (content) {
-                    modalTitle.textContent = content.title;
-                    modalBody.innerHTML = content.body;
-                    modal.classList.add('active');
-                }
-            });
-        });
-
-        const closeModal = () => {
-            modal.classList.remove('active');
-        };
-
-        closeModalButton.addEventListener('click', closeModal);
-
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModal();
-            }
-        });
-    }
-
-    // --- Logika untuk Tombol Pesan Mengambang ---
-    const floatingButton = document.getElementById('floating-message-button');
-    const messageModal = document.getElementById('message-modal');
-    const messageModalClose = document.getElementById('message-modal-close');
-    const messageForm = document.getElementById('message-form');
-    const notificationPopup = document.getElementById('notification-popup');
-
-    if (floatingButton && messageModal && messageModalClose) {
-        floatingButton.addEventListener('click', () => {
-            messageModal.classList.add('active');
-        });
-
-        const closeMessageModal = () => {
-            messageModal.classList.remove('active');
-        };
-
-        messageModalClose.addEventListener('click', closeMessageModal);
-        messageModal.addEventListener('click', (e) => {
-            if (e.target === messageModal) {
-                closeMessageModal();
-            }
-        });
-
-        messageForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            // Di sini Anda bisa menambahkan logika pengiriman data form (misal via AJAX)
-            console.log('Formulir terkirim!');
-            messageForm.reset();
-            closeMessageModal();
             
-            // Tampilkan notifikasi
-            notificationPopup.textContent = 'Pesan Anda telah terkirim!';
-            notificationPopup.classList.add('show');
-            setTimeout(() => {
-                notificationPopup.classList.remove('show');
-            }, 3000); // Sembunyikan setelah 3 detik
+            if (link.getAttribute('href') === 'index.html' && (currentSectionId === '' || scrollY < (document.getElementById('tentang').offsetTop - 150))) {
+                 link.classList.add('active');
+            } 
+            else if (currentSectionId && linkHref.includes(`#${currentSectionId}`)) {
+                link.classList.add('active');
+            }
         });
     }
 
-    // --- Logika untuk Modal Booking ---
-    const bookingModal = document.getElementById('booking-modal');
-    const bookingModalClose = document.getElementById('booking-modal-close');
-    const bookingButtons = document.querySelectorAll('.booking-button');
-    const bookingForm = document.getElementById('booking-form');
-    const bookingTypeSelect = document.getElementById('booking-type');
-    const backendUrl = 'https://hansstory7.pythonanywhere.com/booking'; // URL Backend Anda
-
-    if (bookingModal && bookingModalClose && bookingButtons.length > 0) {
+    if (isIndexPage) {
+        window.addEventListener('scroll', navHighlighter);
+        navHighlighter();
+    } else {
+        const currentPage = window.location.pathname.split('/').pop();
         
-        const openBookingModal = (bookingType = '') => {
-            if (bookingType) {
-                bookingTypeSelect.value = bookingType;
+        mobileNavLinks.forEach(link => {
+            const linkPage = new URL(link.href, window.location.href).pathname.split('/').pop();
+            
+            link.classList.remove('active');
+
+            if (currentPage === linkPage) {
+                link.classList.add('active');
+            } 
+            else if (currentPage.startsWith('project') && linkPage === 'projects.html') {
+                 link.classList.add('active');
             }
-            bookingModal.classList.add('active');
-        };
-
-        const closeBookingModal = () => {
-            bookingModal.classList.remove('active');
-            bookingForm.reset();
-        };
-
-        bookingButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                e.preventDefault();
-                const bookingType = button.getAttribute('data-type');
-                openBookingModal(bookingType);
-            });
-        });
-
-        bookingModalClose.addEventListener('click', closeBookingModal);
-
-        bookingModal.addEventListener('click', (e) => {
-            if (e.target === bookingModal) {
-                closeBookingModal();
+            else if (currentPage.startsWith('article') && linkPage === 'articles.html') {
+                 link.classList.add('active');
             }
         });
+    }
 
-        bookingForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const formData = new FormData(bookingForm);
-            const data = Object.fromEntries(formData.entries());
 
-            fetch(backendUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+    // --- SCROLL REVEAL ANIMATION ---
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    const hiddenElements = document.querySelectorAll('.hidden');
+    hiddenElements.forEach((el) => observer.observe(el));
+    
+    // --- SKILLS INFINITE SCROLL ---
+    const skillsGrid = document.querySelector('.skills-grid');
+    if (skillsGrid && window.innerWidth <= 768) {
+        let isScrolling;
+        const items = Array.from(skillsGrid.children);
+        const itemWidth = items[0].offsetWidth + parseInt(getComputedStyle(skillsGrid).gap);
+
+        // Clone items for seamless loop
+        items.forEach(item => {
+            const clone = item.cloneNode(true);
+            skillsGrid.appendChild(clone);
+        });
+
+        let scrollTimeout;
+        skillsGrid.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(() => {
+                const scrollLeft = skillsGrid.scrollLeft;
+                const totalWidth = skillsGrid.scrollWidth / 2;
+
+                if (scrollLeft >= totalWidth) {
+                    skillsGrid.scrollLeft -= totalWidth;
+                } else if (scrollLeft <= 0) {
+                    // This case is handled by the browser's native scroll behavior
                 }
-                return response.json();
-            })
-            .then(result => {
-                console.log('Success:', result);
-                closeBookingModal();
-                notificationPopup.textContent = 'Permintaan booking Anda telah terkirim! Admin akan segera menghubungi Anda.';
-                notificationPopup.classList.add('show');
+            }, 50); // Adjust delay as needed
+        });
+    }
+
+
+    // --- CUSTOM VIDEO PLAYER ---
+    const videoPlayerContainer = document.querySelector('.video-player-container');
+    if (videoPlayerContainer) {
+        const video = videoPlayerContainer.querySelector('.video-element');
+        const playButton = videoPlayerContainer.querySelector('.play-button');
+        const coverImage = videoPlayerContainer.querySelector('.video-cover');
+        const togglePlayBtn = videoPlayerContainer.querySelector('.toggle-play');
+        const skipButtons = videoPlayerContainer.querySelectorAll('.skip-btn');
+        const progressBar = videoPlayerContainer.querySelector('.progress-bar');
+        const progressFilled = videoPlayerContainer.querySelector('.progress-filled');
+        const timeDisplay = videoPlayerContainer.querySelector('.time-display');
+        const fullscreenBtn = videoPlayerContainer.querySelector('.fullscreen-btn');
+
+        function togglePlay() {
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+
+        function updatePlayIcon() {
+            const icon = video.paused ? '<i class="fas fa-play"></i>' : '<i class="fas fa-pause"></i>';
+            togglePlayBtn.innerHTML = icon;
+            videoPlayerContainer.classList.toggle('paused', video.paused);
+        }
+
+        function handleSkip() {
+            video.currentTime += parseFloat(this.dataset.skip);
+        }
+
+        function handleProgress() {
+            const percent = (video.currentTime / video.duration) * 100;
+            progressFilled.style.width = `${percent}%`;
+
+            const formatTime = (time) => {
+                const minutes = Math.floor(time / 60).toString().padStart(2, '0');
+                const seconds = Math.floor(time % 60).toString().padStart(2, '0');
+                return `${minutes}:${seconds}`;
+            };
+            
+            if (!isNaN(video.duration)) {
+               timeDisplay.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
+            }
+        }
+
+        function scrub(e) {
+            const scrubTime = (e.offsetX / progressBar.offsetWidth) * video.duration;
+            video.currentTime = scrubTime;
+        }
+        
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                videoPlayerContainer.requestFullscreen().catch(err => {
+                    alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+                });
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        if (coverImage) {
+            coverImage.addEventListener('click', () => {
+                videoPlayerContainer.classList.add('playing');
+                video.play();
+            });
+        }
+        if (playButton) {
+             playButton.addEventListener('click', () => {
+                videoPlayerContainer.classList.add('playing');
+                video.play();
+            });
+        }
+        
+        video.addEventListener('click', togglePlay);
+        video.addEventListener('play', updatePlayIcon);
+        video.addEventListener('pause', updatePlayIcon);
+        video.addEventListener('timeupdate', handleProgress);
+        
+        togglePlayBtn.addEventListener('click', togglePlay);
+        skipButtons.forEach(button => button.addEventListener('click', handleSkip));
+        
+        let mousedown = false;
+        progressBar.addEventListener('click', scrub);
+        progressBar.addEventListener('mousemove', (e) => mousedown && scrub(e));
+        progressBar.addEventListener('mousedown', () => mousedown = true);
+        progressBar.addEventListener('mouseup', () => mousedown = false);
+        
+        fullscreenBtn.addEventListener('click', toggleFullscreen);
+    }
+
+    // --- COIN ANIMATION ---
+    const coinContainer = document.getElementById('coin-animation-container');
+    if (coinContainer) {
+        setInterval(() => {
+            const coin = document.createElement('div');
+            coin.classList.add('coin');
+            coin.innerHTML = '<i class="fas fa-coins"></i>';
+            coin.style.left = Math.random() * 100 + 'vw';
+            coin.style.animationDuration = Math.random() * 3 + 4 + 's';
+            coin.style.fontSize = Math.random() * 10 + 10 + 'px';
+            coinContainer.appendChild(coin);
+
+            setTimeout(() => {
+                coin.remove();
+            }, 7000);
+        }, 500);
+    }
+
+    // --- BACKGROUND MUSIC ---
+    const backgroundMusic = document.getElementById('background-music');
+    const musicToggleBtn = document.getElementById('music-toggle-btn');
+    if (backgroundMusic && musicToggleBtn) {
+        
+        const updateMusicIcon = () => {
+            const icon = backgroundMusic.paused ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
+            musicToggleBtn.innerHTML = icon;
+            sessionStorage.setItem('musicIsPlaying', !backgroundMusic.paused);
+        };
+        
+        const resumeMusic = () => {
+            const musicWasPlaying = sessionStorage.getItem('musicIsPlaying') === 'true';
+            const lastTime = sessionStorage.getItem('musicCurrentTime');
+
+            if (musicWasPlaying && lastTime) {
+                backgroundMusic.currentTime = parseFloat(lastTime);
+                backgroundMusic.play().catch(error => {
+                    console.log("Autoplay prevented. User must interact first.");
+                    sessionStorage.setItem('musicIsPlaying', 'false');
+                    updateMusicIcon();
+                });
+            }
+        };
+
+        resumeMusic();
+
+        musicToggleBtn.addEventListener('click', () => {
+            if (backgroundMusic.paused) {
+                backgroundMusic.play().catch(error => {
+                    console.error("Music play failed:", error);
+                });
+            } else {
+                backgroundMusic.pause();
+            }
+        });
+        
+        backgroundMusic.onplay = updateMusicIcon;
+        backgroundMusic.onpause = updateMusicIcon;
+
+        window.addEventListener('beforeunload', () => {
+            if (!backgroundMusic.paused) {
+                sessionStorage.setItem('musicCurrentTime', backgroundMusic.currentTime);
+            }
+        });
+    }
+
+    // --- HERO SLIDESHOW ---
+    const slideshow = document.querySelector('.hero-slideshow');
+    if (slideshow) {
+        const slides = slideshow.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const nextButtons = document.querySelectorAll('.next-slide');
+        const prevButtons = document.querySelectorAll('.prev-slide');
+        let currentSlide = 0;
+        let slideInterval;
+
+        if (slides.length > 0) {
+            slides[0].classList.add('active-slide'); // Initialize first slide
+        }
+
+        function goToSlide(slideIndex) {
+            slides[currentSlide].classList.remove('active-slide');
+            currentSlide = (slideIndex + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active-slide');
+        }
+
+        function showNextSlide() {
+            goToSlide(currentSlide + 1);
+        }
+
+        function showPrevSlide() {
+            goToSlide(currentSlide - 1);
+        }
+
+        function startSlideShow() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(showNextSlide, 4000);
+        }
+
+        nextButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                showNextSlide();
+                startSlideShow(); // Reset timer
+            });
+        });
+
+        prevButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                showPrevSlide();
+                startSlideShow(); // Reset timer
+            });
+        });
+
+        startSlideShow();
+    }
+
+
+    // --- EMAIL POPUP ---
+    const emailPopupModal = document.getElementById('email-popup-modal');
+    if (emailPopupModal) {
+        const emailPopupBtn = document.getElementById('email-popup-btn');
+        const mobileEmailBtn = document.getElementById('mobile-email-btn');
+        const emailCloseBtn = emailPopupModal.querySelector('.close-popup-btn');
+
+        const openEmailPopup = () => {
+             emailPopupModal.classList.add('show');
+        };
+        
+        if(emailPopupBtn) emailPopupBtn.addEventListener('click', openEmailPopup);
+        if(mobileEmailBtn) {
+            mobileEmailBtn.addEventListener('click', () => {
+                openEmailPopup();
+                mobileEmailBtn.classList.add('clicked');
                 setTimeout(() => {
-                    notificationPopup.classList.remove('show');
-                    notificationPopup.textContent = 'Pesan Anda telah terkirim!';
-                }, 5000);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Terjadi kesalahan saat mengirim permintaan. Silakan coba lagi.');
+                    mobileEmailBtn.classList.remove('clicked');
+                }, 200);
+            });
+        }
+        
+        emailCloseBtn.addEventListener('click', () => {
+            emailPopupModal.classList.remove('show');
+        });
+    }
+    
+    // --- POLICY POPUPS ---
+    const popups = [
+        { btnId: 'open-guidance', modalId: 'guidance-modal' },
+        { btnId: 'open-terms', modalId: 'terms-modal' },
+        { btnId: 'open-privacy', modalId: 'privacy-modal' }
+    ];
+
+    popups.forEach(popup => {
+        const openBtn = document.getElementById(popup.btnId);
+        const modal = document.getElementById(popup.modalId);
+        
+        if (openBtn && modal) {
+            const closeBtn = modal.querySelector('.close-popup-btn');
+            openBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                modal.classList.add('show');
+            });
+
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('show');
+            });
+        }
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target.classList.contains('popup-modal')) {
+            event.target.classList.remove('show');
+        }
+    });
+
+    // --- LIVE SEARCH WITH SUGGESTIONS ---
+    const searchInput = document.getElementById('search-input');
+    const searchBtn = document.querySelector('.search-btn');
+    const suggestionsPanel = document.getElementById('search-suggestions');
+    
+    const searchKeywords = [
+        // Skills
+        { keyword: "Financial Reporting", url: "keahlian1.html" },
+        { keyword: "Taxation", url: "keahlian2.html" },
+        { keyword: "Auditing", url: "keahlian3.html" },
+        { keyword: "Budgeting & Forecasting", url: "keahlian4.html" },
+        
+        // Projects
+        { keyword: "Thé Ciliwung Tea Estate", url: "project1.html" },
+        { keyword: "HansSites News Blog", url: "project2.html" },
+        { keyword: "Hansswink Sweetdrink", url: "project3.html" },
+        { keyword: "Personal Portfolio Site", url: "project4.html" },
+        { keyword: "Financial Reporting Suite", url: "project5.html" },
+
+
+        // Articles
+        { keyword: "AI in Accounting", url: "article1.html" },
+        { keyword: "Blockchain", url: "article2.html" },
+        { keyword: "Audits", url: "article2.html" },
+        { keyword: "ESG", url: "article3.html" },
+        { keyword: "Japan Economy", url: "article4.html" },
+        { keyword: "Aging Population", url: "article4.html" },
+        { keyword: "Shoplifters", url: "article5.html" },
+        { keyword: "Japanese Cinema", url: "article5.html" },
+        { keyword: "Shōgun", url: "article6.html" },
+        { keyword: "Feudal Japan", url: "article6.html" },
+        { keyword: "Audit Risk", url: "article7.html" },
+        { keyword: "Akuntabilitas", url: "article7.html" },
+        { keyword: "Sustainability", url: "article3.html" },
+
+        // Other relevant terms
+        { keyword: "Canva", url: "projects.html" },
+        { keyword: "Branding", url: "projects.html" },
+        { keyword: "Marketing", url: "projects.html" }
+    ];
+
+    if (searchInput && searchBtn && suggestionsPanel) {
+        let activeSuggestionIndex = -1;
+
+        function performSearchOnIndex() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const searchableSections = [
+                { items: document.querySelectorAll('#projects .searchable-content'), noResultsEl: document.getElementById('no-results-projects') },
+                { items: document.querySelectorAll('#articles .searchable-content'), noResultsEl: document.getElementById('no-results-articles') },
+                { items: document.querySelectorAll('#keahlian .searchable-content'), noResultsEl: null } 
+            ];
+
+            searchableSections.forEach(section => {
+                if (!section.items) return;
+                let itemsFound = 0;
+                section.items.forEach(item => {
+                    const itemText = item.textContent.toLowerCase();
+                    if (itemText.includes(searchTerm)) {
+                        item.classList.remove('search-hide');
+                        itemsFound++;
+                    } else {
+                        item.classList.add('search-hide');
+                    }
+                });
+                if (section.noResultsEl) {
+                    section.noResultsEl.style.display = itemsFound === 0 && searchTerm !== '' ? 'block' : 'none';
+                }
+            });
+        }
+        
+        function handleSearchRedirect(term) {
+             window.location.href = `index.html?q=${encodeURIComponent(term)}`;
+        }
+        
+        if (isIndexPage) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const query = urlParams.get('q');
+            if (query) {
+                searchInput.value = query;
+                searchInput.focus();
+                performSearchOnIndex();
+            }
+        }
+        
+        function setActiveSuggestion(items) {
+            items.forEach(item => item.classList.remove('active'));
+            if (activeSuggestionIndex > -1) {
+                items[activeSuggestionIndex].classList.add('active');
+                items[activeSuggestionIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+
+        const showSuggestions = (filter = '') => {
+            suggestionsPanel.innerHTML = '';
+            activeSuggestionIndex = -1;
+            const inputText = filter.toLowerCase();
+
+            const filteredKeywords = searchKeywords.filter(item => item.keyword.toLowerCase().includes(inputText));
+            
+            if (filteredKeywords.length > 0) {
+                filteredKeywords.forEach((itemObj, index) => {
+                    const item = document.createElement('div');
+                    item.classList.add('suggestion-item');
+                    item.textContent = itemObj.keyword;
+                    item.onclick = () => window.location.href = itemObj.url;
+                    item.addEventListener('mouseover', () => {
+                        activeSuggestionIndex = index;
+                        setActiveSuggestion(suggestionsPanel.querySelectorAll('.suggestion-item'));
+                    });
+                    suggestionsPanel.appendChild(item);
+                });
+                suggestionsPanel.style.display = 'block';
+            } else {
+                suggestionsPanel.style.display = 'none';
+            }
+        }
+
+
+        searchInput.addEventListener('input', () => {
+            showSuggestions(searchInput.value);
+            if (isIndexPage) {
+                performSearchOnIndex();
+            }
+        });
+        
+        searchBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const navbar = document.querySelector('.navbar');
+            const isMobile = window.innerWidth <= 992;
+            const isSearchActive = navbar.classList.contains('search-active');
+            const isInputFocused = document.activeElement === searchInput;
+
+            if (isMobile) {
+                if (!isSearchActive) {
+                    navbar.classList.add('search-active');
+                    searchInput.focus();
+                } else {
+                     handleSearchRedirect(searchInput.value);
+                }
+            } else { // Desktop
+                if (!isInputFocused && searchInput.value.trim() === '') {
+                     searchInput.focus();
+                } else {
+                    if (!isIndexPage) {
+                        handleSearchRedirect(searchInput.value);
+                    } else {
+                        performSearchOnIndex();
+                        suggestionsPanel.style.display = 'none';
+                    }
+                }
+            }
+        });
+
+        searchInput.addEventListener('keydown', (e) => {
+            const suggestionItems = suggestionsPanel.querySelectorAll('.suggestion-item');
+            
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                if (window.getComputedStyle(suggestionsPanel).display === 'none') {
+                    showSuggestions(searchInput.value);
+                } else if (suggestionItems.length > 0) {
+                    activeSuggestionIndex = (activeSuggestionIndex + 1) % suggestionItems.length;
+                    setActiveSuggestion(suggestionItems);
+                }
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                if (suggestionItems.length > 0) {
+                    activeSuggestionIndex = (activeSuggestionIndex - 1 + suggestionItems.length) % suggestionItems.length;
+                    setActiveSuggestion(suggestionItems);
+                }
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                if (activeSuggestionIndex > -1) {
+                    suggestionItems[activeSuggestionIndex].click();
+                } else {
+                    if (isIndexPage) {
+                        performSearchOnIndex();
+                    } else {
+                        handleSearchRedirect(searchInput.value);
+                    }
+                }
+                suggestionsPanel.style.display = 'none';
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!searchBtn.contains(e.target) && !searchInput.contains(e.target)) {
+                suggestionsPanel.style.display = 'none';
+                if (window.innerWidth <= 992) {
+                     document.querySelector('.navbar').classList.remove('search-active');
+                }
+            }
+        });
+    }
+
+    // --- MOBILE MENU TOGGLE ---
+    const menuToggleBtn = document.querySelector('.mobile-menu-toggle');
+    const mobileMenu = document.querySelector('.mobile-menu');
+
+    if (menuToggleBtn && mobileMenu) {
+        menuToggleBtn.addEventListener('click', () => {
+            menuToggleBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggleBtn.classList.remove('active');
+                mobileMenu.classList.remove('active');
             });
         });
     }
 
+    // --- ARTICLE CATEGORY FILTER, SORT, & PAGINATION ---
+    const articlesPage = document.querySelector('.article-grid');
+    if (articlesPage) {
+        const filtersContainer = document.querySelector('.category-filters');
+        const sortContainer = document.querySelector('.sort-controls');
+        const paginationContainer = document.querySelector('.pagination-controls');
+        const prevButton = document.getElementById('prev-page');
+        const nextButton = document.getElementById('next-page');
+        const pageInfo = document.getElementById('page-info');
 
-    // --- Logika untuk Video Player YouTube ---
-    const playButton = document.getElementById('play-button');
-    const videoCover = document.getElementById('video-cover');
-    const playerFrame = document.getElementById('youtube-player');
+        let allArticles = Array.from(articlesPage.querySelectorAll('.article-card-full-link'));
+        const itemsPerPage = 6;
+        let currentPage = 1;
+        let activeCategory = 'all';
+        let sortOrder = 'newest';
 
-    if (playButton && videoCover && playerFrame) {
-        playButton.addEventListener('click', () => {
-            videoCover.classList.add('hidden');
-            playerFrame.contentWindow.postMessage(
-                JSON.stringify({ event: 'command', func: 'playVideo', args: '' }),
-                '*'
-            );
-        });
+        function updateArticles() {
+            // 1. Filter
+            let filteredArticles = allArticles.filter(item => {
+                const itemCategories = item.dataset.category;
+                return activeCategory === 'all' || itemCategories.includes(activeCategory);
+            });
+
+            // 2. Sort
+            filteredArticles.sort((a, b) => {
+                const dateA = new Date(a.dataset.date);
+                const dateB = new Date(b.dataset.date);
+                if (sortOrder === 'newest') {
+                    return dateB - dateA;
+                } else {
+                    return dateA - dateB;
+                }
+            });
+
+            // 3. Paginate
+            const totalPages = Math.ceil(filteredArticles.length / itemsPerPage);
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const paginatedArticles = filteredArticles.slice(startIndex, endIndex);
+
+            // 4. Display
+            articlesPage.innerHTML = ''; // Clear current articles
+            paginatedArticles.forEach(article => {
+                articlesPage.appendChild(article);
+                // Animation logic if needed
+                article.style.opacity = '0';
+                article.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    article.style.opacity = '1';
+                    article.style.transform = 'scale(1)';
+                }, 20);
+            });
+
+            // 5. Update Pagination UI
+            if (paginationContainer) {
+                if (totalPages > 1) {
+                    paginationContainer.style.display = 'flex';
+                    pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+                    prevButton.disabled = currentPage === 1;
+                    nextButton.disabled = currentPage === totalPages;
+                } else {
+                    paginationContainer.style.display = 'none';
+                }
+            }
+        }
+
+        if (filtersContainer) {
+            filtersContainer.addEventListener('click', (e) => {
+                const button = e.target.closest('.filter-btn');
+                if (!button) return;
+                filtersContainer.querySelector('.active').classList.remove('active');
+                button.classList.add('active');
+                activeCategory = button.dataset.category;
+                currentPage = 1;
+                updateArticles();
+            });
+        }
+        
+        if (sortContainer) {
+             sortContainer.addEventListener('click', (e) => {
+                const button = e.target.closest('.sort-btn');
+                if (!button) return;
+                sortContainer.querySelector('.active').classList.remove('active');
+                button.classList.add('active');
+                sortOrder = button.dataset.sort;
+                updateArticles();
+            });
+        }
+
+        if (paginationContainer) {
+            prevButton.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    updateArticles();
+                }
+            });
+            nextButton.addEventListener('click', () => {
+                currentPage++;
+                updateArticles();
+            });
+        }
+        
+        // Initial load
+        updateArticles();
     }
-
 });
 
